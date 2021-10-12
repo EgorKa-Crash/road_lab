@@ -89,8 +89,7 @@ namespace Road_Lap1
         {
             /*  int screenWidth = trackPictureBox.Width;
               int screenHeight = trackPictureBox.Height;*/
-
-
+             
             //Point[] wey = new Point[] { new Point(400, -400), new Point(400, 50), new Point(350, 200), new Point(300, 450), new Point(350, 900) ,new Point(350, 1300) };
 
             //Point[] wey = new Point[] { new Point(150, -10), new Point(150, 10), new Point(350, 150), new Point(300, 450), new Point(100, 900), new Point(100, 1000) };
