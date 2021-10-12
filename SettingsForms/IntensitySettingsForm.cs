@@ -1,6 +1,5 @@
 ﻿using Road_Lap1.Configuration;
 using Road_Lap1.Configuration.Intensity;
-using Road_Lap1.Configuration.Intesity;
 using Road_Lap1.Configuration.Roads;
 using System;
 using System.Collections.Generic;

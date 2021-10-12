@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Road_Lap1.Configuration.Intesity
+namespace Road_Lap1.Configuration.Intensity
 {
     public interface IIntensity : IValidatableObject
     {

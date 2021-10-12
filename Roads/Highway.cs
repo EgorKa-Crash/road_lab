@@ -25,8 +25,8 @@ namespace Road_Lap1
 
         public Highway(Point[] way, int[] typesRoadMarking, int highwayNumber, SystemSettings settings)
         {
-            this.MAX_SPEED = settings.SpeedLimits.MaxSpeed;
-            this.MIN_SPEED = settings.SpeedLimits.MinSpeed;
+            this.MAX_SPEED = settings.SpeedLimit.Max;
+            this.MIN_SPEED = settings.SpeedLimit.Min;
             marking = new List<RoadMarking>();
             roads = new List<Line>();
             roadSign = new List<SignLine>();

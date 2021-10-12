@@ -1,12 +1,11 @@
-﻿using Road_Lap1.Configuration.Intensity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Road_Lap1.Configuration.Intesity
+namespace Road_Lap1.Configuration.Intensity
 {
     public class NormalIntensity : IIntensity
     {

@@ -1,4 +1,4 @@
-﻿using Road_Lap1.Configuration.Intesity;
+﻿using Road_Lap1.Configuration.Intensity;
 using Road_Lap1.Configuration.Roads;
 using System;
 
@@ -17,7 +17,7 @@ namespace Road_Lap1.Configuration
         /// <summary>
         /// Ограничение по скорости
         /// </summary>
-        public SpeedLimits SpeedLimits { get; }
+        public SpeedLimits SpeedLimit { get; }
 
         /// <summary>
         /// Данные о топологии дороги
@@ -43,7 +43,7 @@ namespace Road_Lap1.Configuration
                                SpeedLimits speedLimits)
         {
             TypeRoad = nameRoad;
-            SpeedLimits = speedLimits;
+            SpeedLimit = speedLimits;
             SemaphoreConfiguration = new Lazy<SemaphoreSettings>(() => new SemaphoreSettings());
         }
 

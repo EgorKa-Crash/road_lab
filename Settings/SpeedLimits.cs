@@ -14,17 +14,17 @@ namespace Road_Lap1.Configuration
         /// <summary>
         /// Минимальная разрешенная скорость
         /// </summary>
-        public int MinSpeed { get; set; }
+        public int Min { get; set; }
 
         /// <summary>
         /// Максимальная разрешенная скорость
         /// </summary>
-        public int MaxSpeed { get; set; }
+        public int Max { get; set; }
 
         public SpeedLimits(int minSpeed, int maxSpeed)
         {
-            MinSpeed = minSpeed;
-            MaxSpeed = maxSpeed;
+            Min = minSpeed;
+            Max = maxSpeed;
         }
     }
 }

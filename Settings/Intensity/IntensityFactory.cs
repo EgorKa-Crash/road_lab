@@ -1,4 +1,4 @@
-﻿using Road_Lap1.Configuration.Intesity;
+﻿using Road_Lap1.Configuration.Intensity;
 
 namespace Road_Lap1.Configuration.Intensity
 {
