@@ -53,7 +53,7 @@ namespace Road_Lap1.ConfigurationForms
             {
                 _intensityConstructor = (a, b) => IntensityFactory.CreateUniformIntensity(a, b);
 
-                UpdateControls(typeof(UniformIntensity));
+                UpdateControls<UniformIntensity>();
             }
         }
 
@@ -63,7 +63,7 @@ namespace Road_Lap1.ConfigurationForms
             {
                 _intensityConstructor = (mx, dx) => IntensityFactory.CreateNormalIntensity(mx, dx);
 
-                UpdateControls(typeof(NormalIntensity)); 
+                UpdateControls<NormalIntensity>(); 
             }
         }
 
@@ -73,7 +73,7 @@ namespace Road_Lap1.ConfigurationForms
             {
                 _intensityConstructor = (x, _) => IntensityFactory.CreateExponentialIntensity(x);
 
-                UpdateControls(typeof(ExponentialIntensity)); 
+                UpdateControls<ExponentialIntensity>(); 
             }
         }
 
@@ -83,7 +83,7 @@ namespace Road_Lap1.ConfigurationForms
             {
                 _intensityConstructor = (x, _) => IntensityFactory.CreateDetermineIntensity(x);
 
-                UpdateControls(typeof(DetermineIntensity)); 
+                UpdateControls<DetermineIntensity>(); 
             }
         }
 
@@ -127,11 +127,11 @@ namespace Road_Lap1.ConfigurationForms
             }
         }
 
-        private void UpdateControls(Type intesity)
+        private void UpdateControls<T>() where T : IIntensity
         {        
-            var attributes = intesity.GetProperties()
-                                     .Select(prop => (IntensityAttribute)prop.GetCustomAttribute(typeof(IntensityAttribute)))
-                                     .Where(attribute => attribute != null);
+            var attributes = typeof(T).GetProperties()
+                                      .Select(prop => (IntensityAttribute)prop.GetCustomAttribute(typeof(IntensityAttribute)))
+                                      .Where(attribute => attribute != null);
 
             var descriptions =  attributes.Where(x => x != null)
                                           .Select(x => x.Description)

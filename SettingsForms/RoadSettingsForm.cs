@@ -54,10 +54,10 @@ namespace Road_Lap1.ConfigurationForms
                               ? new Traffic(countLine1) 
                               : (Traffic)new Traffic(countLine1, countLine2);
 
-            return Validate(_settings.Traffic);
+            return ValidateModel(_settings.Traffic);
         }
 
-        private bool Validate(object obj)
+        private bool ValidateModel(object obj)
         {
             var results = new List<ValidationResult>();
             var context = new ValidationContext(obj);

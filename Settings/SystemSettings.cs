@@ -37,15 +37,15 @@ namespace Road_Lap1.Configuration
         /// <summary>
         /// Конфигурация светофора
         /// </summary>
-        public Lazy<(Semaphore Left, Semaphore Right)> Semaphore { get; set; }
+        public Lazy<(Semaphore Left, Semaphore Right)> Semaphores { get; set; }
 
         private SystemSettings(TypeRoad nameRoad, 
                                SpeedLimits speedLimits)
         {
             TypeRoad = nameRoad;
             SpeedLimit = speedLimits;
-            Semaphore = new Lazy<(Semaphore Left, Semaphore Right)>(() => (new Semaphore(), 
-                                                                           new Semaphore()));
+            Semaphores = new Lazy<(Semaphore Left, Semaphore Right)>(() => (new Semaphore(), 
+                                                                            new Semaphore()));
         }
 
         private SystemSettings(TypeRoad nameRoad,

@@ -68,8 +68,8 @@ namespace Road_Lap1.ConfigurationForms
             {
                 if (_prevForm is RoadWindow)
                 {
-                    _settings.Semaphore.Value.Left.TimeMilliseconds = _leftSemaphoreToChange.TimeMilliseconds;
-                    _settings.Semaphore.Value.Right.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
+                    _settings.Semaphores.Value.Left.TimeMilliseconds = _leftSemaphoreToChange.TimeMilliseconds;
+                    _settings.Semaphores.Value.Right.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
 
                     Dispose();
                 }
