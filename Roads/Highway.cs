@@ -7,6 +7,8 @@ namespace Road_Lap1
 {
     class Highway : CommonsMethodsForRoads , IRoad 
     {
+        public int START_SIGN_POINT { get; set; } = 19;
+        public int FIN_SIGN_POINT { get; set; } = 14;
         public int MAX_SPEED { get; set; }
         public int MIN_SPEED { get; set; }  
         public Point[] way { get; set; } //маршрут, передаваемый при создании дороги 

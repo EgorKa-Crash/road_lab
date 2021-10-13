@@ -8,6 +8,8 @@ namespace Road_Lap1
 {
     interface IRoad
     {
+        int START_SIGN_POINT { get; set; }
+        int FIN_SIGN_POINT { get; set; }
         int MAX_SPEED { get; set; }
         int MIN_SPEED { get; set; }
         List<RoadMarking> marking { get; set; }

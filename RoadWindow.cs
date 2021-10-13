@@ -589,15 +589,54 @@ namespace Road_Lap1
         {
             
         }
-         
+
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            road.setTrafficLight();
+
             //var form = new SemaphoreSettingsForm(this, _settings);
-           // form.Show();
+            // form.Show();
+            //road.setTrafficLight();
+            Thread thr = new Thread(SemaphoreWorcs);
+            thr.Start();
         }
 
+        private void SemaphoreWorcs()
+        {
+            while (workingStatus)
+            {
+                road.setTrafficLight();
+                Thread.Sleep(_settings.Semaphores.Value.Left.TimeMilliseconds);
+                road.setTrafficLight();
+
+                while (CarsCountOnSegment(road.START_SIGN_POINT, road.FIN_SIGN_POINT, 1) != 0)
+                {
+                    Thread.Sleep(100);
+                }
+
+                road.setTrafficLight();
+                Thread.Sleep(_settings.Semaphores.Value.Right.TimeMilliseconds); //TimeMillisecondsPassing
+                road.setTrafficLight();
+
+
+                while (CarsCountOnSegment(road.FIN_SIGN_POINT, road.START_SIGN_POINT, 0) != 0)
+                {
+                    Thread.Sleep(100);
+                }
+
+            }
+        }
+
+        private int CarsCountOnSegment(int SPoint, int LPoint, int NRoad)
+        {
+            int count = 0;
+            foreach (Car c in cars)
+            {
+                if (c.roadNumber == NRoad && c.roadPointNumber < road.roads[NRoad].roadPoints.Count - LPoint && c.roadPointNumber > SPoint)
+                    count++;
+            }
+            return count;
+        }
         private void DynamicSpeed_Scroll(object sender, EventArgs e)
         {
             currentCar.carDesiredSpeed = dynamicSpeed.Value * 10; 

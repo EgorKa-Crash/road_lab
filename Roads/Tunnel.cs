@@ -10,6 +10,8 @@ namespace Road_Lap1
 {
     class Tunnel : CommonsMethodsForRoads, IRoad
     {
+        public int START_SIGN_POINT { get; set; } = 19;
+        public int FIN_SIGN_POINT { get; set; } = 14;
         public int MAX_SPEED { get; set; } = 90;
         public int MIN_SPEED { get; set; } = 0;
         public Point[] way { get; set; } //маршрут, передаваемый при создании дороги
