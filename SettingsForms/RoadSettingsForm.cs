@@ -9,13 +9,20 @@ namespace Road_Lap1.ConfigurationForms
 {
     public partial class RoadSettingsForm : Form
     {
-        private Form _form;
+        /// <summary>
+        /// Предыдущая форма
+        /// </summary>
+        private Form _prevForm;
+
+        /// <summary>
+        /// Конфигурационный объект
+        /// </summary>
         private SystemSettings _settings;
 
         public RoadSettingsForm(Form form, SystemSettings settings)
         {
             InitializeComponent();
-            _form = form;
+            _prevForm = form;
             _settings = settings;
 
             Container<Form>.Instance.Register(this);
@@ -70,7 +77,7 @@ namespace Road_Lap1.ConfigurationForms
 
         private void button_back_Click(object sender, EventArgs e)
         {
-            _form.Show();
+            _prevForm.Show();
             Container<Form>.Instance.Unregister(this);
             Dispose();
         }

@@ -85,7 +85,7 @@
     <Compile Include="Settings\Intensity\IntensityAttribute.cs" />
     <Compile Include="Settings\Roads\NameRoad.cs" />
     <Compile Include="Settings\SpeedLimits.cs" />
-    <Compile Include="Settings\SemaphoreSettings.cs" />
+    <Compile Include="Settings\Semaphore.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="FormExtensions.cs" />
     <Compile Include="Roads\CarFold\Car.cs" />

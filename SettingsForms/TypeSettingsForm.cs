@@ -13,7 +13,7 @@ namespace Road_Lap1.ConfigurationForms
         SystemSettings _settings;
 
         /// <summary>
-        /// Конструктор для SystemSettingsBase _settings
+        /// Конструктор для SystemSettings _settings
         /// </summary>
         Func<SystemSettings> _constructor;
 

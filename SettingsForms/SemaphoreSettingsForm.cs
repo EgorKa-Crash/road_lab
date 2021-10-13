@@ -115,16 +115,18 @@ namespace Road_Lap1.ConfigurationForms
         private void trackBar_rightSemaphore_Scroll(object sender, EventArgs e)
         {
             lbl_rightValue.Text = SetLabelValue(trackBar_rightSemaphore);
+            _rightSemaphoreToChange.TimeMilliseconds = trackBar_rightSemaphore.Value * _millisecondsFactor;
         }
 
         private void trackBar_leftSemaphore_Scroll(object sender, EventArgs e)
         {
             lbl_leftValue.Text = SetLabelValue(trackBar_leftSemaphore);
+            _leftSemaphoreToChange.TimeMilliseconds = trackBar_leftSemaphore.Value * _millisecondsFactor;
         }
 
         private string SetLabelValue(TrackBar trackBar)
         {
-            return (trackBar.Value * _millisecondsFactor) + " c";
+            return trackBar.Value + " c";
         }
     }
 }

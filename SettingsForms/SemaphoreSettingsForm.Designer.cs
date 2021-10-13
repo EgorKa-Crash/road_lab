@@ -36,13 +36,17 @@
             this.trackBar_rightSemaphore = new System.Windows.Forms.TrackBar();
             this.lbl_leftValue = new System.Windows.Forms.Label();
             this.lbl_rightValue = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_leftSemaphore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_rightSemaphore)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(170, 174);
+            this.btn_save.Location = new System.Drawing.Point(177, 188);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 35);
             this.btn_save.TabIndex = 0;
@@ -52,7 +56,7 @@
             // 
             // btn_back
             // 
-            this.btn_back.Location = new System.Drawing.Point(12, 174);
+            this.btn_back.Location = new System.Drawing.Point(12, 188);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(75, 35);
             this.btn_back.TabIndex = 1;
@@ -63,7 +67,7 @@
             // lbl_leftSemaphoreDescription
             // 
             this.lbl_leftSemaphoreDescription.AutoSize = true;
-            this.lbl_leftSemaphoreDescription.Location = new System.Drawing.Point(7, 9);
+            this.lbl_leftSemaphoreDescription.Location = new System.Drawing.Point(9, 18);
             this.lbl_leftSemaphoreDescription.Name = "lbl_leftSemaphoreDescription";
             this.lbl_leftSemaphoreDescription.Size = new System.Drawing.Size(210, 13);
             this.lbl_leftSemaphoreDescription.TabIndex = 3;
@@ -82,7 +86,7 @@
             // lbl_rightSemaphoreDescription
             // 
             this.lbl_rightSemaphoreDescription.AutoSize = true;
-            this.lbl_rightSemaphoreDescription.Location = new System.Drawing.Point(7, 92);
+            this.lbl_rightSemaphoreDescription.Location = new System.Drawing.Point(9, 105);
             this.lbl_rightSemaphoreDescription.Name = "lbl_rightSemaphoreDescription";
             this.lbl_rightSemaphoreDescription.Size = new System.Drawing.Size(216, 13);
             this.lbl_rightSemaphoreDescription.TabIndex = 5;
@@ -101,7 +105,7 @@
             // lbl_leftValue
             // 
             this.lbl_leftValue.AutoSize = true;
-            this.lbl_leftValue.Location = new System.Drawing.Point(223, 9);
+            this.lbl_leftValue.Location = new System.Drawing.Point(230, 18);
             this.lbl_leftValue.Name = "lbl_leftValue";
             this.lbl_leftValue.Size = new System.Drawing.Size(22, 13);
             this.lbl_leftValue.TabIndex = 7;
@@ -110,17 +114,57 @@
             // lbl_rightValue
             // 
             this.lbl_rightValue.AutoSize = true;
-            this.lbl_rightValue.Location = new System.Drawing.Point(223, 92);
+            this.lbl_rightValue.Location = new System.Drawing.Point(230, 105);
             this.lbl_rightValue.Name = "lbl_rightValue";
             this.lbl_rightValue.Size = new System.Drawing.Size(22, 13);
             this.lbl_rightValue.TabIndex = 8;
             this.lbl_rightValue.Text = "2 c";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "2";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(233, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(19, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "10";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(233, 155);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(19, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "10";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 155);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "2";
+            // 
             // SemaphoreSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 218);
+            this.ClientSize = new System.Drawing.Size(264, 235);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_rightValue);
             this.Controls.Add(this.lbl_leftValue);
             this.Controls.Add(this.trackBar_rightSemaphore);
@@ -150,5 +194,9 @@
         private System.Windows.Forms.TrackBar trackBar_rightSemaphore;
         private System.Windows.Forms.Label lbl_leftValue;
         private System.Windows.Forms.Label lbl_rightValue;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
