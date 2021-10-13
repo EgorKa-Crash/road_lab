@@ -66,11 +66,14 @@ namespace Road_Lap1.ConfigurationForms
         {
             if(ValidateModel(_leftSemaphoreToChange) && ValidateModel(_rightSemaphoreToChange))
             {
+              //  var ds = _settings.Semaphores.Value;
+                //_settings.Semaphores.Value.Left.TimeMilliseconds = _leftSemaphoreToChange.TimeMilliseconds;
+               // _settings.Semaphores.Value.Right.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
+                _settings.RightSemaphore.Value.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
+                _settings.LeftSemaphore.Value.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
+               
                 if (_prevForm is RoadWindow)
                 {
-                    _settings.Semaphores.Value.Left.TimeMilliseconds = _leftSemaphoreToChange.TimeMilliseconds;
-                    _settings.Semaphores.Value.Right.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
-
                     Dispose();
                 }
                 else

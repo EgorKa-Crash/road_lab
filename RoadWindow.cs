@@ -606,7 +606,7 @@ namespace Road_Lap1
             while (workingStatus)
             {
                 road.setTrafficLight();
-                Thread.Sleep(_settings.Semaphores.Value.Left.TimeMilliseconds);
+                Thread.Sleep(_settings.LeftSemaphore.Value.TimeMilliseconds);
                 road.setTrafficLight();
 
                 while (CarsCountOnSegment(road.START_SIGN_POINT, road.FIN_SIGN_POINT, 1) != 0)
@@ -615,7 +615,7 @@ namespace Road_Lap1
                 }
 
                 road.setTrafficLight();
-                Thread.Sleep(_settings.Semaphores.Value.Right.TimeMilliseconds); //TimeMillisecondsPassing
+                Thread.Sleep(_settings.RightSemaphore.Value.TimeMilliseconds); //TimeMillisecondsPassing
                 road.setTrafficLight();
 
 
