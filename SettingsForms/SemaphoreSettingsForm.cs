@@ -16,6 +16,11 @@ namespace Road_Lap1.ConfigurationForms
     public partial class SemaphoreSettingsForm : Form
     {
         /// <summary>
+        /// Перевод значения в миллисекунды
+        /// </summary>
+        private const int _millisecondsFactor = 1000;
+
+        /// <summary>
         /// Предыдущая форма
         /// </summary>
         private Form _prevForm;
@@ -26,9 +31,15 @@ namespace Road_Lap1.ConfigurationForms
         private SystemSettings _settings;
 
         /// <summary>
-        /// Объект-болванка для изменений
+        /// Объект-болванка для изменений левого светофора
         /// </summary>
-        private SemaphoreSettings _semaphoreConfigurationToChange;
+        private Semaphore _leftSemaphoreToChange;
+
+
+        /// <summary>
+        /// Объект-болванка для изменений правого светофора
+        /// </summary>
+        private Semaphore _rightSemaphoreToChange;
         
 
         public SemaphoreSettingsForm(Form prevForm, SystemSettings settings)
@@ -36,7 +47,8 @@ namespace Road_Lap1.ConfigurationForms
             InitializeComponent();
             _prevForm = prevForm;
             _settings = settings;
-            _semaphoreConfigurationToChange = new SemaphoreSettings(_settings.SemaphoreConfiguration.Value.TimeMilliseconds);
+            _leftSemaphoreToChange = new Semaphore();
+            _rightSemaphoreToChange = new Semaphore();
             Container<Form>.Instance.Register(this);
         }
 
@@ -52,13 +64,13 @@ namespace Road_Lap1.ConfigurationForms
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            _semaphoreConfigurationToChange.TimeMilliseconds = ParseInput();
-
-            if(ValidateModel(_semaphoreConfigurationToChange))
+            if(ValidateModel(_leftSemaphoreToChange) && ValidateModel(_rightSemaphoreToChange))
             {
                 if (_prevForm is RoadWindow)
                 {
-                    _settings.SemaphoreConfiguration.Value.TimeMilliseconds = _semaphoreConfigurationToChange.TimeMilliseconds;
+                    _settings.Semaphore.Value.Left.TimeMilliseconds = _leftSemaphoreToChange.TimeMilliseconds;
+                    _settings.Semaphore.Value.Right.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
+
                     Dispose();
                 }
                 else
@@ -86,25 +98,7 @@ namespace Road_Lap1.ConfigurationForms
             }
 
             return true;
-        }
-
-        private int ParseInput()
-        {
-            var param = -1;
-
-            var result = int.TryParse(tb_timeInSeconds.Text, out param);
-
-            if (!result)
-            {
-                MessageBox.Show("Введите целое положительное число!",
-                                "Ошибка",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-
-            }
-
-            return param * 1000;
-        }
+        }      
 
         private void SemaphoreConfigurationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -116,6 +110,21 @@ namespace Road_Lap1.ConfigurationForms
             {
                 this.CloseAll();
             }
+        }
+
+        private void trackBar_rightSemaphore_Scroll(object sender, EventArgs e)
+        {
+            lbl_rightValue.Text = SetLabelValue(trackBar_rightSemaphore);
+        }
+
+        private void trackBar_leftSemaphore_Scroll(object sender, EventArgs e)
+        {
+            lbl_leftValue.Text = SetLabelValue(trackBar_leftSemaphore);
+        }
+
+        private string SetLabelValue(TrackBar trackBar)
+        {
+            return (trackBar.Value * _millisecondsFactor) + " c";
         }
     }
 }
