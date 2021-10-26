@@ -11,11 +11,13 @@ namespace Road_Lap1.Configuration.Intensity
     {
         [Intensity("Введите a:")] public double? FirstParam { get; set; }
         [Intensity("Введите b:")] public double? SecondParam { get; set; }
-        
+        public Random Random { get; }
+
         public UniformIntensity(double? firstParam, double? secondParam)
         {
             FirstParam = firstParam;
-            SecondParam = secondParam;   
+            SecondParam = secondParam;
+            Random = new Random();
         }
 
         public bool CheckParam(double param)
@@ -25,20 +27,9 @@ namespace Road_Lap1.Configuration.Intensity
                  && !double.IsInfinity(param));
         }
 
-        public bool CheckParams(double param1, double param2)
-        {
-            return !(param1 < param2);
-        }
+        public bool CheckParams(double param1, double param2) => !(param1 < param2);
 
-        public IEnumerable<double> NextSample()
-        {
-            var rnd = new Random();
-
-            while (true)
-            {
-                yield return (rnd.NextDouble() * (SecondParam.Value - FirstParam.Value)) + FirstParam.Value;
-            }
-        }
+        public double NextValue() => (Random.NextDouble() * (SecondParam.Value - FirstParam.Value)) + FirstParam.Value;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

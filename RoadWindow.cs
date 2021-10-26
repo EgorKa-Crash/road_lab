@@ -165,12 +165,12 @@ namespace Road_Lap1
                     int numRoad = rnd.Next(0, countPassingRoads + countOppositeRoads); 
                     lock (carLocker)
                     { 
-                        var raddSpeed = _settings.CarSpeedIntensity.NextSample().First();
+                        var raddSpeed = _settings.CarSpeedIntensity.NextValue();
                          
                         cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1));
 
                     }
-                    Thread.Sleep((int)_settings.FlowIntensity.NextSample().First()); 
+                    Thread.Sleep((int)_settings.FlowIntensity.NextValue()); 
                 }
             })); 
         }

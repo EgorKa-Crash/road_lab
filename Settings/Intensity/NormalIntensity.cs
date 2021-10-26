@@ -11,12 +11,20 @@ namespace Road_Lap1.Configuration.Intensity
     {
         [Intensity("Введите MX:")] public double? FirstParam { get; set; }
         [Intensity("Введите DX:")] public double? SecondParam { get; set; }
+        public Random Random { get; }
 
         public NormalIntensity(double? firstParam, double? secondParam)
         {
             FirstParam = firstParam;
             SecondParam = secondParam;
+            Random = new NormalRandom();
         }
+
+        #region Check-methods
+
+        public bool CheckParamDX(double param) => param >= 0 && CheckParam(param);
+
+        public bool CheckParamMX(double param) => CheckParam(param);
 
         public bool CheckParam(double param)
         {
@@ -25,33 +33,14 @@ namespace Road_Lap1.Configuration.Intensity
                  && !double.IsInfinity(param));
         }
 
-        public bool CheckParamDX(double param)
-        {
-            return (param >= 0 && CheckParam(param));
-        }
-
-        public bool CheckParamMX(double param)
-        {
-            return CheckParam(param);
-        }
-
         /// <summary>
         /// Проверка, что МХ и DX имеют такие значение, что СВ не принимает(с вероятностью 0.997) значения меньше нуля
         /// </summary>
-        public bool CheckThreeSigmaRule()
-        {
-            return FirstParam.Value - (3 * Math.Sqrt(SecondParam.Value)) > 0;
-        }
+        public bool CheckThreeSigmaRule() => FirstParam.Value - (3 * Math.Sqrt(SecondParam.Value)) > 0;
 
-        public IEnumerable<double> NextSample()
-        {
-            var rnd = new NormalRandom();
+        #endregion
 
-            while(true)
-            {
-                yield return (rnd.NextDouble() * Math.Sqrt(SecondParam.Value)) + FirstParam.Value;
-            }
-        }
+        public double NextValue() => (Random.NextDouble() * Math.Sqrt(SecondParam.Value)) + FirstParam.Value;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

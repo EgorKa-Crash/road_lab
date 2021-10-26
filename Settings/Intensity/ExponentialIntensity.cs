@@ -11,10 +11,12 @@ namespace Road_Lap1.Configuration.Intensity
     {
         [Intensity("Введите показатель:")] public double? FirstParam { get; set; }
         public double? SecondParam { get; set; }
-    
+        public Random Random { get; }
+
         public ExponentialIntensity(double? firstParam)
         {
-            FirstParam = firstParam;        
+            FirstParam = firstParam;
+            Random = new Random();
         }
 
         public  bool CheckParam(double param)
@@ -24,15 +26,7 @@ namespace Road_Lap1.Configuration.Intensity
                  && !double.IsInfinity(param));
         }
 
-        public IEnumerable<double> NextSample()
-        {
-            var rnd = new Random();
-
-            while(true)
-            {
-                yield return -1 / FirstParam.Value * Math.Log(rnd.NextDouble());
-            }
-        }
+        public double NextValue() => -1 / FirstParam.Value * Math.Log(Random.NextDouble());
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -44,6 +38,6 @@ namespace Road_Lap1.Configuration.Intensity
             }
 
             return errors;
-        }
+        }   
     }
 }

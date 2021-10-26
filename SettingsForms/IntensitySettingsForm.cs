@@ -128,28 +128,26 @@ namespace Road_Lap1.ConfigurationForms
         }
 
         private void UpdateControls<T>() where T : IIntensity
-        {        
-            var attributes = typeof(T).GetProperties()
-                                      .Select(prop => (IntensityAttribute)prop.GetCustomAttribute(typeof(IntensityAttribute)))
-                                      .Where(attribute => attribute != null);
-
-            var descriptions =  attributes.Where(x => x != null)
-                                          .Select(x => x.Description)
-                                          .ToList();
+        {
+            var descriptions = typeof(T).GetProperties()
+                                        .Select(prop => (IntensityAttribute)prop.GetCustomAttribute(typeof(IntensityAttribute)))
+                                        .Where(attribute => attribute != null)
+                                        .Select(x => x.Description)
+                                        .ToList();
 
             if (descriptions.Count > 1)
             {
                 label_intesity2.Text = descriptions[1];
                 label_intesity2.Visible = true;
                 textBox_intesitySecondParam.Visible = true;
+                label_intesity1.Text = descriptions[0];
             }
-            else
+            else if(descriptions.Count > 0)
             {
                 label_intesity2.Visible = false;
                 textBox_intesitySecondParam.Visible = false;
+                label_intesity1.Text = descriptions[0];
             }
-
-            label_intesity1.Text = descriptions[0];
         }
 
         private bool UpdateConfiguration()

@@ -11,5 +11,5 @@ namespace Road_Lap1.Configuration.Roads
         Tunnel,
         Higway,
         Road
-    }
+    } 
 }

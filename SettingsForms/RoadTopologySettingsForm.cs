@@ -1,5 +1,6 @@
 ﻿using Road_Lap1.Configuration;
 using Road_Lap1.Configuration.Roads;
+using Road_Lap1.SettingsForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,30 +8,34 @@ using System.Windows.Forms;
 
 namespace Road_Lap1.ConfigurationForms
 {
-    public partial class RoadSettingsForm : Form
+    public partial class RoadTopologySettingsForm : Form
     {
         /// <summary>
         /// Предыдущая форма
         /// </summary>
-        private Form _prevForm;
+        public Form PrevForm { get; set; }
 
         /// <summary>
         /// Конфигурационный объект
         /// </summary>
-        private SystemSettings _settings;
+        public SystemSettings Settings { get; set; }
 
-        public RoadSettingsForm(Form form, SystemSettings settings)
+        /// <summary>
+        /// Тип формы
+        /// </summary>
+        public SettingsForm SettingType => SettingsForm.RoadTopology;
+
+        public RoadTopologySettingsForm(Form form, SystemSettings settings)
         {
             InitializeComponent();
-            _prevForm = form;
-            _settings = settings;
-
-            Container<Form>.Instance.Register(this);
+            PrevForm = form;
+            Settings = settings;
+            SettingsFormDictionary.Instance.Add(SettingType, this);
         }
 
         private void radioButton_twoDirection_CheckedChanged(object sender, EventArgs e)
         {
-            panel_countLine.Visible = radioButton_twoDirection.Checked;
+            textBox_countLineOnSecondDirection.Visible = radioButton_twoDirection.Checked;
         }
 
         private void button_next_Click(object sender, EventArgs e)
@@ -41,20 +46,20 @@ namespace Road_Lap1.ConfigurationForms
             }
 
             this.Hide();
-            var form = new IntensitySettingsForm(this, _settings);
+            var form = new IntensitySettingsForm(this, Settings);
             form.Show();
         }
 
         private bool UpdateRoad()
         {
-            var countLine1 = trackBar_oneDirection.Value;
-            var countLine2 = trackBar_twoDirection.Value;
+            var countLine1 = int.Parse(textBox_countLineOnFirstDirection.Text);
+            var countLine2 = int.Parse(textBox_countLineOnSecondDirection.Text);
 
-            _settings.Traffic = radioButton_oneDirection.Checked
+            Settings.Traffic = radioButton_oneDirection.Checked
                               ? new Traffic(countLine1) 
                               : (Traffic)new Traffic(countLine1, countLine2);
 
-            return ValidateModel(_settings.Traffic);
+            return ValidateModel(Settings.Traffic);
         }
 
         private bool ValidateModel(object obj)
@@ -77,8 +82,8 @@ namespace Road_Lap1.ConfigurationForms
 
         private void button_back_Click(object sender, EventArgs e)
         {
-            _prevForm.Show();
-            Container<Form>.Instance.Unregister(this);
+            PrevForm.Show();
+            SettingsFormDictionary.Instance.Remove(SettingType);
             Dispose();
         }
 
@@ -87,9 +92,9 @@ namespace Road_Lap1.ConfigurationForms
             this.CloseAll();
         }
 
-        private void label_oneDirection_Click(object sender, EventArgs e)
+        public void ChangeBehavior()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

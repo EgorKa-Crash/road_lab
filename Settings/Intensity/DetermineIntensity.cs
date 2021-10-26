@@ -14,9 +14,11 @@ namespace Road_Lap1.Configuration.Intensity
 
         public double? SecondParam { get; set; }
 
+        public Random Random { get; }
+
         public DetermineIntensity(double? firstParam)
         {
-            FirstParam = firstParam; 
+            FirstParam = firstParam;
         }
 
         public bool CheckParam(double param)
@@ -26,13 +28,7 @@ namespace Road_Lap1.Configuration.Intensity
                  && !double.IsInfinity(param));
         }
 
-        public IEnumerable<double> NextSample()
-        {
-            while(true)
-            {
-                yield return FirstParam.Value;
-            }
-        }
+        public double NextValue() => FirstParam.Value;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
