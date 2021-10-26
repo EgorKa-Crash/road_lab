@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace Road_Lap1
     {
         private readonly double CAR_INERTIA = 0.2; //меньше значение, больше снос
 
+
         public double xCarCoordinate { get; set; }
+        public Color carColor { get; set; }
         public double yCarCoordinate { get; set; }
         public int roadNumber { get; set; }
         public int roadPointNumber { get; set; }
@@ -21,7 +24,7 @@ namespace Road_Lap1
         public int maximumAllowedSpeed { get; set; } // максимальная разрешенная скорость автомобиля
         public bool carOvertaking { get; set; } // автомобиль обгоняет
          
-        public Car(double xCarSpeed, double yCarSpeed, int roadNumber, int carDesiredSpeed, double xCarCoordinate, double yCarCoordinate, double currentCarSpeed, int roadPointNumber)
+        public Car(double xCarSpeed, double yCarSpeed, int roadNumber, int carDesiredSpeed, double xCarCoordinate, double yCarCoordinate, double currentCarSpeed, int roadPointNumber, Color carColor)
         {
             this.xCarSpeed = xCarSpeed;
             this.yCarSpeed = yCarSpeed;
@@ -31,6 +34,7 @@ namespace Road_Lap1
             this.xCarCoordinate = xCarCoordinate;
             this.yCarCoordinate = yCarCoordinate;
             this.roadPointNumber = roadPointNumber;
+            this.carColor = carColor;
             maximumAllowedSpeed = carDesiredSpeed;
         }
 

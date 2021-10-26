@@ -36,7 +36,7 @@ namespace Road_Lap1.Roads.CarFold
                 {
                     cars[i].BrakingCar();
                 }
-                else if (cars[i].maximumAllowedSpeed * 0.9 > carSpeed)
+                else if (cars[i].maximumAllowedSpeed * 0.95 > carSpeed)
                     cars[i].BoostCar();
 
                 // шаг вперед 

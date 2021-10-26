@@ -107,7 +107,7 @@ namespace Road_Lap1
             int[] RM = MarkingGenerator();
               
             if( _settings.TypeRoad == TypeRoad.Tunnel)
-            {
+            { 
                 road = new Tunnel(wey, 15, 25); // обозначены начало и конец тонеля, возможно потом можно вывести для динамической настройки карты
                 speedLimitTrackBar.Maximum = 9;
                 speedLimitTrackBar.Minimum = 2;
@@ -167,7 +167,7 @@ namespace Road_Lap1
                     { 
                         var raddSpeed = _settings.CarSpeedIntensity.NextValue();
                          
-                        cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1));
+                        cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256))) );
 
                     }
                     Thread.Sleep((int)_settings.FlowIntensity.NextValue()); 
@@ -228,7 +228,7 @@ namespace Road_Lap1
         Pen pen = new Pen(Color.Red);
         Pen pen2 = new Pen(Color.Red);
         Pen pen3 = new Pen(Color.Red);
-        Font font = new Font("Console", 10);
+        Font font = new Font("Console", 12, FontStyle.Bold);  
         SolidBrush sb = new SolidBrush(Color.Red); 
        /* private void RoadDrawing1() //полученный битмэп можно взять за основу, не просчитывая каждый раз заново дороги
         {
@@ -267,22 +267,23 @@ namespace Road_Lap1
                         if (c == currentCar)
                         {
                             pen2.Color = Color.Red; // = new Pen(Color.Red);
-                            pen3.Color = Color.Red; // = new Pen(Color.Red);
+                           // pen3.Color = Color.Red; // = new Pen(Color.Red);
                                                     //pen3 = new Pen(Color.Red);
                         }
                         else
                         {
-                            pen2.Color = Color.Black; // = new Pen(Color.Red);
-                            pen3.Color = Color.Red;
+                            pen2.Color = c.carColor;  // = new Pen(Color.Red);
+                            //pen3.Color = Color.Red;
                         }
-                        sb.Color = pen2.Color;
+                        sb.Color = Color.Black;
+                        pen2.Width = 18;
 
                         double cos = c.yCarSpeed / Math.Sqrt(c.xCarSpeed * c.xCarSpeed + c.yCarSpeed * c.yCarSpeed);
                         double sin = c.xCarSpeed / Math.Sqrt(c.xCarSpeed * c.xCarSpeed + c.yCarSpeed * c.yCarSpeed);
 
                         // grf.DrawImage(RotateImage(carImage, (float)Math.Asin(sin) * 50), new Rectangle((int)c.xCarCoordinate, (int)c.yCarCoordinate, 30, 30));
 
-                        Point point1 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate - 9, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
+                        /*Point point1 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate - 9, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
                         Point point2 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate + 9, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
                         Point point4 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate - 9, (int)c.yCarCoordinate + 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
                         Point point3 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate + 9, (int)c.yCarCoordinate + 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
@@ -290,9 +291,18 @@ namespace Road_Lap1
                         grf.DrawLine(pen2, point1.x, point1.y, point2.x, point2.y);
                         grf.DrawLine(pen2, point2.x, point2.y, point3.x, point3.y);
                         grf.DrawLine(pen3, point3.x, point3.y, point4.x, point4.y);
-                        grf.DrawLine(pen2, point1.x, point1.y, point4.x, point4.y);
+                        grf.DrawLine(pen2, point1.x, point1.y, point4.x, point4.y);*/
+
+
+                        Point point1 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate, (int)c.yCarCoordinate + 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
+                        Point point2 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
+
+                        grf.DrawLine(pen2, point1.x, point1.y, point2.x, point2.y);
+
 
                         grf.DrawString(Math.Round(c.currentCarSpeed * 10, 0).ToString(), font, sb, new PointF((float)c.xCarCoordinate - 8, (float)c.yCarCoordinate - 5));
+                        sb.Color = Color.White;
+                        grf.DrawString(Math.Round(c.currentCarSpeed * 10, 0).ToString(), font, sb, new PointF((float)c.xCarCoordinate - 10, (float)c.yCarCoordinate - 5));
                     }
                 }
             }
@@ -305,24 +315,43 @@ namespace Road_Lap1
                 RoadMarking mark = road.marking[i];
 
                 if (road.typesRoadMarking[i] == 3)
+                {
                     pen.Color = Color.Gray;
+                    pen.Width = 2;
+                }
+
 
                 else if (road.typesRoadMarking[i] == 2)
+                {
                     pen.Color = Color.Black;
+                    pen.Width = 2;
+                }
+
 
                 else if (road.typesRoadMarking[i] == 1)
-                    pen.Color = Color.Black;
-
-                for (int j = 0; j < mark.markingPoints.Count - 1; j++)
                 {
-                    if (road.typesRoadMarking[i] == 3)
-                        grf.DrawLine(pen, mark.markingPoints[j].x, mark.markingPoints[j].y, (mark.markingPoints[j + 1].x + mark.markingPoints[j].x) / 2, (mark.markingPoints[j + 1].y + mark.markingPoints[j].y) / 2);
-                    else
-                        grf.DrawLine(pen, mark.markingPoints[j].x, mark.markingPoints[j].y, mark.markingPoints[j + 1].x, mark.markingPoints[j + 1].y);
+                    pen.Color = Color.Black;
+                    pen.Width = 6;
+                    DrowLine(grf, i, mark);
+                    pen.Color = Color.White;
+                    pen.Width = 2;
                 }
+
+                DrowLine(grf, i, mark);
             }
         }
-         
+
+        private void DrowLine(Graphics grf, int i, RoadMarking mark)
+        {
+            for (int j = 0; j < mark.markingPoints.Count - 1; j++)
+            {
+                if (road.typesRoadMarking[i] == 3)
+                    grf.DrawLine(pen, mark.markingPoints[j].x, mark.markingPoints[j].y, (mark.markingPoints[j + 1].x + mark.markingPoints[j].x) / 2, (mark.markingPoints[j + 1].y + mark.markingPoints[j].y) / 2);
+                else
+                    grf.DrawLine(pen, mark.markingPoints[j].x, mark.markingPoints[j].y, mark.markingPoints[j + 1].x, mark.markingPoints[j + 1].y);
+            }
+        }
+
         Image noLimitImage; 
         Image limitImage; 
         Image greenSemaphoreImage; 
@@ -630,11 +659,19 @@ namespace Road_Lap1
         private int CarsCountOnSegment(int SPoint, int LPoint, int NRoad)
         {
             int count = 0;
+
+            for(int i = 0; i < cars.Count; i++)
+            {
+                if (cars[i].roadNumber == NRoad && cars[i].roadPointNumber < road.roads[NRoad].roadPoints.Count - LPoint && cars[i].roadPointNumber > SPoint)
+                    count++;
+            }
+
+/*
             foreach (Car c in cars)
             {
                 if (c.roadNumber == NRoad && c.roadPointNumber < road.roads[NRoad].roadPoints.Count - LPoint && c.roadPointNumber > SPoint)
                     count++;
-            }
+            }*/
             return count;
         }
         private void DynamicSpeed_Scroll(object sender, EventArgs e)

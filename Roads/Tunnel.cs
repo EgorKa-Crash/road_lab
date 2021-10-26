@@ -38,7 +38,7 @@ namespace Road_Lap1
         public Tunnel(Point[] way, int startTunnel, int finTunnel)
         {
              
-            typesRoadMarking = new int[4] { 2, 1, 2, 1 };
+            typesRoadMarking = new int[4] { 2, 2, 1, 1 };
             marking = new List<RoadMarking>();
             roads = new List<Line>();
             roadSign = new List<SignLine>();
