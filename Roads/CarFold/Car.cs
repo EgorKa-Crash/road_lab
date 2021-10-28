@@ -44,7 +44,7 @@ namespace Road_Lap1
         /// <returns></returns>
         public int CurrentCarSpeed()
         {
-            return (int)(Math.Sqrt(xCarSpeed * xCarSpeed + yCarSpeed * yCarSpeed) * 10);
+            return (int)Math.Sqrt(xCarSpeed * xCarSpeed + yCarSpeed * yCarSpeed) * 10;
         }
 
         /*public void recalculateCarSpeed(Road road)
@@ -104,7 +104,13 @@ namespace Road_Lap1
         public void BoostCar()
         {
             if (maximumAllowedSpeed > CurrentCarSpeed())
+            {
                 currentCarSpeed += (carDesiredSpeed / 10.0 - currentCarSpeed) / 30;
+            }
+            if(currentCarSpeed * 10 > maximumAllowedSpeed)
+            {
+                currentCarSpeed = maximumAllowedSpeed / 10;
+            }
         } 
     }
 }

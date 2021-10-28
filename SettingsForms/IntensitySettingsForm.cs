@@ -73,7 +73,7 @@ namespace Road_Lap1.ConfigurationForms
             {
                 _intensityConstructor = (x, _) => IntensityFactory.CreateExponentialIntensity(x);
 
-                UpdateControls<ExponentialIntensity>(); 
+                UpdateControls<ExponentialIntensity>();
             }
         }
 
@@ -108,8 +108,8 @@ namespace Road_Lap1.ConfigurationForms
                         Name = "Настройка закона распределения"
                         
                     };
-                    form.textBox_intesityFirstParam.Text = "50";
-                    form.textBox_intesitySecondParam.Text = "80";
+                    form.textBox_intesityFirstParam.Text = _settings.SpeedLimit.Min.ToString();
+                    form.textBox_intesitySecondParam.Text = _settings.SpeedLimit.Max.ToString();
                     form.label_intensityType.Text = "Выберите тип распределения скорости машин: ";
                     _countForms++;
                     form.Show();

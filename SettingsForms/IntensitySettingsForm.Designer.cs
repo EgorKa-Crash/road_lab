@@ -150,7 +150,7 @@
             this.button_next.UseVisualStyleBackColor = true;
             this.button_next.Click += new System.EventHandler(this.button_next_Click);
             // 
-            // IntensityConfigurationForm
+            // IntensitySettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -166,9 +166,9 @@
             this.Controls.Add(this.radioButton_normalIntenisty);
             this.Controls.Add(this.label_intensityType);
             this.Controls.Add(this.radioButton_uniformIntensity);
-            this.Name = "IntensityConfigurationForm";
+            this.Name = "IntensitySettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Выбор распределения";
+            this.Text = "Выбор распределения интесиновности потока";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IntensityConfigurationForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
