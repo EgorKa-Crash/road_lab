@@ -118,10 +118,11 @@ namespace Road_Lap1.ConfigurationForms
                 else
                 {
                     var form = _settings.TypeRoad == TypeRoad.Tunnel
-                             ? new SemaphoreSettingsForm(this, _settings) 
-                             : (Form)new RoadWindow(this, _settings);
+                     ? new SemaphoreSettingsForm(this, _settings)
+                     : (Form)new RoadSettingsForm(this, _settings);
 
                     form.Show();
+
                     this.Hide();
                 }
             }

@@ -71,13 +71,13 @@ namespace Road_Lap1.Configuration
             public static SystemSettings CreateRoad()
             {
                 return new SystemSettings(TypeRoad.Road,
-                                          new SpeedLimits(minSpeed: 0, maxSpeed: 60));
+                                          new SpeedLimits(minSpeed: 20, maxSpeed: 60));
             }
 
             public static SystemSettings CreateTunnel()
             {
                 return new SystemSettings(TypeRoad.Tunnel,
-                                          new SpeedLimits(minSpeed: 0, maxSpeed: 60),
+                                          new SpeedLimits(minSpeed: 20, maxSpeed: 60),
                                           new Traffic(countLineOn: 1,
                                                       countLineAgainst: 1));
             }
