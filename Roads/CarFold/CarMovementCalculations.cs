@@ -36,10 +36,11 @@ namespace Road_Lap1.Roads.CarFold
                 {
                     cars[i].BrakingCar();
                 }
-                else if (cars[i].maximumAllowedSpeed * 0.95 > carSpeed)
+                else if (cars[i].maximumAllowedSpeed * 0.95 > carSpeed  )
                     cars[i].BoostCar();
 
                 // шаг вперед 
+                if(cars[i].currentCarSpeed > 0.001)
                 cars[i].BeginCar(road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].x, road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].y);
 
                 // проверка, может ли данная машина пойти на обгон
