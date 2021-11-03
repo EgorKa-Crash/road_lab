@@ -109,7 +109,7 @@ namespace Road_Lap1
             if( _settings.TypeRoad == TypeRoad.Tunnel)
             { 
                 road = new Tunnel(wey, 15, 25); // обозначены начало и конец тонеля, возможно потом можно вывести для динамической настройки карты
-                speedLimitTrackBar.Maximum = 9;
+                speedLimitTrackBar.Maximum = 6;
                 speedLimitTrackBar.Minimum = 2;
             }
             else if (_settings.TypeRoad == TypeRoad.Higway)
@@ -121,7 +121,7 @@ namespace Road_Lap1
             else
             { 
                 road = new Highway(wey, RM, 1, _settings);
-                speedLimitTrackBar.Maximum = 9;
+                speedLimitTrackBar.Maximum = 6;
                 speedLimitTrackBar.Minimum = 2;
             } 
         }
