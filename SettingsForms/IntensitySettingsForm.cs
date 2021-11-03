@@ -117,11 +117,7 @@ namespace Road_Lap1.ConfigurationForms
                 }
                 else
                 {
-                    var form = _settings.TypeRoad == TypeRoad.Tunnel
-                     ? new SemaphoreSettingsForm(this, _settings)
-                     : (Form)new RoadSettingsForm(this, _settings);
-
-                    form.Show();
+                    new RoadWindow(this, _settings).Show();
 
                     this.Hide();
                 }
@@ -131,7 +127,7 @@ namespace Road_Lap1.ConfigurationForms
         private void UpdateControls<T>() where T : IIntensity
         {
             var descriptions = typeof(T).GetProperties()
-                                        .Select(prop => (IntensityAttribute)prop.GetCustomAttribute(typeof(IntensityAttribute)))
+                                        .Select(prop => (IntensityAttribute)prop.GetCustomAttribute<IntensityAttribute>())
                                         .Where(attribute => attribute != null)
                                         .Select(x => x.Description)
                                         .ToList();

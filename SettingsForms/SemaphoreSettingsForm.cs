@@ -75,7 +75,7 @@ namespace Road_Lap1.ConfigurationForms
                 }
                 else
                 {
-                    new RoadWindow(this, _settings).Show();
+                    new IntensitySettingsForm(this, _settings).Show();
                     this.Hide();
                 }
             }
