@@ -105,24 +105,23 @@ namespace Road_Lap1
             Point[] wey = new Point[] { new Point(-300, 600), new Point(0, 400), new Point(300, 400), new Point(600, 0), new Point(900, 500), new Point(1200, 600), new Point(1400, 900), new Point(1500, 1200) }; // хорошая карта, рекомендую , выпуклая вверх
              
             int[] RM = MarkingGenerator();
-              
-            if( _settings.TypeRoad == TypeRoad.Tunnel)
+
+            speedLimitTrackBar.Maximum = _settings.SpeedLimit.Max / 10;
+            speedLimitTrackBar.Minimum = _settings.SpeedLimit.Min / 10;
+            dynamicSpeed.Maximum = _settings.SpeedLimit.Max;
+            dynamicSpeed.Minimum = 0;
+
+            if ( _settings.TypeRoad == TypeRoad.Tunnel)
             { 
                 road = new Tunnel(wey, 15, 25); // обозначены начало и конец тонеля, возможно потом можно вывести для динамической настройки карты
-                speedLimitTrackBar.Maximum = 6;
-                speedLimitTrackBar.Minimum = 2;
             }
             else if (_settings.TypeRoad == TypeRoad.Higway)
             {
                 road = new Highway(wey, RM, 1, _settings);
-                speedLimitTrackBar.Maximum = 11;
-                speedLimitTrackBar.Minimum = 5;
             }
             else
             { 
-                road = new Highway(wey, RM, 1, _settings);
-                speedLimitTrackBar.Maximum = 6;
-                speedLimitTrackBar.Minimum = 2;
+                road = new Highway(wey, RM, 1, _settings);             
             } 
         }
 
@@ -166,8 +165,8 @@ namespace Road_Lap1
                     lock (carLocker)
                     { 
                         var raddSpeed = _settings.CarSpeedIntensity.NextValue();
-                         
-                        cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256))) );
+
+                        cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(200), rnd.Next(256), rnd.Next(256))) );
 
                     }
                     Thread.Sleep((int)_settings.FlowIntensity.NextValue()); 
@@ -192,7 +191,7 @@ namespace Road_Lap1
             { 
                 lock (carLocker)
                 {
-                    CarMovementCalculations.carMovement( cars , road,countOppositeRoads,_overtakingBlockingRadius);
+                    CarMovementCalculations.carMovement( cars , road,countOppositeRoads,_overtakingBlockingRadius, _settings.SpeedLimit.Max);
                 } 
                 if (trackPictureBox.InvokeRequired)
                 {
@@ -208,7 +207,7 @@ namespace Road_Lap1
                         {
                             Invoke((MethodInvoker)delegate
                             {
-                                selCarLable.Text = "" + Math.Round(currentCar.currentCarSpeed, 2) * 10;
+                                selCarLable.Text = dynamicSpeed.Value.ToString();
                                 currentCar.carDesiredSpeed = dynamicSpeed.Value;
                             }); 
                         }
@@ -298,7 +297,6 @@ namespace Road_Lap1
                         Point point2 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
 
                         grf.DrawLine(pen2, point1.x, point1.y, point2.x, point2.y);
-
 
                         grf.DrawString(Math.Round(c.currentCarSpeed * 10, 0).ToString(), font, sb, new PointF((float)c.xCarCoordinate - 8, (float)c.yCarCoordinate - 5));
                         sb.Color = Color.White;
@@ -501,16 +499,16 @@ namespace Road_Lap1
                 int x = e.Location.X;
                 int y = e.Location.Y;
                 double minRad = 100000;
-                foreach (Car c in cars)
+                for (var i = 0; i < cars.Count; i++)
                 {
-                    double rad = c.Radius(x, y);
+                    double rad = cars[i].Radius(x, y);
                     if (minRad > rad)
                     {
                         minRad = rad;
-                        currentCar = c;
+                        currentCar = cars[i];
                         if (currentCar.carDesiredSpeed > road.MAX_SPEED)
                             currentCar.carDesiredSpeed = road.MAX_SPEED;
-                        dynamicSpeed.Value = currentCar.carDesiredSpeed ;
+                        dynamicSpeed.Value = currentCar.carDesiredSpeed;
                     }
                 }
             } 
@@ -677,6 +675,7 @@ namespace Road_Lap1
         private void DynamicSpeed_Scroll(object sender, EventArgs e)
         {
             currentCar.carDesiredSpeed = dynamicSpeed.Value * 10; 
+
             //currentCar.maximumAllowedSpeed = 1; 
         }
     }

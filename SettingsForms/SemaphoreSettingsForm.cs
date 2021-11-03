@@ -75,8 +75,7 @@ namespace Road_Lap1.ConfigurationForms
                 }
                 else
                 {
-                    var form = new RoadWindow(this, _settings);
-                    form.Show();
+                    new RoadWindow(this, _settings).Show();
                     this.Hide();
                 }
             }

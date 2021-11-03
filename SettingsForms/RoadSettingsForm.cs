@@ -41,8 +41,8 @@ namespace Road_Lap1.ConfigurationForms
             }
 
             this.Hide();
-            var form = new IntensitySettingsForm(this, _settings);
-            form.Show();
+
+            new RoadWindow(this, _settings).Show();
         }
 
         private bool UpdateRoad()
@@ -85,11 +85,6 @@ namespace Road_Lap1.ConfigurationForms
         private void RoadConfigurationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.CloseAll();
-        }
-
-        private void label_oneDirection_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

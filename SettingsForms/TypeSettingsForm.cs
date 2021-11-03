@@ -28,11 +28,8 @@ namespace Road_Lap1.ConfigurationForms
         {
             _settings = _constructor();
 
-            var form = _settings.TypeRoad == TypeRoad.Tunnel
-                     ? new IntensitySettingsForm(this, _settings)
-                     : (Form)new RoadSettingsForm(this, _settings);
+            new IntensitySettingsForm(this, _settings).Show();
 
-            form.Show();
             this.Hide();
         }
 
