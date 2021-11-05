@@ -498,7 +498,7 @@ namespace Road_Lap1
             {
                // if(_settings.TypeRoad == TypeRoad.Tunnel)
                 {
-int x = e.Location.X;
+                int x = e.Location.X;
                 int y = e.Location.Y;
                 double minRad = 100000;
                 for (var i = 0; i < cars.Count; i++)
