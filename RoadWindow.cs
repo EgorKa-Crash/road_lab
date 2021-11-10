@@ -25,12 +25,12 @@ namespace Road_Lap1
         private Task _flowTask;
         private Task _semaphoreTask;
 
+        private bool addLimitFlag = false;
 
         private readonly double _overtakingBlockingRadius = 200;
         public int countPassingRoads { get; set; }  //количество попутных дорог
         public int countOppositeRoads { get; set; } //количество противоположных дорог 
-        private bool workingStatus { get; set; } // 0 - пауза, 1 - работа
-         
+
         List<Car> cars = new List<Car>(); 
 
         IRoad road;
@@ -64,8 +64,6 @@ namespace Road_Lap1
             speedLimitLabel.Text = "" + speedLimitTrackBar.Value * 10;
         }
     
-        private bool stopStatus = false;
-
         /// <summary>
         /// обработка нажатия кнопки старт, проверка не продолжить ли
         /// </summary>
@@ -75,18 +73,9 @@ namespace Road_Lap1
         {
             addLimitFlag = false;
 
-            if (_settings.TypeRoad == TypeRoad.Tunnel && !workingStatus)
+            if (_settings.TypeRoad == TypeRoad.Tunnel)
             {
                 StartSemaphoreSimulation();
-            }
-            if (!workingStatus && !stopStatus)
-            {
-                workingStatus = true;
-            }
-            else if (stopStatus && !addLimitFlag)
-            {
-                stopStatus = false;
-                workingStatus = true;
             }
 
             CarGenerator();
@@ -124,25 +113,18 @@ namespace Road_Lap1
         private void PauseButton_Click(object sender, EventArgs e)
         {
             _eventFlag = true;
-            workingStatus = false;
-            stopStatus = true;
         }
 
         private void ResumeButton_Click(object sender, EventArgs e)
         {
             _eventFlag = true;
-            workingStatus = false;
-            stopStatus = true;
-            stopInvoking = true;
             _configurationForm.Show();
             Dispose();
         }
 
         private void AddLimitButton_Click(object sender, EventArgs e)
         {
-            stopStatus = true;
             _eventFlag = true;
-            workingStatus = false;
             addLimitFlag = true;
         }
 
@@ -205,7 +187,7 @@ namespace Road_Lap1
         {
             Task.Run(() =>
             { 
-                while (workingStatus)
+                while (!_eventFlag)
                 {
                     int numRoad = rnd.Next(0, countPassingRoads + countOppositeRoads); 
                     lock (carLocker)
@@ -236,23 +218,16 @@ namespace Road_Lap1
                 } 
                 if (trackPictureBox.InvokeRequired)
                 {
-                    if (stopInvoking != true)
+                    trackPictureBox?.Invoke(new Action(() => RoadDrawing()));
+
+                    if (currentCar != null)
                     {
-                        invokeInProgress = true;
-
-                        trackPictureBox?.Invoke(new Action(() =>  RoadDrawing())); 
-
-                        invokeInProgress = false;
-                         
-                        if (currentCar != null)
+                        Invoke((MethodInvoker)delegate
                         {
-                            Invoke((MethodInvoker)delegate
-                            {
-                                selCarLable.Text = dynamicSpeed.Value.ToString();
-                                currentCar.carDesiredSpeed = dynamicSpeed.Value;
-                            }); 
-                        }
-                    } 
+                            selCarLable.Text = dynamicSpeed.Value.ToString();
+                            currentCar.carDesiredSpeed = dynamicSpeed.Value;
+                        });
+                    }
                 }
                 Thread.Sleep(20); 
             }
@@ -531,8 +506,11 @@ namespace Road_Lap1
             }
             else
             {
-               // if(_settings.TypeRoad == TypeRoad.Tunnel)
+                if (_settings.TypeRoad != TypeRoad.Tunnel)
                 {
+                    return;
+                }
+
                 int x = e.Location.X;
                 int y = e.Location.Y;
                 double minRad = 100000;
@@ -548,8 +526,6 @@ namespace Road_Lap1
                         dynamicSpeed.Value = currentCar.carDesiredSpeed;
                     }
                 }
-                }
-                
             } 
         }
 
@@ -573,29 +549,24 @@ namespace Road_Lap1
             }
         }
 
-        private bool invokeInProgress = false;
-        private bool stopInvoking = false;
-        private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
+       // private bool invokeInProgress = false;
+        private /*async*/ void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(!invokeInProgress)
+          //  if(!invokeInProgress)
             {
                 this.CloseAll();
-                return;
+             //   return;
             }
 
-            stopStatus = false;
-            workingStatus = false;
-            e.Cancel = true;
+            //e.Cancel = true;
 
-            stopInvoking = true;
+            //await Task.Run(() =>
+            //{
+            //    while (invokeInProgress)
+            //    { }
+            //});
 
-            await Task.Run(() =>
-            {
-                while (invokeInProgress)
-                { }
-            });
-
-            this.CloseAll();
+            //this.CloseAll();
         }
 
         private void SpeedLimitTrackBar_Scroll(object sender, EventArgs e)
@@ -605,7 +576,7 @@ namespace Road_Lap1
 
 
 
-        private bool addLimitFlag = false; 
+        
         private SignLine currentLimLine;
         private int currentLimNum;
 
