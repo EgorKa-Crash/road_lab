@@ -44,14 +44,12 @@
             // radioButton_uniformIntensity
             // 
             this.radioButton_uniformIntensity.AutoSize = true;
-            this.radioButton_uniformIntensity.Checked = true;
-            this.radioButton_uniformIntensity.Location = new System.Drawing.Point(15, 25);
+            this.radioButton_uniformIntensity.Location = new System.Drawing.Point(12, 48);
             this.radioButton_uniformIntensity.Name = "radioButton_uniformIntensity";
             this.radioButton_uniformIntensity.Size = new System.Drawing.Size(96, 17);
             this.radioButton_uniformIntensity.TabIndex = 0;
-            this.radioButton_uniformIntensity.TabStop = true;
             this.radioButton_uniformIntensity.Text = "Равномерный";
-            this.radioButton_uniformIntensity.UseVisualStyleBackColor = true;
+            this.radioButton_uniformIntensity.UseVisualStyleBackColor = false;
             this.radioButton_uniformIntensity.CheckedChanged += new System.EventHandler(this.radioButton_uniformIntensity_CheckedChanged);
             // 
             // label_intensityType
@@ -66,7 +64,7 @@
             // radioButton_normalIntenisty
             // 
             this.radioButton_normalIntenisty.AutoSize = true;
-            this.radioButton_normalIntenisty.Location = new System.Drawing.Point(15, 48);
+            this.radioButton_normalIntenisty.Location = new System.Drawing.Point(12, 71);
             this.radioButton_normalIntenisty.Name = "radioButton_normalIntenisty";
             this.radioButton_normalIntenisty.Size = new System.Drawing.Size(91, 17);
             this.radioButton_normalIntenisty.TabIndex = 2;
@@ -77,7 +75,7 @@
             // radioButton_exponentialIntensity
             // 
             this.radioButton_exponentialIntensity.AutoSize = true;
-            this.radioButton_exponentialIntensity.Location = new System.Drawing.Point(15, 71);
+            this.radioButton_exponentialIntensity.Location = new System.Drawing.Point(12, 94);
             this.radioButton_exponentialIntensity.Name = "radioButton_exponentialIntensity";
             this.radioButton_exponentialIntensity.Size = new System.Drawing.Size(106, 17);
             this.radioButton_exponentialIntensity.TabIndex = 3;
@@ -88,10 +86,12 @@
             // radioButton_determineIntensity
             // 
             this.radioButton_determineIntensity.AutoSize = true;
-            this.radioButton_determineIntensity.Location = new System.Drawing.Point(15, 94);
+            this.radioButton_determineIntensity.Checked = true;
+            this.radioButton_determineIntensity.Location = new System.Drawing.Point(12, 25);
             this.radioButton_determineIntensity.Name = "radioButton_determineIntensity";
             this.radioButton_determineIntensity.Size = new System.Drawing.Size(133, 17);
             this.radioButton_determineIntensity.TabIndex = 4;
+            this.radioButton_determineIntensity.TabStop = true;
             this.radioButton_determineIntensity.Text = "Детерминированный";
             this.radioButton_determineIntensity.UseVisualStyleBackColor = true;
             this.radioButton_determineIntensity.CheckedChanged += new System.EventHandler(this.radioButton_determineIntensity_CheckedChanged);

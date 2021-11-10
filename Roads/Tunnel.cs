@@ -36,8 +36,7 @@ namespace Road_Lap1
         private readonly int SMOOTHING = 3;// 1 - гипергладко , 5 - ближе к оригиналу
 
         public Tunnel(Point[] way, int startTunnel, int finTunnel)
-        {
-             
+        {            
             typesRoadMarking = new int[4] { 2, 2, 1, 1 };
             marking = new List<RoadMarking>();
             roads = new List<Line>();
@@ -46,24 +45,7 @@ namespace Road_Lap1
             buildTunnel(startTunnel, finTunnel);
             setTrafficLight();
             roadSign[0].signPoints[18].en = TrafficSignal.Signals.Tunnel;
-            roadSign[1].signPoints[13].en = TrafficSignal.Signals.Tunnel;
-           // _timer = new Timer(SetTrafficLightWrap, null, 0, 5000);           
-        }
-
-        private void SetTrafficLightWrap(object state)
-        {
-
-
-            if (roadSign[0].signPoints[19].en == TrafficSignal.Signals.RedSemaphore)
-            {
-                roadSign[0].signPoints[19].en = TrafficSignal.Signals.GreenSemaphore;
-                roadSign[1].signPoints[14].en = TrafficSignal.Signals.RedSemaphore;
-            }
-            else
-            {
-                roadSign[0].signPoints[19].en = TrafficSignal.Signals.RedSemaphore;
-                roadSign[1].signPoints[14].en = TrafficSignal.Signals.GreenSemaphore;
-            }
+            roadSign[1].signPoints[13].en = TrafficSignal.Signals.Tunnel;          
         }
 
         private int trafficLights = 0;

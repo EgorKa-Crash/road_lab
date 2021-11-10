@@ -35,8 +35,8 @@ namespace Road_Lap1
             this.way = Pointer(way, POINTS_INTERVAL, SMOOTHING);
             this.typesRoadMarking = typesRoadMarking;
             this.highwayNumber = highwayNumber;
-            var countPassingRoads = settings.Traffic.GetCountLine(Direction.OneWay);
-            var countOppositeRoads = settings.Traffic.GetCountLine(Direction.TwoWay);
+            var countPassingRoads = settings.Traffic.CountPasssingLine;
+            var countOppositeRoads = settings.Traffic.CountOppositeLine;
 
             BuildHighway(countPassingRoads, countOppositeRoads);
 
@@ -101,7 +101,7 @@ namespace Road_Lap1
 
         public void setTrafficLight()
         {
-            throw new System.NotImplementedException();
+
         }
     }
 } 

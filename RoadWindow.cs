@@ -18,6 +18,14 @@ namespace Road_Lap1
         private Form _configurationForm;
         private SystemSettings _settings;
 
+        private EventWaitHandle _flowEventWait = new AutoResetEvent(false);
+        private EventWaitHandle _semaphoreEventWait = new AutoResetEvent(false);
+        private bool _eventFlag = false;
+
+        private Task _flowTask;
+        private Task _semaphoreTask;
+
+
         private readonly double _overtakingBlockingRadius = 200;
         public int countPassingRoads { get; set; }  //количество попутных дорог
         public int countOppositeRoads { get; set; } //количество противоположных дорог 
@@ -45,11 +53,11 @@ namespace Road_Lap1
             carRoadImage = Properties.Resources.CarRoad;
             highwayImage = Properties.Resources.Highway;
             tunnelImage = Properties.Resources.Tunnel;
-
+           
             InitializeComponent();
             _settings = settings;
-            countPassingRoads = _settings.Traffic.GetCountLine(Direction.OneWay);
-            countOppositeRoads = _settings.Traffic.GetCountLine(Direction.TwoWay);
+            countPassingRoads = _settings.Traffic.CountPasssingLine;
+            countOppositeRoads = _settings.Traffic.CountOppositeLine ;
             _configurationForm = form;
             RoadGenerator();
             addLimitFlag = true;
@@ -66,42 +74,80 @@ namespace Road_Lap1
         private void startButton_Click(object sender, EventArgs e)
         {
             addLimitFlag = false;
+
+            if (_settings.TypeRoad == TypeRoad.Tunnel && !workingStatus)
+            {
+                StartSemaphoreSimulation();
+            }
             if (!workingStatus && !stopStatus)
             {
                 workingStatus = true;
-                //roadGenerator();
-                CarGenerator();
-                Tick();
             }
             else if (stopStatus && !addLimitFlag)
             {
                 stopStatus = false;
                 workingStatus = true;
-                CarGenerator();
-                //roadDrawing();
-                Tick();
-            } 
-        }
-         
+            }
 
+            CarGenerator();
+            StartFlowSimulation();
+        }
+
+        private void StartFlowSimulation()
+        {
+            if (_flowTask == null)
+            {
+                _flowTask = new Task(Tick2);
+                _flowTask.Start();
+            }
+            else
+            {
+                _eventFlag = false;
+                _flowEventWait.Set();
+            }
+        }
+
+        private void StartSemaphoreSimulation()
+        {
+            _eventFlag = false;
+            if (_semaphoreTask == null)
+            {
+                _semaphoreTask = new Task(SemaphoreWorcs);
+                _semaphoreTask.Start();
+            }
+            else
+            {
+                _semaphoreEventWait.Set();
+            }
+        }
+
+        private void PauseButton_Click(object sender, EventArgs e)
+        {
+            _eventFlag = true;
+            workingStatus = false;
+            stopStatus = true;
+        }
+
+        private void ResumeButton_Click(object sender, EventArgs e)
+        {
+            _eventFlag = true;
+            workingStatus = false;
+            stopStatus = true;
+            stopInvoking = true;
+            _configurationForm.Show();
+            Dispose();
+        }
+
+        private void AddLimitButton_Click(object sender, EventArgs e)
+        {
+            stopStatus = true;
+            _eventFlag = true;
+            workingStatus = false;
+            addLimitFlag = true;
+        }
 
         private void RoadGenerator()
         {
-            /*  int screenWidth = trackPictureBox.Width;
-              int screenHeight = trackPictureBox.Height;*/
-             
-            //Point[] wey = new Point[] { new Point(400, -400), new Point(400, 50), new Point(350, 200), new Point(300, 450), new Point(350, 900) ,new Point(350, 1300) };
-
-            //Point[] wey = new Point[] { new Point(150, -10), new Point(150, 10), new Point(350, 150), new Point(300, 450), new Point(100, 900), new Point(100, 1000) };
-
-            //Point[] wey = new Point[] { new Point(-10, -10), new Point(100, 100), new Point(280, 150), new Point(400, 300), new Point(450, 500), new Point(350, 900), new Point(350, 1000) };
-
-            //Point[] wey = new Point[] { new Point(-200, -400), new Point(50, 0), new Point(100, 300), new Point(200, 650), new Point(300, 800), new Point(400, 500), new Point(450, 250), new Point(900, 50), new Point(1000, 0) };
-
-            //Point[] wey = new Point[] { new Point(0, 1000), new Point(100, 350), new Point(200, 200), new Point(600, 500), new Point(600, 800), new Point(500, 1200)};
-
-           // Point[] wey = new Point[] { new Point(0, 1000), new Point(150, 200), new Point(400, 120), new Point(500, 100), new Point(700, 250), new Point(800, 600), new Point(1000, 700), new Point(1100, 650), new Point(1300, 600) }; // лежачий вопросительный знак
-
             Point[] wey = new Point[] { new Point(-300, 600), new Point(0, 400), new Point(300, 400), new Point(600, 0), new Point(900, 500), new Point(1200, 600), new Point(1400, 900), new Point(1500, 1200) }; // хорошая карта, рекомендую , выпуклая вверх
              
             int[] RM = MarkingGenerator();
@@ -157,7 +203,7 @@ namespace Road_Lap1
         /// </summary>
         private void CarGenerator()
         {
-            var t1 = Task.Run((Action)(() =>
+            Task.Run(() =>
             { 
                 while (workingStatus)
                 {
@@ -171,15 +217,8 @@ namespace Road_Lap1
                     }
                     Thread.Sleep((int)_settings.FlowIntensity.NextValue()); 
                 }
-            })); 
+            }); 
         }
-
-        private void Tick()
-        {
-
-            Thread tr = new Thread(Tick2);
-            tr.Start(); 
-        } 
 
         private Car currentCar;
         /// <summary>
@@ -187,11 +226,13 @@ namespace Road_Lap1
         /// </summary>
         private void Tick2()
         {
-            while (workingStatus)
-            { 
+            while (true)
+            {
+                _flowEventWait.WaitOneEx(_eventFlag);
+
                 lock (carLocker)
                 {
-                    CarMovementCalculations.carMovement( cars , road,countOppositeRoads,_overtakingBlockingRadius, _settings.SpeedLimit.Max);
+                    CarMovementCalculations.carMovement(cars, road,countOppositeRoads,_overtakingBlockingRadius, _settings.SpeedLimit.Max);
                 } 
                 if (trackPictureBox.InvokeRequired)
                 {
@@ -199,7 +240,7 @@ namespace Road_Lap1
                     {
                         invokeInProgress = true;
 
-                        trackPictureBox.Invoke(new Action(() => { RoadDrawing();  }));//roadDrawing(); 
+                        trackPictureBox?.Invoke(new Action(() =>  RoadDrawing())); 
 
                         invokeInProgress = false;
                          
@@ -212,9 +253,9 @@ namespace Road_Lap1
                             }); 
                         }
                     } 
-                } 
+                }
                 Thread.Sleep(20); 
-            } 
+            }
         }
          
 
@@ -403,15 +444,17 @@ namespace Road_Lap1
                                     currentImage = tunnelImage;
                                     break;
                                 }
-                        } 
-                            grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].x - 10, signline.signPoints[j].y - 12, 30, 30));
+                        }
+
+                        grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].x - 10, signline.signPoints[j].y - 12, 30, 30));
+
                         if (signline.signPoints[j + 1].en == TrafficSignal.Signals.Limit)
                         {
-                            
+
                             grf.DrawString(signline.signPoints[j + 1].maximumAllowedSpeed.ToString(),
-    font,
-    new SolidBrush(Color.Black),
-    new PointF(signline.signPoints[j].x - 8, signline.signPoints[j].y - 5));
+                                           font,
+                                           new SolidBrush(Color.Black),
+                                           new PointF(signline.signPoints[j].x - 8, signline.signPoints[j].y - 5));
                         }
                     } 
                 }
@@ -449,26 +492,18 @@ namespace Road_Lap1
             return bmp;
         }
 
-        private void PauseButton_Click(object sender, EventArgs e)
-        {
-            workingStatus = false;
-            stopStatus = true;
-        }
-
-        private void ResumeButton_Click(object sender, EventArgs e)
-        {
-            workingStatus = false;
-            _configurationForm.Show();
-            Dispose();
-        }
-          
+       
         private void TrackPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
             if (addLimitFlag) 
             {
-                //RoadDrawing1();
-                int lim ;
-                int oldLim  ; 
+                if(!IsCorrectPlaceToLimitSign(currentLimLine.signPoints[currentLimNum].en))
+                {
+                    return;
+                }
+
+                int lim  = 0;
+                int oldLim  = 0; 
                 if (addLimRadioButton.Checked)
                 {
                     currentLimLine.signPoints[currentLimNum].en = TrafficSignal.Signals.Limit; // указание типа знака   
@@ -476,12 +511,12 @@ namespace Road_Lap1
                       oldLim = currentLimLine.signPoints[currentLimNum].maximumAllowedSpeed; 
                 }
                 else if (delLimRadioButton.Checked)
-                {
+                { 
                     currentLimLine.signPoints[currentLimNum].en = TrafficSignal.Signals.Nothing;
                       oldLim = currentLimLine.signPoints[currentLimNum].maximumAllowedSpeed;
                       lim = currentLimLine.signPoints[currentLimNum-1].maximumAllowedSpeed; 
                 }
-                else 
+                else
                 { 
                     currentLimLine.signPoints[currentLimNum].en = TrafficSignal.Signals.NoLimit;
                       oldLim = currentLimLine.signPoints[currentLimNum].maximumAllowedSpeed;
@@ -514,6 +549,14 @@ namespace Road_Lap1
             } 
         }
 
+        private bool IsCorrectPlaceToLimitSign(TrafficSignal.Signals sign)
+        {
+            return sign != TrafficSignal.Signals.CarRoad
+                   && sign != TrafficSignal.Signals.Highway
+                   && sign != TrafficSignal.Signals.Tunnel
+                   && sign != TrafficSignal.Signals.GreenSemaphore
+                   && sign != TrafficSignal.Signals.RedSemaphore;
+        }
 
         private void LimLineEditor(int oldLim, int lim)
         {
@@ -530,128 +573,150 @@ namespace Road_Lap1
         private bool stopInvoking = false;
         private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (invokeInProgress)
-            {
-                stopStatus = false;
-                workingStatus = false;
-                e.Cancel = true; // cancel the original event
-
-                stopInvoking = true; // advise to stop taking new work
-
-                // now wait until current invoke finishes
-                await Task.Factory.StartNew(() =>
-                {
-                    while (invokeInProgress) { }
-                });
-
-                // now close the form
-                this.CloseAll();
-            }
-            else
+            if(!invokeInProgress)
             {
                 this.CloseAll();
+                return;
             }
+
+            stopStatus = false;
+            workingStatus = false;
+            e.Cancel = true;
+
+            stopInvoking = true;
+
+            await Task.Run(() =>
+            {
+                while (invokeInProgress)
+                { }
+            });
+
+            this.CloseAll();
         }
 
         private void SpeedLimitTrackBar_Scroll(object sender, EventArgs e)
         {
-            speedLimitLabel.Text = ""+speedLimitTrackBar.Value * 10;
+            speedLimitLabel.Text = (speedLimitTrackBar.Value * 10).ToString();
         }
 
-        private void AddLimitButton_Click(object sender, EventArgs e)
-        {
-            stopStatus = true;
-            workingStatus = false;
-            addLimitFlag = true;
 
-        }
+
         private bool addLimitFlag = false; 
         private SignLine currentLimLine;
         private int currentLimNum;
 
         private void TrackPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (addLimitFlag)
+            if (!addLimitFlag)
             {
-                int x = e.Location.X;
-                int y = e.Location.Y;
+                return;
+            }
 
-                double minRad = 100000;
-                foreach (SignLine signline in road.roadSign)
+            Graphics grf = Graphics.FromImage(btm);
+            grf.Clear(Color.Transparent);
+
+            DrawMarkup(grf);
+            DrawSigns(grf);
+            DrawCars(grf);
+            GetSignCoordinates(e, out int x, out int y);
+            DrawEditableSign(x, y, grf);
+
+            trackPictureBox.Image = btm;
+        }
+
+        private void GetSignCoordinates(MouseEventArgs e, out int x, out int y)
+        {
+            x = e.Location.X;
+            y = e.Location.Y;
+            double minRad = 100000;
+            foreach (SignLine signline in road.roadSign)
+            {
+                int num = 0;
+                foreach (Point p in signline.signPoints)
                 {
-                    int num = 0;
-                    foreach (Point p in signline.signPoints)
+                    num++;
+                    int dX = e.Location.X - p.x;
+                    int dY = e.Location.Y - p.y;
+                    double rad = Math.Sqrt(dX * dX + dY * dY);
+                    if (minRad > rad)
                     {
-                        num++;
-                        int dX = e.Location.X - p.x;
-                        int dY = e.Location.Y - p.y;
-                        double rad = Math.Sqrt(dX * dX + dY * dY);
-                        if (minRad > rad)
-                        {
-                            minRad = rad;
-                            x = p.x;
-                            y = p.y;
-                            //currentLimPoint = p;
-                            currentLimLine = signline;
-                            currentLimNum = num;
-                        }
+                        minRad = rad;
+                        x = p.x;
+                        y = p.y;
+                        currentLimLine = signline;
+                        currentLimNum = num;
                     }
-                } 
-                
-                Graphics grf = Graphics.FromImage(btm);
-                grf.Clear(Color.Transparent); 
-                  
-                DrawMarkup(grf);
-                DrawSigns(grf);
-                DrawCars(grf); 
+                }
+            }
+        }
 
-                SolidBrush brush = new SolidBrush(Color.Red); 
+        private void DrawEditableSign(int x, int y, Graphics grf)
+        {
+            Image signImage = null;
+            if (notLimRadioButton.Checked)
+            {
+                signImage = noLimitImage;
+                grf.DrawImage(signImage, new Rectangle(x - 10, y - 12, 30, 30));
+            }
+            else if (addLimRadioButton.Checked)
+            {
+                signImage = limitImage;
+                grf.DrawImage(signImage, new Rectangle(x - 10, y - 12, 30, 30));
+                grf.DrawString((speedLimitTrackBar.Value * 10).ToString(),
+                               font,
+                               new SolidBrush(Color.Black),
+                               new PointF(x - 8, y - 5));
+            }
+            else
+            {
+                SolidBrush brush = new SolidBrush(Color.Red);
                 grf.FillEllipse(brush, x - 5, y - 7, 20, 20);
-
-                trackPictureBox.Image = btm;
-            } 
+            }
         }
 
-        private void RoadWindow_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        private void Button1_Click_1(object sender, EventArgs e)
-        {
-
-            //var form = new SemaphoreSettingsForm(this, _settings);
-            // form.Show();
-            //road.setTrafficLight();
-            Thread thr = new Thread(SemaphoreWorcs);
-            thr.Start();
-        }
-
+       
         private void SemaphoreWorcs()
         {
-            while (workingStatus)
+            while (true)
             {
-                road.setTrafficLight();
-                Thread.Sleep(_settings.Semaphores.Left.TimeMilliseconds);
-                road.setTrafficLight();
+                TurnOtherLight();
 
                 while (CarsCountOnSegment(road.START_SIGN_POINT, road.FIN_SIGN_POINT, 1) != 0)
                 {
+                    _semaphoreEventWait.WaitOneEx(_eventFlag);
                     Thread.Sleep(100);
                 }
 
-                road.setTrafficLight();             
-                Thread.Sleep(_settings.Semaphores.Right.TimeMilliseconds); //TimeMillisecondsPassing
-                road.setTrafficLight();
-
+                TurnOtherLight();
 
                 while (CarsCountOnSegment(road.FIN_SIGN_POINT, road.START_SIGN_POINT, 0) != 0)
                 {
+                    _semaphoreEventWait.WaitOneEx(_eventFlag);
                     Thread.Sleep(100);
                 }
-
             }
+        }
+
+        private void TurnOtherLight()
+        {
+            road.setTrafficLight();
+            WaitingOnOtherLight(_settings.Semaphores.Left.TimeMilliseconds);
+            _semaphoreEventWait.WaitOneEx(_eventFlag);
+            road.setTrafficLight();
+        }
+
+        private int WaitingOnOtherLight(int timeout)
+        {
+            var counter = 0;
+            while (timeout >= counter)
+            {
+                _semaphoreEventWait.WaitOneEx(_eventFlag);
+
+                counter += 100;
+                Thread.Sleep(100);
+            }
+
+            return counter;
         }
 
         private int CarsCountOnSegment(int SPoint, int LPoint, int NRoad)
@@ -664,19 +729,12 @@ namespace Road_Lap1
                     count++;
             }
 
-/*
-            foreach (Car c in cars)
-            {
-                if (c.roadNumber == NRoad && c.roadPointNumber < road.roads[NRoad].roadPoints.Count - LPoint && c.roadPointNumber > SPoint)
-                    count++;
-            }*/
             return count;
         }
+
         private void DynamicSpeed_Scroll(object sender, EventArgs e)
         {
             currentCar.carDesiredSpeed = dynamicSpeed.Value * 10; 
-
-            //currentCar.maximumAllowedSpeed = 1; 
         }
     }
 }
