@@ -212,7 +212,7 @@ namespace Road_Lap1
                     { 
                         var raddSpeed = _settings.CarSpeedIntensity.NextValue();
 
-                        cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(200), rnd.Next(256), rnd.Next(256))) );
+                        cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(200), rnd.Next(150), rnd.Next(150))) );
 
                     }
                     Thread.Sleep((int)_settings.FlowIntensity.NextValue()); 
@@ -531,6 +531,8 @@ namespace Road_Lap1
             }
             else
             {
+               // if(_settings.TypeRoad == TypeRoad.Tunnel)
+                {
                 int x = e.Location.X;
                 int y = e.Location.Y;
                 double minRad = 100000;
@@ -546,6 +548,8 @@ namespace Road_Lap1
                         dynamicSpeed.Value = currentCar.carDesiredSpeed;
                     }
                 }
+                }
+                
             } 
         }
 
