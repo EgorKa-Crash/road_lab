@@ -28,7 +28,7 @@ namespace Road_Lap1.ConfigurationForms
         {
             _settings = _constructor();
 
-            var form = _settings.TypeRoad == TypeRoad.Tunnel
+            var form = _settings.RoadType == RoadType.Tunnel
                      ? new SemaphoreSettingsForm(this, _settings)
                      : (Form)new RoadSettingsForm(this, _settings);
 

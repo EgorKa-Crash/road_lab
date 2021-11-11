@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1
 {
-    class Car
+    public class Car
     {
         private readonly double CAR_INERTIA = 0.2; //меньше значение, больше снос
 

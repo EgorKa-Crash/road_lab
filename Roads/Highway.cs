@@ -5,25 +5,9 @@ using System.Collections.Generic;
 
 namespace Road_Lap1
 {
-    class Highway : CommonsMethodsForRoads , IRoad 
-    {
-        public int START_SIGN_POINT { get; set; } = 19;
-        public int FIN_SIGN_POINT { get; set; } = 14;
-        public int MAX_SPEED { get; set; }
-        public int MIN_SPEED { get; set; }  
-        public Point[] way { get; set; } //маршрут, передаваемый при создании дороги 
-        public List<Line> roads { get; set; } // все полосы у дороги
-        public List<SignLine> roadSign { get; set; } // дорожные знаки
-        public int[] typesRoadMarking { get; set; } // маркировка 1 = , 2 _____, 3 ------ 
-
-        public List<RoadMarking> marking { get; set; }
-
-        //public int[] speedLimits { get; set; } 
+    class Highway : RoadBase
+    {       
         public int highwayNumber { get; set; }
-
-        private int ROAD_WIDTH = 40;
-        private readonly int POINTS_INTERVAL = 50;
-        private readonly int SMOOTHING = 3;// 1 - гипергладко , 5 - ближе к оригиналу
 
         public Highway(Point[] way, int[] typesRoadMarking, int highwayNumber, SystemSettings settings)
         {
@@ -38,21 +22,21 @@ namespace Road_Lap1
             var countPassingRoads = settings.Traffic.CountPasssingLine;
             var countOppositeRoads = settings.Traffic.CountOppositeLine;
 
-            BuildHighway(countPassingRoads, countOppositeRoads);
+            BuildRoad(countPassingRoads, countOppositeRoads);
 
-            if (settings.TypeRoad == TypeRoad.Road)
+            if (settings.RoadType == RoadType.Road)
             {
                 if (countOppositeRoads > 0)
-                    roadSign[1].signPoints[10].en = TrafficSignal.Signals.CarRoad;
+                    roadSign[1].signPoints[10].Signal = TrafficSignalType.CarRoad;
                 if (countPassingRoads > 0)
-                    roadSign[0].signPoints[15].en = TrafficSignal.Signals.CarRoad;
+                    roadSign[0].signPoints[15].Signal = TrafficSignalType.CarRoad;
             }
             else
             {
                 if (countOppositeRoads > 0)
-                    roadSign[1].signPoints[10].en = TrafficSignal.Signals.Highway;
+                    roadSign[1].signPoints[10].Signal = TrafficSignalType.Highway;
                 if (countPassingRoads > 0)
-                    roadSign[0].signPoints[15].en = TrafficSignal.Signals.Highway;
+                    roadSign[0].signPoints[15].Signal = TrafficSignalType.Highway;
             }
         }
         
@@ -62,7 +46,7 @@ namespace Road_Lap1
         /// </summary>
         /// <param name="countPassingRoads"></param>
         /// <param name="countOppositeRoads"></param>
-        private void BuildHighway(int countPassingRoads, int countOppositeRoads)
+        protected override void BuildRoad(int countPassingRoads, int countOppositeRoads)
         {
             int N = countPassingRoads + countOppositeRoads;
 
@@ -99,7 +83,7 @@ namespace Road_Lap1
             roadSign = SetLimSpeed(countPassingRoads, countOppositeRoads, N, MAX_SPEED, way, roadSign, ROAD_WIDTH);
         }
 
-        public void setTrafficLight()
+        public override void setTrafficLight()
         {
 
         }

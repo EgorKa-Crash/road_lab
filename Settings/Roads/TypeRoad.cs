@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1.Configuration.Roads
 {
-    public enum TypeRoad
+    public enum RoadType
     {
         Tunnel,
         Higway,

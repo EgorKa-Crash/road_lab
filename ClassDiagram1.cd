@@ -1,256 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Road_Lap1.Car" Collapsed="true">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+  <Class Name="Road_Lap1.Car">
+    <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>DARICAAAAACAAAIAAAAAAAAAAAAAAgAAYAIAAACDIAA=</HashCode>
       <FileName>Roads\CarFold\Car.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.Line" Collapsed="true">
-    <Position X="5.25" Y="2.5" Width="1.5" />
+  <Class Name="Road_Lap1.Line">
+    <Position X="9.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Roads\RoadComponents\Line.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.Point" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+  <Class Name="Road_Lap1.Point">
+    <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAACAAAA=</HashCode>
       <FileName>Roads\RoadComponents\Point.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.RoadMarking" Collapsed="true">
-    <Position X="8.75" Y="2.5" Width="1.5" />
+  <Class Name="Road_Lap1.RoadMarking">
+    <Position X="13" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Roads\RoadComponents\RoadMarking.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.SignLine" Collapsed="true">
-    <Position X="8.75" Y="3.5" Width="1.5" />
+  <Class Name="Road_Lap1.SignLine">
+    <Position X="11.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Roads\RoadComponents\SignLine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.TrafficSignal" Collapsed="true">
-    <Position X="7" Y="4.5" Width="1.5" />
+  <Class Name="Road_Lap1.TrafficSignal">
+    <Position X="0.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Roads\RoadComponents\TrafficSignal.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.TrafficSignals" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Roads\RoadComponents\TrafficSignals.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Road_Lap1.Highway" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAEAAQAAABBIBkAABAAAAgAiAAAAAAAAQCAAAAAA=</HashCode>
+      <HashCode>AAABAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Roads\Highway.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Road_Lap1.Tunnel" Collapsed="true">
-    <Position X="2.75" Y="1.75" Width="1.5" />
+    <Position X="3" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAEAAAAAgBBABkAABAAACgAiAAAAAAAAQCAAAgAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAA=</HashCode>
       <FileName>Roads\Tunnel.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Road_Lap1.Container&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="0.5" Width="1.5" />
+  <Class Name="Road_Lap1.Roads.RoadBase">
+    <Position X="1.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAABAAAAAAAAIAAAABAAAEQAAAAAAAEAA=</HashCode>
-      <FileName>Container.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Road_Lap1.EventWaitHandleExtension" Collapsed="true">
-    <Position X="12.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EventWaitHandlerExtension.cs</FileName>
+      <HashCode>AAABAEIAAAAABBABkAABIAAQgAiAAAAAAAAQCAAgAAA=</HashCode>
+      <FileName>Roads\RoadBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.FormExtensions" Collapsed="true">
-    <Position X="7" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
-      <FileName>FormExtensions.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.RoadWindow" Collapsed="true">
-    <Position X="12.25" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>GDIGAACEAGOPBsAGwCyAkKBiMCCnOAAAEWEJAUEEbB4=</HashCode>
-      <FileName>RoadWindow.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.Roads.CarFold.CarMovementCalculations" Collapsed="true">
-    <Position X="7" Y="0.5" Width="1.5" />
+  <Class Name="Road_Lap1.Roads.CarFold.CarMovementCalculations">
+    <Position X="4.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAIAAAQAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Roads\CarFold\CarMovementCalculations.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Road_Lap1.Roads.CommonsMethodsForRoads" Collapsed="true">
-    <Position X="1.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Roads\CommonsMethodsForRoads.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Intensity.DetermineIntensity" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="10.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAACAQAAAAAAAAAAAAAAABABAAAAAAAAgAAA=</HashCode>
-      <FileName>Settings\Intensity\DetermineIntensity.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Intensity.ExponentialIntensity" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAACAQAAAAAAAAAAAAAAABABAAAAAAAAgAAA=</HashCode>
-      <FileName>Settings\Intensity\ExponentialIntensity.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Intensity.IntensityAttribute" Collapsed="true">
-    <Position X="8.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Settings\Intensity\IntensityAttribute.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Intensity.IntensityFactory" Collapsed="true">
-    <Position X="10.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAAAAAAAAAAAQAAQAACAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Settings\Intensity\IntensityFactory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Intensity.UniformIntensity" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="10.5" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAACAQAAAAAAAAAAAAAAABABAAAAAAAAwAAA=</HashCode>
-      <FileName>Settings\Intensity\UniformIntensity.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Intensity.NormalIntensity" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAACAQAgAAAAAAAAAAABABABAAAAAAIAgAAA=</HashCode>
-      <FileName>Settings\Intensity\NormalIntensity.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Roads.Traffic" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.25" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAQAAAAAACAAAAAACABAACAAAAAAAAAAAIAAEAAAAA=</HashCode>
-      <FileName>Settings\Roads\Traffic.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Road_Lap1.Configuration.Semaphore" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.25" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAIAAgAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Settings\Semaphore.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Road_Lap1.Configuration.SpeedLimits" Collapsed="true">
-    <Position X="10.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Settings\SpeedLimits.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.Configuration.SystemSettings" Collapsed="true">
-    <Position X="12.25" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQBAEAAIAQAAAAAAAAAAAAAAACAAgAAAAAAAAAAAAA=</HashCode>
-      <FileName>Settings\SystemSettings.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.ConfigurationForms.RoadSettingsForm" Collapsed="true">
-    <Position X="10.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAAIAAAACCAgAhAAqECAAAQKCBiACAAAAAAAAAAAAAg=</HashCode>
-      <FileName>SettingsForms\RoadSettingsForm.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.ConfigurationForms.IntensitySettingsForm" Collapsed="true">
-    <Position X="12.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>UACAAACICCECAAAIiGCAAASCCBKACBFAAAAAAAAAjAA=</HashCode>
-      <FileName>SettingsForms\IntensitySettingsForm.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.ConfigurationForms.SemaphoreSettingsForm" Collapsed="true">
-    <Position X="7" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAABgAAACZAABBAgWCAAAECBAAAgAgAAACAAgAiQAg=</HashCode>
-      <FileName>SettingsForms\SemaphoreSettingsForm.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Road_Lap1.ConfigurationForms.TypeSettingsForm" Collapsed="true">
-    <Position X="8.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQAACCAAAABAgACAIQQCHCAAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>SettingsForms\TypeSettingsForm.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="System.Windows.Forms.Form" Collapsed="true">
-    <Position X="14.75" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="System.Object" Collapsed="true">
-    <Position X="15" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Interface Name="Road_Lap1.IRoad" Collapsed="true">
-    <Position X="7" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAABAEAAAAAAABABkAABAAAAgAAAAAAAAAAQCAAAAAA=</HashCode>
-      <FileName>Roads\IRoad.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="Road_Lap1.Configuration.Intensity.IIntensity" Collapsed="true">
-    <Position X="5.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAQAAAAAAAAAAAAAAABABAAAAAAAAgAAA=</HashCode>
-      <FileName>Settings\Intensity\IIntensity.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="System.ComponentModel.DataAnnotations.IValidatableObject" Collapsed="true">
-    <Position X="17.25" Y="4.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Enum Name="Road_Lap1.Configuration.Roads.Direction" Collapsed="true">
-    <Position X="5.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Settings\Roads\Direction.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="Road_Lap1.Configuration.Roads.TypeRoad" Collapsed="true">
-    <Position X="7" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQAAAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
-      <FileName>Settings\Roads\TypeRoad.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

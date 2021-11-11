@@ -12,7 +12,7 @@ namespace Road_Lap1.Configuration
         /// <summary>
         /// Тип трассы
         /// </summary>
-        public TypeRoad TypeRoad { get; }
+        public RoadType RoadType { get; }
 
         /// <summary>
         /// Ограничение по скорости
@@ -41,18 +41,15 @@ namespace Road_Lap1.Configuration
         /// </summary>
         public (Semaphore Left, Semaphore Right) Semaphores => _semaphoresLazy.Value;
         
-
-        private SystemSettings(TypeRoad nameRoad, 
-                               SpeedLimits speedLimits)
+        private SystemSettings(RoadType nameRoad, SpeedLimits speedLimits)
         {
-            TypeRoad = nameRoad;
+            RoadType = nameRoad;
             SpeedLimit = speedLimits;
 
-            _semaphoresLazy = new Lazy<(Semaphore Left, Semaphore Right)>(() => (new Semaphore(),
-                                                                                 new Semaphore()));
+            _semaphoresLazy = new Lazy<(Semaphore, Semaphore)>(() => (new Semaphore(), new Semaphore()));
         }
 
-        private SystemSettings(TypeRoad nameRoad,
+        private SystemSettings(RoadType nameRoad,
                                SpeedLimits speedLimits,
                                Traffic traffic) : this(nameRoad, speedLimits)
         {
@@ -64,22 +61,21 @@ namespace Road_Lap1.Configuration
         {
             public static SystemSettings CreateHighway()
             {
-                return new SystemSettings(TypeRoad.Higway,
-                                          new SpeedLimits(minSpeed: 40, maxSpeed: 110));
+                return new SystemSettings(RoadType.Higway, new SpeedLimits(minSpeed: 40, maxSpeed: 110));
             }
 
             public static SystemSettings CreateRoad()
             {
-                return new SystemSettings(TypeRoad.Road,
-                                          new SpeedLimits(minSpeed: 20, maxSpeed: 60));
+                return new SystemSettings(RoadType.Road, new SpeedLimits(minSpeed: 20, maxSpeed: 60));
             }
 
             public static SystemSettings CreateTunnel()
             {
-                return new SystemSettings(TypeRoad.Tunnel,
+                return new SystemSettings(RoadType.Tunnel,
                                           new SpeedLimits(minSpeed: 20, maxSpeed: 60),
                                           new Traffic(countLineOn: 1,
-                                                      countLineAgainst: 1));
+                                                      countLineAgainst: 1)
+                                          );
             }
         }
     }

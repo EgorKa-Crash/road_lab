@@ -1,5 +1,6 @@
 ﻿using Road_Lap1.Configuration;
 using Road_Lap1.Configuration.Roads;
+using Road_Lap1.Roads;
 using Road_Lap1.Roads.CarFold;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace Road_Lap1
 
         List<Car> cars = new List<Car>(); 
 
-        IRoad road;
+        RoadBase road;
           
         object carLocker = new object();
 
@@ -71,9 +72,14 @@ namespace Road_Lap1
         /// <param name="e"></param>
         private void startButton_Click(object sender, EventArgs e)
         {
+            if(_eventFlag)
+            {
+                _eventFlag = false;
+            }
+
             addLimitFlag = false;
 
-            if (_settings.TypeRoad == TypeRoad.Tunnel)
+            if (_settings.RoadType == RoadType.Tunnel)
             {
                 StartSemaphoreSimulation();
             }
@@ -139,11 +145,11 @@ namespace Road_Lap1
             dynamicSpeed.Maximum = _settings.SpeedLimit.Max;
             dynamicSpeed.Minimum = 0;
 
-            if ( _settings.TypeRoad == TypeRoad.Tunnel)
+            if ( _settings.RoadType == RoadType.Tunnel)
             { 
                 road = new Tunnel(wey, 15, 25); // обозначены начало и конец тонеля, возможно потом можно вывести для динамической настройки карты
             }
-            else if (_settings.TypeRoad == TypeRoad.Higway)
+            else if (_settings.RoadType == RoadType.Higway)
             {
                 road = new Highway(wey, RM, 1, _settings);
             }
@@ -379,57 +385,57 @@ namespace Road_Lap1
             {
                 for (int j = 1; j < signline.signPoints.Count - 1; j++)
                 {
-                    if(signline.signPoints[j + 1].en != TrafficSignal.Signals.Nothing)
+                    if(signline.signPoints[j + 1].Signal != TrafficSignalType.Nothing)
                     {
                         Image currentImage = limitImage;
-                        TrafficSignal.Signals T = signline.signPoints[j + 1].en;
+                        TrafficSignalType T = signline.signPoints[j + 1].Signal;
                         switch (T)
                         {
-                            case TrafficSignal.Signals.Limit:
+                            case TrafficSignalType.Limit:
                                 { 
                                     break;
                                 }
-                            case TrafficSignal.Signals.NoLimit:
+                            case TrafficSignalType.NoLimit:
                                 {
                                     currentImage = noLimitImage;
                                     break;
                                 }
-                            case TrafficSignal.Signals.GreenSemaphore:
+                            case TrafficSignalType.GreenSemaphore:
                                 {
                                     currentImage = greenSemaphoreImage;
                                     break;
                                 }
-                            case TrafficSignal.Signals.RedSemaphore:
+                            case TrafficSignalType.RedSemaphore:
                                 {
                                     currentImage = redSemaphoreImage;
                                     break;
                                 }
-                            case TrafficSignal.Signals.Highway:
+                            case TrafficSignalType.Highway:
                                 {
                                     currentImage = highwayImage;
                                     break;
                                 }
-                            case TrafficSignal.Signals.CarRoad:
+                            case TrafficSignalType.CarRoad:
                                 {
                                     currentImage = carRoadImage;
                                     break;
                                 }
-                            case TrafficSignal.Signals.Tunnel:
+                            case TrafficSignalType.Tunnel:
                                 {
                                     currentImage = tunnelImage;
                                     break;
                                 }
                         }
 
-                        grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].x - 10, signline.signPoints[j].y - 12, 30, 30));
+                        grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].Point.x - 10, signline.signPoints[j].Point.y - 12, 30, 30));
 
-                        if (signline.signPoints[j + 1].en == TrafficSignal.Signals.Limit)
+                        if (signline.signPoints[j + 1].Signal == TrafficSignalType.Limit)
                         {
 
-                            grf.DrawString(signline.signPoints[j + 1].maximumAllowedSpeed.ToString(),
+                            grf.DrawString(signline.signPoints[j + 1].Point.maximumAllowedSpeed.ToString(),
                                            font,
                                            new SolidBrush(Color.Black),
-                                           new PointF(signline.signPoints[j].x - 8, signline.signPoints[j].y - 5));
+                                           new PointF(signline.signPoints[j].Point.x - 8, signline.signPoints[j].Point.y - 5));
                         }
                     } 
                 }
@@ -472,7 +478,7 @@ namespace Road_Lap1
         {
             if (addLimitFlag) 
             {
-                if(!IsCorrectPlaceToLimitSign(currentLimLine.signPoints[currentLimNum].en))
+                if(!IsCorrectPlaceToLimitSign(currentLimLine.signPoints[currentLimNum].Signal))
                 {
                     return;
                 }
@@ -481,20 +487,20 @@ namespace Road_Lap1
                 int oldLim  = 0; 
                 if (addLimRadioButton.Checked)
                 {
-                    currentLimLine.signPoints[currentLimNum].en = TrafficSignal.Signals.Limit; // указание типа знака   
+                    currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.Limit; // указание типа знака   
                       lim = speedLimitTrackBar.Value * 10; 
-                      oldLim = currentLimLine.signPoints[currentLimNum].maximumAllowedSpeed; 
+                      oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed; 
                 }
                 else if (delLimRadioButton.Checked)
                 { 
-                    currentLimLine.signPoints[currentLimNum].en = TrafficSignal.Signals.Nothing;
-                      oldLim = currentLimLine.signPoints[currentLimNum].maximumAllowedSpeed;
-                      lim = currentLimLine.signPoints[currentLimNum-1].maximumAllowedSpeed; 
+                    currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.Nothing;
+                      oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed;
+                      lim = currentLimLine.signPoints[currentLimNum-1].Point.maximumAllowedSpeed; 
                 }
                 else
                 { 
-                    currentLimLine.signPoints[currentLimNum].en = TrafficSignal.Signals.NoLimit;
-                      oldLim = currentLimLine.signPoints[currentLimNum].maximumAllowedSpeed;
+                    currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.NoLimit;
+                      oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed;
                       lim = road.MAX_SPEED; 
                 }
                 LimLineEditor(oldLim, lim);
@@ -506,7 +512,7 @@ namespace Road_Lap1
             }
             else
             {
-                if (_settings.TypeRoad != TypeRoad.Tunnel)
+                if (_settings.RoadType != RoadType.Tunnel)
                 {
                     return;
                 }
@@ -529,21 +535,21 @@ namespace Road_Lap1
             } 
         }
 
-        private bool IsCorrectPlaceToLimitSign(TrafficSignal.Signals sign)
+        private bool IsCorrectPlaceToLimitSign(TrafficSignalType sign)
         {
-            return sign != TrafficSignal.Signals.CarRoad
-                   && sign != TrafficSignal.Signals.Highway
-                   && sign != TrafficSignal.Signals.Tunnel
-                   && sign != TrafficSignal.Signals.GreenSemaphore
-                   && sign != TrafficSignal.Signals.RedSemaphore;
+            return sign != TrafficSignalType.CarRoad
+                   && sign != TrafficSignalType.Highway
+                   && sign != TrafficSignalType.Tunnel
+                   && sign != TrafficSignalType.GreenSemaphore
+                   && sign != TrafficSignalType.RedSemaphore;
         }
 
         private void LimLineEditor(int oldLim, int lim)
         {
             for (int i = currentLimNum; i < currentLimLine.signPoints.Count - 1; i++)
             {
-                if (currentLimLine.signPoints[i].maximumAllowedSpeed == oldLim && (currentLimLine.signPoints[i].en == TrafficSignal.Signals.Nothing || i == currentLimNum))
-                    currentLimLine.signPoints[i].maximumAllowedSpeed = lim;
+                if (currentLimLine.signPoints[i].Point.maximumAllowedSpeed == oldLim && (currentLimLine.signPoints[i].Signal == TrafficSignalType.Nothing || i == currentLimNum))
+                    currentLimLine.signPoints[i].Point.maximumAllowedSpeed = lim;
                 else
                     break;
             }
@@ -607,17 +613,17 @@ namespace Road_Lap1
             foreach (SignLine signline in road.roadSign)
             {
                 int num = 0;
-                foreach (Point p in signline.signPoints)
+                foreach (var p in signline.signPoints)
                 {
                     num++;
-                    int dX = e.Location.X - p.x;
-                    int dY = e.Location.Y - p.y;
+                    int dX = e.Location.X - p.Point.x;
+                    int dY = e.Location.Y - p.Point.y;
                     double rad = Math.Sqrt(dX * dX + dY * dY);
                     if (minRad > rad)
                     {
                         minRad = rad;
-                        x = p.x;
-                        y = p.y;
+                        x = p.Point.x;
+                        y = p.Point.y;
                         currentLimLine = signline;
                         currentLimNum = num;
                     }
