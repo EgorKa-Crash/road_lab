@@ -678,5 +678,12 @@ namespace Road_Lap1
 
             //currentCar.maximumAllowedSpeed = 1; 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("C:/Users/Егор/Desktop/Road_Lap2.2/road_lab/calc.html");
+            /*string path = Application.StartupPath + @"\info\html\page.html";
+            webBrowser1.Navigate(path);*/
+        }
     }
 }
