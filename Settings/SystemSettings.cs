@@ -34,19 +34,19 @@ namespace Road_Lap1.Configuration
         /// </summary>
         public IIntensity CarSpeedIntensity { get; set; }
 
-        private Lazy<(Semaphore Left, Semaphore Right)> _semaphoresLazy;
+        private Lazy<Semaphore> _semaphoresLazy;
 
         /// <summary>
         /// Настройки светофора
         /// </summary>
-        public (Semaphore Left, Semaphore Right) Semaphores => _semaphoresLazy.Value;
+        public Semaphore Semaphore => _semaphoresLazy.Value;
         
         private SystemSettings(RoadType nameRoad, SpeedLimits speedLimits)
         {
             RoadType = nameRoad;
             SpeedLimit = speedLimits;
 
-            _semaphoresLazy = new Lazy<(Semaphore, Semaphore)>(() => (new Semaphore(), new Semaphore()));
+            _semaphoresLazy = new Lazy<Semaphore>(() => ( new Semaphore()));
         }
 
         private SystemSettings(RoadType nameRoad,

@@ -147,7 +147,7 @@ namespace Road_Lap1
 
             if ( _settings.RoadType == RoadType.Tunnel)
             { 
-                road = new Tunnel(wey, 15, 25); // обозначены начало и конец тонеля, возможно потом можно вывести для динамической настройки карты
+                road = new Tunnel(wey, 15, 25, _settings); // обозначены начало и конец тонеля, возможно потом можно вывести для динамической настройки карты
             }
             else if (_settings.RoadType == RoadType.Higway)
             {
@@ -193,17 +193,22 @@ namespace Road_Lap1
         {
             Task.Run(() =>
             { 
+                 
                 while (!_eventFlag)
                 {
-                    int numRoad = rnd.Next(0, countPassingRoads + countOppositeRoads); 
-                    lock (carLocker)
-                    { 
-                        var raddSpeed = _settings.CarSpeedIntensity.NextValue();
+                    if (cars.Count < 150)
+                    {
+                        int numRoad = rnd.Next(0, countPassingRoads + countOppositeRoads);
+                        lock (carLocker)
+                        {
+                            var raddSpeed = _settings.CarSpeedIntensity.NextValue();
 
-                        cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(200), rnd.Next(150), rnd.Next(150))) );
+                            cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(200), rnd.Next(150), rnd.Next(150))));
 
+                        }
+                        Thread.Sleep((int)_settings.FlowIntensity.NextValue());
                     }
-                    Thread.Sleep((int)_settings.FlowIntensity.NextValue()); 
+                     
                 }
             }); 
         }
@@ -686,7 +691,7 @@ namespace Road_Lap1
         private void TurnOtherLight()
         {
             road.setTrafficLight();
-            WaitingOnOtherLight(_settings.Semaphores.Left.TimeMilliseconds);
+            WaitingOnOtherLight(_settings.Semaphore.TimeMilliseconds);
             _semaphoreEventWait.WaitOneEx(_eventFlag);
             road.setTrafficLight();
         }

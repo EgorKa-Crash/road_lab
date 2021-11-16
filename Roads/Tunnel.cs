@@ -1,4 +1,5 @@
-﻿using Road_Lap1.Roads;
+﻿using Road_Lap1.Configuration;
+using Road_Lap1.Roads;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,12 @@ namespace Road_Lap1
 {
     class Tunnel : RoadBase
     {
-        public Tunnel(Point[] way, int startTunnel, int finTunnel)
+        public Tunnel(Point[] way, int startTunnel, int finTunnel, SystemSettings _settings)
         {
+            this.MAX_SPEED = _settings.SpeedLimit.Max;
+            this.MIN_SPEED = 0;
+            this.START_SIGN_POINT = 19;
+            this.FIN_SIGN_POINT = 14;
             typesRoadMarking = new int[4] { 2, 2, 1, 1 };
             marking = new List<RoadMarking>();
             roads = new List<Line>();

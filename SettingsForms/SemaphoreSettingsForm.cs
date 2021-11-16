@@ -30,25 +30,21 @@ namespace Road_Lap1.ConfigurationForms
         /// </summary>
         private SystemSettings _settings;
 
-        /// <summary>
-        /// Объект-болванка для изменений левого светофора
-        /// </summary>
-        private Semaphore _leftSemaphoreToChange;
+        
 
 
         /// <summary>
-        /// Объект-болванка для изменений правого светофора
+        /// Объект-болванка для изменений   светофора
         /// </summary>
-        private Semaphore _rightSemaphoreToChange;
+        private Semaphore _semaphoreToChange;
         
 
         public SemaphoreSettingsForm(Form prevForm, SystemSettings settings)
         {
             InitializeComponent();
             _prevForm = prevForm;
-            _settings = settings;
-            _leftSemaphoreToChange = new Semaphore();
-            _rightSemaphoreToChange = new Semaphore();
+            _settings = settings; 
+            _semaphoreToChange = new Semaphore();
             Container<Form>.Instance.Register(this);
         }
 
@@ -64,10 +60,10 @@ namespace Road_Lap1.ConfigurationForms
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if(ValidateModel(_leftSemaphoreToChange) && ValidateModel(_rightSemaphoreToChange))
+            if(   ValidateModel(_semaphoreToChange))
             {
-                _settings.Semaphores.Left.TimeMilliseconds = _leftSemaphoreToChange.TimeMilliseconds;
-                _settings.Semaphores.Right.TimeMilliseconds = _rightSemaphoreToChange.TimeMilliseconds;
+                
+                _settings.Semaphore.TimeMilliseconds = _semaphoreToChange.TimeMilliseconds;
 
                 if (_prevForm is RoadWindow)
                 {
@@ -114,14 +110,10 @@ namespace Road_Lap1.ConfigurationForms
         private void trackBar_rightSemaphore_Scroll(object sender, EventArgs e)
         {
             lbl_rightValue.Text = SetLabelValue(trackBar_rightSemaphore);
-            _rightSemaphoreToChange.TimeMilliseconds = trackBar_rightSemaphore.Value * _millisecondsFactor;
+            _semaphoreToChange.TimeMilliseconds = trackBar_rightSemaphore.Value * _millisecondsFactor;
         }
 
-        private void trackBar_leftSemaphore_Scroll(object sender, EventArgs e)
-        {
-            lbl_leftValue.Text = SetLabelValue(trackBar_leftSemaphore);
-            _leftSemaphoreToChange.TimeMilliseconds = trackBar_leftSemaphore.Value * _millisecondsFactor;
-        }
+        
 
         private string SetLabelValue(TrackBar trackBar)
         {
