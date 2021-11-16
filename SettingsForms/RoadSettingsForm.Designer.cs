@@ -47,22 +47,22 @@
             // radioButton_oneDirection
             // 
             this.radioButton_oneDirection.AutoSize = true;
-            this.radioButton_oneDirection.Checked = true;
             this.radioButton_oneDirection.Location = new System.Drawing.Point(11, 28);
             this.radioButton_oneDirection.Name = "radioButton_oneDirection";
             this.radioButton_oneDirection.Size = new System.Drawing.Size(31, 17);
             this.radioButton_oneDirection.TabIndex = 0;
-            this.radioButton_oneDirection.TabStop = true;
             this.radioButton_oneDirection.Text = "1";
             this.radioButton_oneDirection.UseVisualStyleBackColor = true;
             // 
             // radioButton_twoDirection
             // 
             this.radioButton_twoDirection.AutoSize = true;
+            this.radioButton_twoDirection.Checked = true;
             this.radioButton_twoDirection.Location = new System.Drawing.Point(11, 51);
             this.radioButton_twoDirection.Name = "radioButton_twoDirection";
             this.radioButton_twoDirection.Size = new System.Drawing.Size(31, 17);
             this.radioButton_twoDirection.TabIndex = 1;
+            this.radioButton_twoDirection.TabStop = true;
             this.radioButton_twoDirection.Text = "2";
             this.radioButton_twoDirection.UseVisualStyleBackColor = true;
             this.radioButton_twoDirection.CheckedChanged += new System.EventHandler(this.radioButton_twoDirection_CheckedChanged);
@@ -114,7 +114,7 @@
             this.trackBar_oneDirection.Name = "trackBar_oneDirection";
             this.trackBar_oneDirection.Size = new System.Drawing.Size(248, 45);
             this.trackBar_oneDirection.TabIndex = 11;
-            this.trackBar_oneDirection.Value = 1;
+            this.trackBar_oneDirection.Value = 3;
             // 
             // label1
             // 
@@ -155,7 +155,7 @@
             this.trackBar_twoDirection.Name = "trackBar_twoDirection";
             this.trackBar_twoDirection.Size = new System.Drawing.Size(248, 45);
             this.trackBar_twoDirection.TabIndex = 16;
-            this.trackBar_twoDirection.Value = 1;
+            this.trackBar_twoDirection.Value = 3;
             // 
             // RoadSettingsForm
             // 

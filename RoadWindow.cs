@@ -144,6 +144,9 @@ namespace Road_Lap1
             speedLimitTrackBar.Minimum = _settings.SpeedLimit.Min / 10;
             dynamicSpeed.Maximum = _settings.SpeedLimit.Max;
             dynamicSpeed.Minimum = 0;
+            pb_CarSpeed.Maximum = _settings.SpeedLimit.Max;
+            pb_CarSpeed.Minimum = 0;
+             
 
             if ( _settings.RoadType == RoadType.Tunnel)
             { 
@@ -232,6 +235,7 @@ namespace Road_Lap1
                         {
                             selCarLable.Text = dynamicSpeed.Value.ToString();
                             currentCar.carDesiredSpeed = dynamicSpeed.Value;
+                            pb_CarSpeed.Value = (int)(currentCar.currentCarSpeed * 10.0);
                         });
                     }
                 }
@@ -512,14 +516,14 @@ namespace Road_Lap1
             }
             else
             {
-                if (_settings.RoadType != RoadType.Tunnel)
+                /*if (_settings.RoadType != RoadType.Tunnel)
                 {
                     return;
-                }
+                }*/
 
                 int x = e.Location.X;
                 int y = e.Location.Y;
-                double minRad = 100000;
+                double minRad = 50;
                 for (var i = 0; i < cars.Count; i++)
                 {
                     double rad = cars[i].Radius(x, y);
@@ -527,10 +531,16 @@ namespace Road_Lap1
                     {
                         minRad = rad;
                         currentCar = cars[i];
-                        if (currentCar.carDesiredSpeed > road.MAX_SPEED)
-                            currentCar.carDesiredSpeed = road.MAX_SPEED;
+                        if (currentCar.carDesiredSpeed > road.MAX_SPEED) 
+                        {
+                            currentCar.carDesiredSpeed = road.MAX_SPEED; 
+                        }
+                        selectedCarPanel.Visible = true;
                         dynamicSpeed.Value = currentCar.carDesiredSpeed;
+
                     }
+                    else if(minRad == 50)
+                    selectedCarPanel.Visible = false;
                 }
             } 
         }

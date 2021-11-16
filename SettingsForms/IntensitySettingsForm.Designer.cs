@@ -44,10 +44,12 @@
             // radioButton_uniformIntensity
             // 
             this.radioButton_uniformIntensity.AutoSize = true;
+            this.radioButton_uniformIntensity.Checked = true;
             this.radioButton_uniformIntensity.Location = new System.Drawing.Point(12, 48);
             this.radioButton_uniformIntensity.Name = "radioButton_uniformIntensity";
             this.radioButton_uniformIntensity.Size = new System.Drawing.Size(96, 17);
             this.radioButton_uniformIntensity.TabIndex = 0;
+            this.radioButton_uniformIntensity.TabStop = true;
             this.radioButton_uniformIntensity.Text = "Равномерный";
             this.radioButton_uniformIntensity.UseVisualStyleBackColor = false;
             this.radioButton_uniformIntensity.CheckedChanged += new System.EventHandler(this.radioButton_uniformIntensity_CheckedChanged);
@@ -86,12 +88,10 @@
             // radioButton_determineIntensity
             // 
             this.radioButton_determineIntensity.AutoSize = true;
-            this.radioButton_determineIntensity.Checked = true;
             this.radioButton_determineIntensity.Location = new System.Drawing.Point(12, 25);
             this.radioButton_determineIntensity.Name = "radioButton_determineIntensity";
             this.radioButton_determineIntensity.Size = new System.Drawing.Size(133, 17);
             this.radioButton_determineIntensity.TabIndex = 4;
-            this.radioButton_determineIntensity.TabStop = true;
             this.radioButton_determineIntensity.Text = "Детерминированный";
             this.radioButton_determineIntensity.UseVisualStyleBackColor = true;
             this.radioButton_determineIntensity.CheckedChanged += new System.EventHandler(this.radioButton_determineIntensity_CheckedChanged);

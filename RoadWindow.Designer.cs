@@ -42,6 +42,7 @@
             this.speedLimitTrackBar = new System.Windows.Forms.TrackBar();
             this.speedLimitLabel = new System.Windows.Forms.Label();
             this.addLimitButton = new System.Windows.Forms.Button();
+            this.pb_CarSpeed = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).BeginInit();
             this.selectedCarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dynamicSpeed)).BeginInit();
@@ -91,18 +92,20 @@
             // 
             // selectedCarPanel
             // 
+            this.selectedCarPanel.Controls.Add(this.pb_CarSpeed);
             this.selectedCarPanel.Controls.Add(this.selCarLable);
             this.selectedCarPanel.Controls.Add(this.dynamicSpeed);
-            this.selectedCarPanel.Location = new System.Drawing.Point(1111, 198);
+            this.selectedCarPanel.Location = new System.Drawing.Point(1111, 177);
             this.selectedCarPanel.Name = "selectedCarPanel";
-            this.selectedCarPanel.Size = new System.Drawing.Size(150, 122);
+            this.selectedCarPanel.Size = new System.Drawing.Size(150, 143);
             this.selectedCarPanel.TabIndex = 6;
+            this.selectedCarPanel.Visible = false;
             // 
             // selCarLable
             // 
             this.selCarLable.AutoSize = true;
             this.selCarLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selCarLable.Location = new System.Drawing.Point(13, 28);
+            this.selCarLable.Location = new System.Drawing.Point(13, 57);
             this.selCarLable.Name = "selCarLable";
             this.selCarLable.Size = new System.Drawing.Size(24, 25);
             this.selCarLable.TabIndex = 2;
@@ -110,7 +113,7 @@
             // 
             // dynamicSpeed
             // 
-            this.dynamicSpeed.Location = new System.Drawing.Point(3, 72);
+            this.dynamicSpeed.Location = new System.Drawing.Point(4, 95);
             this.dynamicSpeed.Maximum = 110;
             this.dynamicSpeed.Name = "dynamicSpeed";
             this.dynamicSpeed.Size = new System.Drawing.Size(144, 45);
@@ -194,6 +197,14 @@
             this.addLimitButton.UseVisualStyleBackColor = true;
             this.addLimitButton.Click += new System.EventHandler(this.AddLimitButton_Click);
             // 
+            // pb_CarSpeed
+            // 
+            this.pb_CarSpeed.Location = new System.Drawing.Point(18, 22);
+            this.pb_CarSpeed.Name = "pb_CarSpeed";
+            this.pb_CarSpeed.Size = new System.Drawing.Size(115, 23);
+            this.pb_CarSpeed.Step = 1;
+            this.pb_CarSpeed.TabIndex = 3;
+            // 
             // RoadWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,6 +247,7 @@
         private System.Windows.Forms.RadioButton notLimRadioButton;
         private System.Windows.Forms.RadioButton delLimRadioButton;
         private System.Windows.Forms.RadioButton addLimRadioButton;
+        private System.Windows.Forms.ProgressBar pb_CarSpeed;
     }
 }
 
