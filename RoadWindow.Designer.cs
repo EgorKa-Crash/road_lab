@@ -33,21 +33,21 @@
             this.pauseButton = new System.Windows.Forms.Button();
             this.resumeButton = new System.Windows.Forms.Button();
             this.selectedCarPanel = new System.Windows.Forms.Panel();
+            this.pb_CarSpeed = new System.Windows.Forms.ProgressBar();
             this.selCarLable = new System.Windows.Forms.Label();
             this.dynamicSpeed = new System.Windows.Forms.TrackBar();
-            this.speedLimitPanel = new System.Windows.Forms.Panel();
-            this.notLimRadioButton = new System.Windows.Forms.RadioButton();
-            this.delLimRadioButton = new System.Windows.Forms.RadioButton();
-            this.addLimRadioButton = new System.Windows.Forms.RadioButton();
-            this.speedLimitTrackBar = new System.Windows.Forms.TrackBar();
             this.speedLimitLabel = new System.Windows.Forms.Label();
-            this.addLimitButton = new System.Windows.Forms.Button();
-            this.pb_CarSpeed = new System.Windows.Forms.ProgressBar();
+            this.roadMarkPanel = new System.Windows.Forms.Panel();
+            this.notLimRB = new System.Windows.Forms.RadioButton();
+            this.setLimitRB = new System.Windows.Forms.RadioButton();
+            this.delLimRB = new System.Windows.Forms.RadioButton();
+            this.speedLimitTB = new System.Windows.Forms.TrackBar();
+            this.setLimitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).BeginInit();
             this.selectedCarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dynamicSpeed)).BeginInit();
-            this.speedLimitPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.speedLimitTrackBar)).BeginInit();
+            this.roadMarkPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.speedLimitTB)).BeginInit();
             this.SuspendLayout();
             // 
             // trackPictureBox
@@ -101,6 +101,14 @@
             this.selectedCarPanel.TabIndex = 6;
             this.selectedCarPanel.Visible = false;
             // 
+            // pb_CarSpeed
+            // 
+            this.pb_CarSpeed.Location = new System.Drawing.Point(18, 22);
+            this.pb_CarSpeed.Name = "pb_CarSpeed";
+            this.pb_CarSpeed.Size = new System.Drawing.Size(115, 23);
+            this.pb_CarSpeed.Step = 1;
+            this.pb_CarSpeed.TabIndex = 3;
+            // 
             // selCarLable
             // 
             this.selCarLable.AutoSize = true;
@@ -120,97 +128,104 @@
             this.dynamicSpeed.TabIndex = 0;
             this.dynamicSpeed.Scroll += new System.EventHandler(this.DynamicSpeed_Scroll);
             // 
-            // speedLimitPanel
-            // 
-            this.speedLimitPanel.Controls.Add(this.notLimRadioButton);
-            this.speedLimitPanel.Controls.Add(this.delLimRadioButton);
-            this.speedLimitPanel.Controls.Add(this.addLimRadioButton);
-            this.speedLimitPanel.Controls.Add(this.speedLimitTrackBar);
-            this.speedLimitPanel.Controls.Add(this.speedLimitLabel);
-            this.speedLimitPanel.Controls.Add(this.addLimitButton);
-            this.speedLimitPanel.Location = new System.Drawing.Point(1111, 373);
-            this.speedLimitPanel.Name = "speedLimitPanel";
-            this.speedLimitPanel.Size = new System.Drawing.Size(150, 252);
-            this.speedLimitPanel.TabIndex = 7;
-            // 
-            // notLimRadioButton
-            // 
-            this.notLimRadioButton.AutoSize = true;
-            this.notLimRadioButton.Location = new System.Drawing.Point(4, 165);
-            this.notLimRadioButton.Name = "notLimRadioButton";
-            this.notLimRadioButton.Size = new System.Drawing.Size(129, 17);
-            this.notLimRadioButton.TabIndex = 5;
-            this.notLimRadioButton.TabStop = true;
-            this.notLimRadioButton.Text = "отмена ограничения";
-            this.notLimRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // delLimRadioButton
-            // 
-            this.delLimRadioButton.AutoSize = true;
-            this.delLimRadioButton.Location = new System.Drawing.Point(3, 129);
-            this.delLimRadioButton.Name = "delLimRadioButton";
-            this.delLimRadioButton.Size = new System.Drawing.Size(132, 17);
-            this.delLimRadioButton.TabIndex = 4;
-            this.delLimRadioButton.TabStop = true;
-            this.delLimRadioButton.Text = "удалить ограничение";
-            this.delLimRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // addLimRadioButton
-            // 
-            this.addLimRadioButton.AutoSize = true;
-            this.addLimRadioButton.Checked = true;
-            this.addLimRadioButton.Location = new System.Drawing.Point(4, 95);
-            this.addLimRadioButton.Name = "addLimRadioButton";
-            this.addLimRadioButton.Size = new System.Drawing.Size(139, 17);
-            this.addLimRadioButton.TabIndex = 3;
-            this.addLimRadioButton.TabStop = true;
-            this.addLimRadioButton.Text = "добавить ограничение";
-            this.addLimRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // speedLimitTrackBar
-            // 
-            this.speedLimitTrackBar.LargeChange = 1;
-            this.speedLimitTrackBar.Location = new System.Drawing.Point(3, 43);
-            this.speedLimitTrackBar.Maximum = 11;
-            this.speedLimitTrackBar.Name = "speedLimitTrackBar";
-            this.speedLimitTrackBar.Size = new System.Drawing.Size(144, 45);
-            this.speedLimitTrackBar.TabIndex = 2;
-            this.speedLimitTrackBar.Scroll += new System.EventHandler(this.SpeedLimitTrackBar_Scroll);
-            // 
             // speedLimitLabel
             // 
-            this.speedLimitLabel.AutoSize = true;
-            this.speedLimitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.speedLimitLabel.Location = new System.Drawing.Point(13, 11);
+            this.speedLimitLabel.BackColor = System.Drawing.Color.Transparent;
+            this.speedLimitLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.speedLimitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.speedLimitLabel.Location = new System.Drawing.Point(15, 32);
             this.speedLimitLabel.Name = "speedLimitLabel";
-            this.speedLimitLabel.Size = new System.Drawing.Size(24, 25);
+            this.speedLimitLabel.Size = new System.Drawing.Size(45, 25);
             this.speedLimitLabel.TabIndex = 1;
-            this.speedLimitLabel.Text = "0";
+            this.speedLimitLabel.Text = "000";
+            this.speedLimitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.speedLimitLabel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.speedLimitLabel_MouseClick);
             // 
-            // addLimitButton
+            // roadMarkPanel
             // 
-            this.addLimitButton.Location = new System.Drawing.Point(3, 199);
-            this.addLimitButton.Name = "addLimitButton";
-            this.addLimitButton.Size = new System.Drawing.Size(144, 48);
-            this.addLimitButton.TabIndex = 0;
-            this.addLimitButton.Text = "Осуществить изменения дорожных знаков";
-            this.addLimitButton.UseVisualStyleBackColor = true;
-            this.addLimitButton.Click += new System.EventHandler(this.AddLimitButton_Click);
+            this.roadMarkPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.roadMarkPanel.Controls.Add(this.speedLimitLabel);
+            this.roadMarkPanel.Controls.Add(this.notLimRB);
+            this.roadMarkPanel.Controls.Add(this.setLimitRB);
+            this.roadMarkPanel.Controls.Add(this.delLimRB);
+            this.roadMarkPanel.Controls.Add(this.speedLimitTB);
+            this.roadMarkPanel.Location = new System.Drawing.Point(1111, 449);
+            this.roadMarkPanel.Name = "roadMarkPanel";
+            this.roadMarkPanel.Size = new System.Drawing.Size(148, 227);
+            this.roadMarkPanel.TabIndex = 8;
             // 
-            // pb_CarSpeed
+            // notLimRB
             // 
-            this.pb_CarSpeed.Location = new System.Drawing.Point(18, 22);
-            this.pb_CarSpeed.Name = "pb_CarSpeed";
-            this.pb_CarSpeed.Size = new System.Drawing.Size(115, 23);
-            this.pb_CarSpeed.Step = 1;
-            this.pb_CarSpeed.TabIndex = 3;
+            this.notLimRB.Appearance = System.Windows.Forms.Appearance.Button;
+            this.notLimRB.BackColor = System.Drawing.SystemColors.Menu;
+            this.notLimRB.BackgroundImage = global::Road_Lap1.Properties.Resources.NoLimit;
+            this.notLimRB.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.notLimRB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.notLimRB.Location = new System.Drawing.Point(6, 83);
+            this.notLimRB.Name = "notLimRB";
+            this.notLimRB.Size = new System.Drawing.Size(63, 63);
+            this.notLimRB.TabIndex = 11;
+            this.notLimRB.UseVisualStyleBackColor = false;
+            this.notLimRB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radioButton3_MouseClick);
+            // 
+            // setLimitRB
+            // 
+            this.setLimitRB.Appearance = System.Windows.Forms.Appearance.Button;
+            this.setLimitRB.BackColor = System.Drawing.SystemColors.Menu;
+            this.setLimitRB.BackgroundImage = global::Road_Lap1.Properties.Resources.Limit;
+            this.setLimitRB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.setLimitRB.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.setLimitRB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.setLimitRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.setLimitRB.Location = new System.Drawing.Point(6, 13);
+            this.setLimitRB.Name = "setLimitRB";
+            this.setLimitRB.Size = new System.Drawing.Size(63, 63);
+            this.setLimitRB.TabIndex = 10;
+            this.setLimitRB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.setLimitRB.UseVisualStyleBackColor = false;
+            this.setLimitRB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radioButton1_MouseClick);
+            // 
+            // delLimRB
+            // 
+            this.delLimRB.Appearance = System.Windows.Forms.Appearance.Button;
+            this.delLimRB.BackColor = System.Drawing.SystemColors.Menu;
+            this.delLimRB.BackgroundImage = global::Road_Lap1.Properties.Resources.Cross;
+            this.delLimRB.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.delLimRB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.delLimRB.Location = new System.Drawing.Point(6, 152);
+            this.delLimRB.Name = "delLimRB";
+            this.delLimRB.Size = new System.Drawing.Size(63, 63);
+            this.delLimRB.TabIndex = 7;
+            this.delLimRB.UseVisualStyleBackColor = false;
+            this.delLimRB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radioButton2_MouseClick);
+            // 
+            // speedLimitTB
+            // 
+            this.speedLimitTB.LargeChange = 1;
+            this.speedLimitTB.Location = new System.Drawing.Point(69, 21);
+            this.speedLimitTB.Maximum = 11;
+            this.speedLimitTB.Name = "speedLimitTB";
+            this.speedLimitTB.Size = new System.Drawing.Size(78, 45);
+            this.speedLimitTB.TabIndex = 6;
+            this.speedLimitTB.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // setLimitButton
+            // 
+            this.setLimitButton.Location = new System.Drawing.Point(1111, 395);
+            this.setLimitButton.Name = "setLimitButton";
+            this.setLimitButton.Size = new System.Drawing.Size(148, 48);
+            this.setLimitButton.TabIndex = 9;
+            this.setLimitButton.Text = "Изменить дорожные знаки";
+            this.setLimitButton.UseVisualStyleBackColor = true;
+            this.setLimitButton.Click += new System.EventHandler(this.setLimitButton_Click);
             // 
             // RoadWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1292, 733);
-            this.Controls.Add(this.speedLimitPanel);
+            this.Controls.Add(this.setLimitButton);
+            this.Controls.Add(this.roadMarkPanel);
             this.Controls.Add(this.selectedCarPanel);
             this.Controls.Add(this.resumeButton);
             this.Controls.Add(this.pauseButton);
@@ -224,9 +239,9 @@
             this.selectedCarPanel.ResumeLayout(false);
             this.selectedCarPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dynamicSpeed)).EndInit();
-            this.speedLimitPanel.ResumeLayout(false);
-            this.speedLimitPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.speedLimitTrackBar)).EndInit();
+            this.roadMarkPanel.ResumeLayout(false);
+            this.roadMarkPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.speedLimitTB)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -240,14 +255,14 @@
         private System.Windows.Forms.Panel selectedCarPanel;
         private System.Windows.Forms.TrackBar dynamicSpeed;
         private System.Windows.Forms.Label selCarLable;
-        private System.Windows.Forms.Panel speedLimitPanel;
-        private System.Windows.Forms.TrackBar speedLimitTrackBar;
         private System.Windows.Forms.Label speedLimitLabel;
-        private System.Windows.Forms.Button addLimitButton;
-        private System.Windows.Forms.RadioButton notLimRadioButton;
-        private System.Windows.Forms.RadioButton delLimRadioButton;
-        private System.Windows.Forms.RadioButton addLimRadioButton;
         private System.Windows.Forms.ProgressBar pb_CarSpeed;
+        private System.Windows.Forms.Panel roadMarkPanel;
+        private System.Windows.Forms.Button setLimitButton;
+        private System.Windows.Forms.RadioButton delLimRB;
+        private System.Windows.Forms.TrackBar speedLimitTB;
+        private System.Windows.Forms.RadioButton notLimRB;
+        private System.Windows.Forms.RadioButton setLimitRB;
     }
 }
 

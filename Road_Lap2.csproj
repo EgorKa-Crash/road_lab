@@ -169,7 +169,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Pictures\Cross.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Pictures\CarRoad.png" />
   </ItemGroup>

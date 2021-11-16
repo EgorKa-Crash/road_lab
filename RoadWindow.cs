@@ -54,6 +54,7 @@ namespace Road_Lap1
             carRoadImage = Properties.Resources.CarRoad;
             highwayImage = Properties.Resources.Highway;
             tunnelImage = Properties.Resources.Tunnel;
+            crossImage = Properties.Resources.Cross;
            
             InitializeComponent();
             _settings = settings;
@@ -62,7 +63,7 @@ namespace Road_Lap1
             _configurationForm = form;
             RoadGenerator();
             addLimitFlag = true;
-            speedLimitLabel.Text = "" + speedLimitTrackBar.Value * 10;
+            speedLimitLabel.Text = "" + speedLimitTB.Value * 10;
         }
     
         /// <summary>
@@ -72,7 +73,8 @@ namespace Road_Lap1
         /// <param name="e"></param>
         private void startButton_Click(object sender, EventArgs e)
         {
-            if(_eventFlag)
+            roadMarkPanel.Visible = false;
+            if (_eventFlag)
             {
                 _eventFlag = false;
             }
@@ -128,20 +130,15 @@ namespace Road_Lap1
             Dispose();
         }
 
-        private void AddLimitButton_Click(object sender, EventArgs e)
-        {
-            _eventFlag = true;
-            addLimitFlag = true;
-        }
-
+  
         private void RoadGenerator()
         {
             Point[] wey = new Point[] { new Point(-300, 600), new Point(0, 400), new Point(300, 400), new Point(600, 0), new Point(900, 500), new Point(1200, 600), new Point(1400, 900), new Point(1500, 1200) }; // хорошая карта, рекомендую , выпуклая вверх
              
             int[] RM = MarkingGenerator();
 
-            speedLimitTrackBar.Maximum = _settings.SpeedLimit.Max / 10;
-            speedLimitTrackBar.Minimum = _settings.SpeedLimit.Min / 10;
+            speedLimitTB.Maximum = _settings.SpeedLimit.Max / 10;
+            speedLimitTB.Minimum = _settings.SpeedLimit.Min / 10;
             dynamicSpeed.Maximum = _settings.SpeedLimit.Max;
             dynamicSpeed.Minimum = 0;
             pb_CarSpeed.Maximum = _settings.SpeedLimit.Max;
@@ -383,6 +380,7 @@ namespace Road_Lap1
         Image carRoadImage ;
         Image highwayImage;
         Image tunnelImage ;
+        Image crossImage ;
         private void DrawSigns(Graphics grf)
         { 
             foreach (SignLine signline in road.roadSign)
@@ -489,19 +487,19 @@ namespace Road_Lap1
 
                 int lim  = 0;
                 int oldLim  = 0; 
-                if (addLimRadioButton.Checked)
+                if (setLimitRB.Checked)
                 {
                     currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.Limit; // указание типа знака   
-                      lim = speedLimitTrackBar.Value * 10; 
+                      lim = speedLimitTB.Value * 10; 
                       oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed; 
                 }
-                else if (delLimRadioButton.Checked)
+                else if (delLimRB.Checked)
                 { 
                     currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.Nothing;
                       oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed;
                       lim = currentLimLine.signPoints[currentLimNum-1].Point.maximumAllowedSpeed; 
                 }
-                else
+                else if (notLimRB.Checked)
                 { 
                     currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.NoLimit;
                       oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed;
@@ -584,12 +582,7 @@ namespace Road_Lap1
 
             //this.CloseAll();
         }
-
-        private void SpeedLimitTrackBar_Scroll(object sender, EventArgs e)
-        {
-            speedLimitLabel.Text = (speedLimitTrackBar.Value * 10).ToString();
-        }
-
+         
 
 
         
@@ -644,24 +637,26 @@ namespace Road_Lap1
         private void DrawEditableSign(int x, int y, Graphics grf)
         {
             Image signImage = null;
-            if (notLimRadioButton.Checked)
+            if (notLimRB.Checked)
             {
                 signImage = noLimitImage;
                 grf.DrawImage(signImage, new Rectangle(x - 10, y - 12, 30, 30));
             }
-            else if (addLimRadioButton.Checked)
+            else if (setLimitRB.Checked)
             {
                 signImage = limitImage;
                 grf.DrawImage(signImage, new Rectangle(x - 10, y - 12, 30, 30));
-                grf.DrawString((speedLimitTrackBar.Value * 10).ToString(),
+                grf.DrawString((speedLimitTB.Value * 10).ToString(),
                                font,
                                new SolidBrush(Color.Black),
                                new PointF(x - 8, y - 5));
             }
-            else
+            else if(delLimRB.Checked)
             {
-                SolidBrush brush = new SolidBrush(Color.Red);
-                grf.FillEllipse(brush, x - 5, y - 7, 20, 20);
+                signImage = crossImage;
+                grf.DrawImage(signImage, new Rectangle(x - 10, y - 12, 30, 30));
+               /* SolidBrush brush = new SolidBrush(Color.Red);
+                grf.FillEllipse(brush, x - 5, y - 7, 20, 20);*/
             }
         }
 
@@ -733,6 +728,50 @@ namespace Road_Lap1
             System.Diagnostics.Process.Start("C:/Users/Егор/Desktop/Road_Lap2.2/road_lab/calc.html");
             /*string path = Application.StartupPath + @"\info\html\page.html";
             webBrowser1.Navigate(path);*/
+        }
+
+       
+
+        private void radioButton1_MouseClick(object sender, MouseEventArgs e)
+        {
+            setLimitRB.BackColor = Color.Blue;
+            delLimRB.BackColor = Color.White;
+            notLimRB.BackColor = Color.White;
+
+        }
+
+        private void radioButton2_MouseClick(object sender, MouseEventArgs e)
+        {
+            delLimRB.BackColor = Color.Blue;
+            setLimitRB.BackColor = Color.White;
+            notLimRB.BackColor = Color.White;
+        }
+
+        private void radioButton3_MouseClick(object sender, MouseEventArgs e)
+        {
+            notLimRB.BackColor = Color.Blue;
+            setLimitRB.BackColor = Color.White;
+            delLimRB.BackColor = Color.White;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            speedLimitLabel.Text = (speedLimitTB.Value * 10).ToString();
+        }
+
+        private void speedLimitLabel_MouseClick(object sender, MouseEventArgs e)
+        {
+            setLimitRB.Checked = true;
+            setLimitRB.BackColor = Color.Blue;
+            delLimRB.BackColor = Color.White;
+            notLimRB.BackColor = Color.White;
+        }
+
+        private void setLimitButton_Click(object sender, EventArgs e)
+        {
+            _eventFlag = true;
+            addLimitFlag = true;
+            roadMarkPanel.Visible = true;
         }
     }
 }
