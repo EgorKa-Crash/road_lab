@@ -42,7 +42,7 @@ namespace Road_Lap1.ConfigurationForms
 
             this.Hide();
 
-            new RoadWindow(this, _settings).Show();
+            new IntensitySettingsForm(this, _settings).Show();
         }
 
         private bool UpdateRoad()

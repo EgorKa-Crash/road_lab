@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1
 {
-    class SignLine
+    public class SignLine
     {
-        public List<TrafficSignals> signPoints = new List<TrafficSignals>();
+        public List<TrafficSignal> signPoints = new List<TrafficSignal>();
         public int roadNumber { get; set; }
         public SignLine(int roadNumber)
         {

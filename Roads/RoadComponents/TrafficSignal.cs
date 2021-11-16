@@ -1,17 +1,21 @@
-﻿namespace Road_Lap1
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Road_Lap1
 {
-    partial class TrafficSignal
-    {
-        public enum Signals
+    public class TrafficSignal
+    { 
+        public Point Point { get; set; }
+
+        public TrafficSignalType Signal { get; set; }        
+
+        public TrafficSignal(TrafficSignalType sign, Point p)
         {
-            Tunnel,
-            Highway,
-            CarRoad,
-            Limit,
-            RedSemaphore,
-            GreenSemaphore,
-            NoLimit,
-            Nothing
-        } 
+            Signal = sign;
+            Point = p;
+        }
     }
 }

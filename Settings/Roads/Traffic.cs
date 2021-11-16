@@ -14,6 +14,16 @@ namespace Road_Lap1.Configuration.Roads
         /// </summary>
         public Direction Direction { get; }
 
+        /// <summary>
+        /// Количество линий на дороге в попутном направлении
+        /// </summary>
+        public int CountPasssingLine => GetCountLine(Direction.OneWay);
+
+        /// <summary>
+        /// Количество линий на дороге в встречном направлении
+        /// </summary>
+        public int CountOppositeLine => GetCountLine(Direction.TwoWay);
+
         public Traffic(int? countLineOn)
         {
             _lines = new Dictionary<Direction, int?>
@@ -56,7 +66,7 @@ namespace Road_Lap1.Configuration.Roads
             return errors;
         }
 
-        public int GetCountLine(Direction direction)
+        private int GetCountLine(Direction direction)
         {
             _lines.TryGetValue(direction, out var lines);
 

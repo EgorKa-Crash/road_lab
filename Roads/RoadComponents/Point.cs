@@ -10,8 +10,6 @@ namespace Road_Lap1
     {
         public int x { get; set; }
         public int y { get; set; }
-       // public bool driveStatus { get; set; }
-
         public int maximumAllowedSpeed { get; set; }
 
         public Point(int x, int y)
@@ -21,15 +19,11 @@ namespace Road_Lap1
             //driveStatus = true;
             maximumAllowedSpeed = 110;
         }
+
         public Point(Point P)
         {
             this.x = P.x;
             this.y = P.y;
-        }
-        public Point( )
-        {
-            this.x = 0;
-            this.y = 0;
         }
     }
 }

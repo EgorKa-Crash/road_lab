@@ -107,6 +107,7 @@
             // 
             // trackBar_oneDirection
             // 
+            this.trackBar_oneDirection.LargeChange = 1;
             this.trackBar_oneDirection.Location = new System.Drawing.Point(9, 103);
             this.trackBar_oneDirection.Maximum = 4;
             this.trackBar_oneDirection.Minimum = 1;
@@ -147,6 +148,7 @@
             // 
             // trackBar_twoDirection
             // 
+            this.trackBar_twoDirection.LargeChange = 1;
             this.trackBar_twoDirection.Location = new System.Drawing.Point(3, 11);
             this.trackBar_twoDirection.Maximum = 4;
             this.trackBar_twoDirection.Minimum = 1;

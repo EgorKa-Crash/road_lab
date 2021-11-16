@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1.Roads.CarFold
 {
-    class CarMovementCalculations
+    public static class CarMovementCalculations
     { 
-        public static void carMovement(List<Car> cars , IRoad road, int countOppositeRoads, double overtakingBlockingRadius, int maxSpeed)
+        public static void carMovement(List<Car> cars , RoadBase road, int countOppositeRoads, double overtakingBlockingRadius, int maxSpeed)
         {
             double BRAKING_RADIUS = 80;
             double ADVANCE_RADIUS = 85;
@@ -23,7 +23,7 @@ namespace Road_Lap1.Roads.CarFold
                 stoplightMinRad = StopLightFidder(cars, road, countOppositeRoads, i, stoplightMinRad);
 
 
-                cars[i].maximumAllowedSpeed = road.roadSign[cars[i].roadNumber < countOppositeRoads ? 1 : 0].signPoints[cars[i].roadPointNumber].maximumAllowedSpeed; //установка ограничения скорости 
+                cars[i].maximumAllowedSpeed = road.roadSign[cars[i].roadNumber < countOppositeRoads ? 1 : 0].signPoints[cars[i].roadPointNumber].Point.maximumAllowedSpeed; //установка ограничения скорости 
 
                 int carSpeed = cars[i].CurrentCarSpeed();
 
@@ -36,10 +36,11 @@ namespace Road_Lap1.Roads.CarFold
                 {
                     cars[i].BrakingCar();
                 }
-                else if (cars[i].maximumAllowedSpeed * 0.95 > carSpeed)
+                else if (cars[i].maximumAllowedSpeed * 0.95 > carSpeed  )
                     cars[i].BoostCar();
 
                 // шаг вперед 
+                if(cars[i].currentCarSpeed > 0.001)
                 cars[i].BeginCar(road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].x, road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].y);
 
                 // проверка, может ли данная машина пойти на обгон
@@ -66,7 +67,7 @@ namespace Road_Lap1.Roads.CarFold
             }
         }
 
-        private static void OvertakingCheck(List<Car> cars, IRoad road, double overtakingBlockingRadius, double ADVANCE_RADIUS, int i, ref Car frontCar, ref double minRadToFrontCar, int carSpeed)
+        private static void OvertakingCheck(List<Car> cars, RoadBase road, double overtakingBlockingRadius, double ADVANCE_RADIUS, int i, ref Car frontCar, ref double minRadToFrontCar, int carSpeed)
         {
             if (frontCar != null && frontCar.currentCarSpeed < cars[i].carDesiredSpeed && minRadToFrontCar < ADVANCE_RADIUS + carSpeed * 2) //если встретилась впереди машина, которую хочется обогнать
             {
@@ -107,14 +108,14 @@ namespace Road_Lap1.Roads.CarFold
             }
         }
 
-        private static double StopLightFidder(List<Car> cars, IRoad road, int countOppositeRoads, int i, double stoplightMinRad)
+        private static double StopLightFidder(List<Car> cars, RoadBase road, int countOppositeRoads, int i, double stoplightMinRad)
         {
             // нахождение минимального радиуса до точки со светофором
             for (int j = cars[i].roadPointNumber; j < road.roads[cars[i].roadNumber].roadPoints.Count; j++)
             {
                 double minRad1 = 500;
                 //if (road.roads[cars[i].roadNumber].roadPoints[j].driveStatus == false)
-                if (road.roadSign[cars[i].roadNumber < countOppositeRoads ? 1 : 0].signPoints[j].en == TrafficSignal.Signals.RedSemaphore)
+                if (road.roadSign[cars[i].roadNumber < countOppositeRoads ? 1 : 0].signPoints[j].Signal == TrafficSignalType.RedSemaphore)
                 {
                     minRad1 = cars[i].Radius(road.roads[cars[i].roadNumber].roadPoints[j].x, road.roads[cars[i].roadNumber].roadPoints[j].y);
                     if (stoplightMinRad > minRad1)

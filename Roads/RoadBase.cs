@@ -6,8 +6,28 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1.Roads
 {
-    class CommonsMethodsForRoads
+    public abstract class RoadBase
     {
+        public int START_SIGN_POINT { get; set; }
+        public int FIN_SIGN_POINT { get; set; }
+
+        public int MAX_SPEED { get; set; }
+        protected int MIN_SPEED { get; set; }
+
+        public List<RoadMarking> marking { get; set; }
+        public List<SignLine> roadSign { get; set; }
+        public List<Line> roads { get; set; }
+
+        public int[] typesRoadMarking { get; set; }
+
+        protected Point[] way { get; set; }
+
+        protected int ROAD_WIDTH = 40;
+        protected readonly int POINTS_INTERVAL = 50;
+        protected readonly int SMOOTHING = 3;// 1 - гипергладко , 5 - ближе к оригиналу
+
+        public abstract void setTrafficLight(); //симулятор светофора
+        protected abstract void BuildRoad(int n, int m);
 
         /// <summary>
         /// вторая версия сглаживания и добавления промежуточных точек маршрута
@@ -86,7 +106,9 @@ namespace Road_Lap1.Roads
                 roadSign.Add(new SignLine(0));
                 for (int j = 0; j < way.Length; j++)
                 {
-                    roadSign[0].signPoints.Add(new TrafficSignals(TrafficSignal.Signals.Nothing, LineCoord((way[j].x - (N + 1) * 0.5 * ROAD_WIDTH), way[j].y, way[j].x, way[j].y, j, way), MAX_SPEED));
+                    var point = LineCoord((way[j].x - (N + 1) * 0.5 * ROAD_WIDTH), way[j].y, way[j].x, way[j].y, j, way);
+                    point.maximumAllowedSpeed = MAX_SPEED;
+                    roadSign[0].signPoints.Add(new TrafficSignal(TrafficSignalType.Nothing, point));
                 }
             }
             roadSign[0].signPoints.Reverse();
@@ -97,7 +119,9 @@ namespace Road_Lap1.Roads
                 roadSign.Add(new SignLine(1));
                 for (int j = 0; j < way.Length; j++)
                 {
-                    roadSign[1].signPoints.Add(new TrafficSignals(TrafficSignal.Signals.Nothing, LineCoord((way[j].x + (N + 1) * 0.5 * ROAD_WIDTH), way[j].y, way[j].x, way[j].y, j, way), MAX_SPEED ));
+                    var point = LineCoord((way[j].x + (N + 1) * 0.5 * ROAD_WIDTH), way[j].y, way[j].x, way[j].y, j, way);
+                    point.maximumAllowedSpeed = MAX_SPEED;
+                    roadSign[1].signPoints.Add(new TrafficSignal(TrafficSignalType.Nothing, point));
                 }
             } 
             return roadSign;

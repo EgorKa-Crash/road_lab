@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1
 {
-    class Line
+    public class Line
     {
         public List<Point> roadPoints = new List<Point>();
         public int roadNumber { get; set; }

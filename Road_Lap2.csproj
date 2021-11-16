@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventWaitHandlerExtension.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,12 +117,11 @@
     <Compile Include="Settings\SystemSettings.cs" />
     <Compile Include="Settings\Roads\Traffic.cs" />
     <Compile Include="Roads\CarFold\CarMovementCalculations.cs" />
-    <Compile Include="Roads\CommonsMethodsForRoads.cs" />
-    <Compile Include="Roads\IRoad.cs" />
+    <Compile Include="Roads\RoadBase.cs" />
     <Compile Include="Roads\RoadComponents\Line.cs" />
     <Compile Include="Roads\RoadComponents\RoadMarking.cs" />
-    <Compile Include="Roads\RoadComponents\TrafficSignals.cs" />
     <Compile Include="Roads\RoadComponents\TrafficSignal.cs" />
+    <Compile Include="Roads\RoadComponents\TrafficSignalType.cs" />
     <Compile Include="RoadWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +154,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

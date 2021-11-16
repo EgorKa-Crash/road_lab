@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_save = new System.Windows.Forms.Button();
+            this.btn_next = new System.Windows.Forms.Button();
             this.btn_back = new System.Windows.Forms.Button();
             this.lbl_leftSemaphoreDescription = new System.Windows.Forms.Label();
             this.trackBar_leftSemaphore = new System.Windows.Forms.TrackBar();
@@ -44,15 +44,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_rightSemaphore)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_save
+            // btn_next
             // 
-            this.btn_save.Location = new System.Drawing.Point(177, 188);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(75, 35);
-            this.btn_save.TabIndex = 0;
-            this.btn_save.Text = "Сохранить";
-            this.btn_save.UseVisualStyleBackColor = true;
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            this.btn_next.Location = new System.Drawing.Point(177, 188);
+            this.btn_next.Name = "btn_next";
+            this.btn_next.Size = new System.Drawing.Size(75, 35);
+            this.btn_next.TabIndex = 0;
+            this.btn_next.Text = "Далее";
+            this.btn_next.UseVisualStyleBackColor = true;
+            this.btn_next.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_back
             // 
@@ -172,7 +172,7 @@
             this.Controls.Add(this.trackBar_leftSemaphore);
             this.Controls.Add(this.lbl_leftSemaphoreDescription);
             this.Controls.Add(this.btn_back);
-            this.Controls.Add(this.btn_save);
+            this.Controls.Add(this.btn_next);
             this.Name = "SemaphoreSettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройка фазы светофора";
@@ -186,7 +186,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.Label lbl_leftSemaphoreDescription;
         private System.Windows.Forms.TrackBar trackBar_leftSemaphore;

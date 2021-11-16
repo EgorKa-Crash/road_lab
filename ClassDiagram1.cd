@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Road_Lap1.Car">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DARICAAAAACAAAIAAAAAAAAAAAAAAgAAYAIAAACDIAA=</HashCode>
+      <FileName>Roads\CarFold\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.Line">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Roads\RoadComponents\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.Point">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAACAAAA=</HashCode>
+      <FileName>Roads\RoadComponents\Point.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.RoadMarking">
+    <Position X="13" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Roads\RoadComponents\RoadMarking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.SignLine">
+    <Position X="11.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Roads\RoadComponents\SignLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.TrafficSignal">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Roads\RoadComponents\TrafficSignal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.Highway" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Roads\Highway.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.Tunnel" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAA=</HashCode>
+      <FileName>Roads\Tunnel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.Roads.RoadBase">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAEIAAAAABBABkAABIAAQgAiAAAAAAAAQCAAgAAA=</HashCode>
+      <FileName>Roads\RoadBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Road_Lap1.Roads.CarFold.CarMovementCalculations">
+    <Position X="4.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAIAAAQAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Roads\CarFold\CarMovementCalculations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

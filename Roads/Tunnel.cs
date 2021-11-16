@@ -8,89 +8,46 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1
 {
-    class Tunnel : CommonsMethodsForRoads, IRoad
+    class Tunnel : RoadBase
     {
-        public int START_SIGN_POINT { get; set; } = 19;
-        public int FIN_SIGN_POINT { get; set; } = 14;
-        public int MAX_SPEED { get; set; } = 90;
-        public int MIN_SPEED { get; set; } = 0;
-        public Point[] way { get; set; } //маршрут, передаваемый при создании дороги
-
-        public List<SignLine> roadSign { get; set; }
-
-        public List<Line> roads { get; set; } // все полосы у дороги
-
-        public int[] typesRoadMarking { get; set; } // маркировка 1 = , 2 _____, 3 ------  
-
-        public List<RoadMarking> marking { get; set; }
-
-        private Timer _timer;
-
-
-
-        //public int[] speedLimits { get; set; } 
-        //public int highwayNumber { get; set; }
-
-        private int ROAD_WIDTH = 40;
-        private readonly int POINTS_INTERVAL = 50;
-        private readonly int SMOOTHING = 3;// 1 - гипергладко , 5 - ближе к оригиналу
-
         public Tunnel(Point[] way, int startTunnel, int finTunnel)
         {
-             
             typesRoadMarking = new int[4] { 2, 2, 1, 1 };
             marking = new List<RoadMarking>();
             roads = new List<Line>();
             roadSign = new List<SignLine>();
-            this.way = Pointer(way, POINTS_INTERVAL, SMOOTHING); 
-            buildTunnel(startTunnel, finTunnel);
+            this.way = Pointer(way, POINTS_INTERVAL, SMOOTHING);
+            BuildRoad(startTunnel, finTunnel);
             setTrafficLight();
-            roadSign[0].signPoints[18].en = TrafficSignal.Signals.Tunnel;
-            roadSign[1].signPoints[13].en = TrafficSignal.Signals.Tunnel;
-           // _timer = new Timer(SetTrafficLightWrap, null, 0, 5000);           
-        }
-
-        private void SetTrafficLightWrap(object state)
-        {
-
-
-            if (roadSign[0].signPoints[19].en == TrafficSignal.Signals.RedSemaphore)
-            {
-                roadSign[0].signPoints[19].en = TrafficSignal.Signals.GreenSemaphore;
-                roadSign[1].signPoints[14].en = TrafficSignal.Signals.RedSemaphore;
-            }
-            else
-            {
-                roadSign[0].signPoints[19].en = TrafficSignal.Signals.RedSemaphore;
-                roadSign[1].signPoints[14].en = TrafficSignal.Signals.GreenSemaphore;
-            }
+            roadSign[0].signPoints[18].Signal = TrafficSignalType.Tunnel;
+            roadSign[1].signPoints[13].Signal = TrafficSignalType.Tunnel;
         }
 
         private int trafficLights = 0;
-        public void setTrafficLight() //симулятор светофора
+        public override void setTrafficLight() //симулятор светофора
         {
             switch (trafficLights)
             {
                 case 0:
                 {
-                    roadSign[0].signPoints[19].en = TrafficSignal.Signals.RedSemaphore;
-                    roadSign[1].signPoints[14].en = TrafficSignal.Signals.RedSemaphore;
+                    roadSign[0].signPoints[19].Signal = TrafficSignalType.RedSemaphore;
+                    roadSign[1].signPoints[14].Signal = TrafficSignalType.RedSemaphore;
                 }
                 break;
                 case 1:
                 {
-                    roadSign[0].signPoints[19].en = TrafficSignal.Signals.GreenSemaphore;
+                    roadSign[0].signPoints[19].Signal = TrafficSignalType.GreenSemaphore;
                 }
                 break;
                 case 2:
                 {
-                    roadSign[0].signPoints[19].en = TrafficSignal.Signals.RedSemaphore;
-                    roadSign[1].signPoints[14].en = TrafficSignal.Signals.RedSemaphore;
+                    roadSign[0].signPoints[19].Signal = TrafficSignalType.RedSemaphore;
+                    roadSign[1].signPoints[14].Signal = TrafficSignalType.RedSemaphore;
                 }
                 break;
                 case 3:
                 {
-                    roadSign[1].signPoints[14].en = TrafficSignal.Signals.GreenSemaphore;
+                    roadSign[1].signPoints[14].Signal = TrafficSignalType.GreenSemaphore;
                     trafficLights = -1;
                 }
                 break;
@@ -104,7 +61,7 @@ namespace Road_Lap1
         /// </summary>
         /// <param name="countPassingRoads"></param>
         /// <param name="countOppositeRoads"></param>
-        private void buildTunnel(int startTunnel, int finTunnel)
+        protected override void BuildRoad(int startTunnel, int finTunnel)
         {
             int countPassingRoads = 1;
             int countOppositeRoads = 1;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Road_Lap1
 {
-    class RoadMarking
+    public class RoadMarking
     {
         public int typeRoadMarking { get; set; }
         public List<Point> markingPoints = new List<Point>();
