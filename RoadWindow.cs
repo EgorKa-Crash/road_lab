@@ -1,8 +1,8 @@
-﻿using Road_Lap1.Configuration;
-using Road_Lap1.Configuration.Roads;
-using Road_Lap1.Extensions;
+﻿using Road_Lap1.Extensions;
 using Road_Lap1.Roads;
 using Road_Lap1.Roads.CarFold;
+using Road_Lap1.Settings;
+using Road_Lap1.Settings.Roads;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

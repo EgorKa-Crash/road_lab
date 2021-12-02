@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Road_Lap1.Configuration.Distribution
+namespace Road_Lap1.Settings.Distribution
 {
     public interface IDistribution : IValidatableObject
     {

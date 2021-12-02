@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Road_Lap1.Configuration.Roads
+namespace Road_Lap1.Settings.Roads
 {
     public class Traffic : IValidatableObject
     {

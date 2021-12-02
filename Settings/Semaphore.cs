@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Road_Lap1.Configuration
+namespace Road_Lap1.Settings
 {
     public class Semaphore : IValidatableObject
     {

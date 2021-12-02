@@ -1,5 +1,4 @@
-﻿using Road_Lap1.Configuration;
-using Road_Lap1.Extensions;
+﻿using Road_Lap1.Extensions;
 using Road_Lap1.Settings;
 using System;
 using System.Collections.Generic;

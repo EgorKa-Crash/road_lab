@@ -1,12 +1,8 @@
-﻿using Road_Lap1.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Road_Lap1.Configuration.Distribution
+namespace Road_Lap1.Settings.Distribution
 {
     public class UniformDistribution : IDistribution
     {

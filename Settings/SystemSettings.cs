@@ -1,9 +1,8 @@
-﻿using Road_Lap1.Configuration.Distribution;
-using Road_Lap1.Configuration.Roads;
-using Road_Lap1.Settings;
+﻿using Road_Lap1.Settings.Distribution;
+using Road_Lap1.Settings.Roads;
 using System;
 
-namespace Road_Lap1.Configuration
+namespace Road_Lap1.Settings
 {
     /// <summary>
     /// Данные о конфигурации системы

@@ -1,9 +1,7 @@
-﻿using Road_Lap1.Configuration.Distribution;
-using Road_Lap1.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Road_Lap1.Configuration.Distribution
+namespace Road_Lap1.Settings.Distribution
 {
     public static class DistributionFactory
     {

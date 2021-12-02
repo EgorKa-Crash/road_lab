@@ -1,5 +1,5 @@
-﻿using Road_Lap1.Configuration;
-using Road_Lap1.Configuration.Roads;
+﻿using Road_Lap1.Settings;
+using Road_Lap1.Settings.Roads;
 using Road_Lap1.Roads;
 using System.Collections.Generic;
 

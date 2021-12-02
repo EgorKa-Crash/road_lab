@@ -1,11 +1,7 @@
-﻿using Road_Lap1.Configuration;
-using Road_Lap1.Configuration.Distribution;
-using Road_Lap1.Configuration.Roads;
+﻿using Road_Lap1.Settings;
+using Road_Lap1.Settings.Roads;
+using Road_Lap1.Settings.Distribution;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Road_Lap1.Settings
 {

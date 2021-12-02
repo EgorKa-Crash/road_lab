@@ -1,10 +1,10 @@
-﻿using Road_Lap1.Configuration;
-using Road_Lap1.Configuration.Roads;
+﻿using Road_Lap1.Extensions;
+using Road_Lap1.Settings;
+using Road_Lap1.Settings.Roads;
 using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Road_Lap1.Extensions;
 
 namespace Road_Lap1.ConfigurationForms
 {

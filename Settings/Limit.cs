@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Road_Lap1.Settings
+﻿namespace Road_Lap1.Settings
 {
     public class Limit<T>
     {
