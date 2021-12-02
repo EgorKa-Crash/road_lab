@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Road_Lap1
+namespace Road_Lap1.Extensions
 {
     public static class EventWaitHandleExtension
     {

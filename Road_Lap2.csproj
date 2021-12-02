@@ -54,9 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventWaitHandlerExtension.cs" />
+    <Compile Include="Extensions\EventWaitHandlerExtension.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,37 +79,38 @@
     <Compile Include="SettingsForms\SemaphoreSettingsForm.Designer.cs">
       <DependentUpon>SemaphoreSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\Intensity\IntensityFactory.cs" />
-    <Compile Include="Settings\Intensity\IntensityAttribute.cs" />
+    <Compile Include="Settings\DistributionSettingsView.cs" />
+    <Compile Include="Settings\Distribution\DistributionFactory.cs" />
+    <Compile Include="Settings\Distribution\DistributionAttribute.cs" />
+    <Compile Include="Settings\Limit.cs" />
     <Compile Include="Settings\Roads\TypeRoad.cs" />
-    <Compile Include="Settings\SpeedLimits.cs" />
     <Compile Include="Settings\Semaphore.cs" />
     <Compile Include="Container.cs" />
-    <Compile Include="FormExtensions.cs" />
+    <Compile Include="Extensions\FormExtensions.cs" />
     <Compile Include="Roads\CarFold\Car.cs" />
     <Compile Include="Settings\Roads\Direction.cs" />
-    <Compile Include="Settings\Intensity\NormalIntensity.cs" />
-    <Compile Include="Settings\Intensity\UniformIntensity.cs" />
-    <Compile Include="Settings\Intensity\ExponentialIntensity.cs" />
-    <Compile Include="Settings\Intensity\DetermineIntensity.cs" />
-    <Compile Include="SettingsForms\IntensitySettingsForm.cs">
+    <Compile Include="Settings\Distribution\NormalDistribution.cs" />
+    <Compile Include="Settings\Distribution\UniformDistribution.cs" />
+    <Compile Include="Settings\Distribution\ExponentialDistribution.cs" />
+    <Compile Include="Settings\Distribution\DetermineDistribution .cs" />
+    <Compile Include="SettingsForms\DistributionSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForms\IntensitySettingsForm.Designer.cs">
-      <DependentUpon>IntensitySettingsForm.cs</DependentUpon>
+    <Compile Include="SettingsForms\DistributionSettingsForm.Designer.cs">
+      <DependentUpon>DistributionSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\Intensity\IIntensity.cs" />
+    <Compile Include="Settings\Distribution\IDistribution.cs" />
     <Compile Include="SettingsForms\RoadSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SettingsForms\RoadSettingsForm.Designer.cs">
       <DependentUpon>RoadSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsForms\TypeSettingsForm.cs">
+    <Compile Include="SettingsForms\TypeRoadForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForms\TypeSettingsForm.Designer.cs">
-      <DependentUpon>TypeSettingsForm.cs</DependentUpon>
+    <Compile Include="SettingsForms\TypeRoadForm.Designer.cs">
+      <DependentUpon>TypeRoadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\SystemSettings.cs" />
     <Compile Include="Settings\Roads\Traffic.cs" />
@@ -134,8 +132,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roads\RoadComponents\SignLine.cs" />
     <Compile Include="Roads\Tunnel.cs" />
-    <EmbeddedResource Include="SettingsForms\IntensitySettingsForm.resx">
-      <DependentUpon>IntensitySettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SettingsForms\DistributionSettingsForm.resx">
+      <DependentUpon>DistributionSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForms\RoadSettingsForm.resx">
       <DependentUpon>RoadSettingsForm.cs</DependentUpon>
@@ -143,8 +141,8 @@
     <EmbeddedResource Include="SettingsForms\SemaphoreSettingsForm.resx">
       <DependentUpon>SemaphoreSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForms\TypeSettingsForm.resx">
-      <DependentUpon>TypeSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SettingsForms\TypeRoadForm.resx">
+      <DependentUpon>TypeRoadForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoadWindow.resx">
       <DependentUpon>RoadWindow.cs</DependentUpon>
@@ -154,7 +152,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -170,31 +167,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Cross.png" />
+    <None Include="Resourses\Pictures\Cross.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\CarRoad.png" />
+    <None Include="Resourses\Pictures\CarRoad.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\GreenSemaphore.png" />
+    <None Include="Resourses\Pictures\GreenSemaphore.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Highway.png" />
+    <None Include="Resourses\Pictures\Highway.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Limit.png" />
+    <None Include="Resourses\Pictures\Limit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\NoLimit.png" />
+    <None Include="Resourses\Pictures\NoLimit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\RedSemaphore.png" />
+    <None Include="Resourses\Pictures\RedSemaphore.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Screenshot_1.png" />
+    <None Include="Resourses\Pictures\Screenshot_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Tunnel.png" />
+    <None Include="Resourses\Pictures\Tunnel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resourses\UserGuides\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

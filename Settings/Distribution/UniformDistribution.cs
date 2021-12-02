@@ -1,35 +1,37 @@
-﻿using System;
+﻿using Road_Lap1.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Road_Lap1.Configuration.Intensity
+namespace Road_Lap1.Configuration.Distribution
 {
-    public class UniformIntensity : IIntensity
+    public class UniformDistribution : IDistribution
     {
-        [Intensity("Введите a:")] public double? FirstParam { get; set; }
-        [Intensity("Введите b:")] public double? SecondParam { get; set; }
+        [DistributionAttribute("Введите a:")] public double? FirstParam { get; set; }
+        [DistributionAttribute("Введите b:")] public double? SecondParam { get; set; }
+
         public Random Random { get; }
 
-        public UniformIntensity(double? firstParam, double? secondParam)
+        public UniformDistribution(double? firstParam, double? secondParam)
         {
             FirstParam = firstParam;
             SecondParam = secondParam;
             Random = new Random();
         }
 
+        public double NextValue() => (Random.NextDouble() * (SecondParam.Value - FirstParam.Value)) + FirstParam.Value;
+
+        public bool CheckParams(double param1, double param2) => param1 <= param2;
+
         public bool CheckParam(double param)
         {
-            return (param > 0
-                 && !double.IsNaN(param)
-                 && !double.IsInfinity(param));
+            return (param > 0 &&
+                    !double.IsNaN(param) &&
+                    !double.IsInfinity(param));
         }
-
-        public bool CheckParams(double param1, double param2) => !(param1 < param2);
-
-        public double NextValue() => (Random.NextDouble() * (SecondParam.Value - FirstParam.Value)) + FirstParam.Value;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -45,9 +47,9 @@ namespace Road_Lap1.Configuration.Intensity
                 errors.Add(new ValidationResult("Правая граница интервала должна быть больше нуля!"));
             }
 
-            if (CheckParams(FirstParam.Value, SecondParam.Value))
+            if (!CheckParams(FirstParam.Value, SecondParam.Value))
             {
-                errors.Add(new ValidationResult("Правая граница интервала не может быть меньше или равна левой!"));
+                errors.Add(new ValidationResult("Правая граница интервала должна быть больше левой!"));
             }
 
             return errors;

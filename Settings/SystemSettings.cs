@@ -1,5 +1,6 @@
-﻿using Road_Lap1.Configuration.Intensity;
+﻿using Road_Lap1.Configuration.Distribution;
 using Road_Lap1.Configuration.Roads;
+using Road_Lap1.Settings;
 using System;
 
 namespace Road_Lap1.Configuration
@@ -17,7 +18,7 @@ namespace Road_Lap1.Configuration
         /// <summary>
         /// Ограничение по скорости
         /// </summary>
-        public SpeedLimits SpeedLimit { get; }
+        public Limit<int> Speed { get; }
 
         /// <summary>
         /// Данные о топологии дороги
@@ -27,31 +28,31 @@ namespace Road_Lap1.Configuration
         /// <summary>
         /// Закон распределения формирования автопотока
         /// </summary>
-        public IIntensity FlowIntensity { get; set; }
+        public IDistribution FlowDistribution { get; set; }
 
         /// <summary>
         /// Закон распределения скоростей автопотока
         /// </summary>
-        public IIntensity CarSpeedIntensity { get; set; }
+        public IDistribution SpeedDistribution { get; set; }
 
-        private Lazy<Semaphore> _semaphoresLazy;
+        private Lazy<Semaphore> _semaphoreLazy;
 
         /// <summary>
         /// Настройки светофора
         /// </summary>
-        public Semaphore Semaphore => _semaphoresLazy.Value;
+        public Semaphore Semaphore => _semaphoreLazy.Value;
         
-        private SystemSettings(RoadType nameRoad, SpeedLimits speedLimits)
+        private SystemSettings(RoadType roadType, Limit<int> speedLimits)
         {
-            RoadType = nameRoad;
-            SpeedLimit = speedLimits;
+            RoadType = roadType;
+            Speed = speedLimits;
 
-            _semaphoresLazy = new Lazy<Semaphore>(() => ( new Semaphore()));
+            _semaphoreLazy = new Lazy<Semaphore>(() => (new Semaphore()));
         }
 
-        private SystemSettings(RoadType nameRoad,
-                               SpeedLimits speedLimits,
-                               Traffic traffic) : this(nameRoad, speedLimits)
+        private SystemSettings(RoadType roadType,
+                               Limit<int> speedLimits,
+                               Traffic traffic) : this(roadType, speedLimits)
         {
             Traffic = traffic;
         }
@@ -59,24 +60,14 @@ namespace Road_Lap1.Configuration
 
         public static class Factory
         {
-            public static SystemSettings CreateHighway()
-            {
-                return new SystemSettings(RoadType.Higway, new SpeedLimits(minSpeed: 40, maxSpeed: 110));
-            }
+            public static SystemSettings CreateHighway() => new SystemSettings(RoadType.Higway, new Limit<int>(min: 40, max: 110));
 
-            public static SystemSettings CreateRoad()
-            {
-                return new SystemSettings(RoadType.Road, new SpeedLimits(minSpeed: 20, maxSpeed: 60));
-            }
+            public static SystemSettings CreateRoad() => new SystemSettings(RoadType.Road, new Limit<int>(min: 20, max: 60));
 
-            public static SystemSettings CreateTunnel()
-            {
-                return new SystemSettings(RoadType.Tunnel,
-                                          new SpeedLimits(minSpeed: 20, maxSpeed: 60),
-                                          new Traffic(countLineOn: 1,
-                                                      countLineAgainst: 1)
-                                          );
-            }
+            public static SystemSettings CreateTunnel() => new SystemSettings(RoadType.Tunnel, 
+                                                                              new Limit<int>(min: 20, max: 60), 
+                                                                              new Traffic(countLineOn: 1, countLineAgainst: 1)
+                                                                              );
         }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using Road_Lap1.Configuration;
 using Road_Lap1.Configuration.Roads;
 using System;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using Road_Lap1.Extensions;
 
 namespace Road_Lap1.ConfigurationForms
 {
-    public partial class TypeSettingsForm : Form
+    public partial class TypeRoadForm : Form
     {
         /// <summary>
         /// Настройки системы
@@ -17,10 +20,11 @@ namespace Road_Lap1.ConfigurationForms
         /// </summary>
         Func<SystemSettings> _constructor;
 
-        public TypeSettingsForm()
+        public TypeRoadForm()
         {
             InitializeComponent();
             _constructor = () => SystemSettings.Factory.CreateHighway();
+            ChangeBackColorRadioButtons();
             Container<Form>.Instance.Register(this);
         }
 
@@ -40,21 +44,33 @@ namespace Road_Lap1.ConfigurationForms
         private void radioButton_road_CheckedChanged(object sender, EventArgs e)
         {
             _constructor = () => SystemSettings.Factory.CreateRoad();
+            ChangeBackColorRadioButtons();
         }
 
         private void radioButton_tunnel_CheckedChanged(object sender, EventArgs e)
         {
             _constructor = () => SystemSettings.Factory.CreateTunnel();
+            ChangeBackColorRadioButtons();
         }
 
         private void radioButton_highway_CheckedChanged(object sender, EventArgs e)
         {
             _constructor = () => SystemSettings.Factory.CreateHighway();
+            ChangeBackColorRadioButtons();
         }
 
-        private void TypeRoadForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void ChangeBackColorRadioButtons()
         {
-            this.CloseAll();
+            foreach (var control in Controls.OfType<RadioButton>())
+            {
+                control.BackColor = control.Checked
+                                  ? Color.Blue
+                                  : Control.DefaultBackColor;
+            }
         }
+
+        private void TypeRoadForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
+
+        private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
     }
 }

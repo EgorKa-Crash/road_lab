@@ -10,15 +10,9 @@ namespace Road_Lap1.Configuration
 
         public int TimeMilliseconds { get; set; }
 
-        public Semaphore()
-        {
-            TimeMilliseconds = MinTimeMilliseconds;
-        }
+        public Semaphore() => TimeMilliseconds = MinTimeMilliseconds;
 
-        public Semaphore(int timeMilliseconds)
-        {
-            TimeMilliseconds = timeMilliseconds;
-        }
+        public Semaphore(int timeMilliseconds) => TimeMilliseconds = timeMilliseconds;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -35,8 +29,6 @@ namespace Road_Lap1.Configuration
             }
 
             return errors;
-        }
-
-        
+        }       
     }
 }

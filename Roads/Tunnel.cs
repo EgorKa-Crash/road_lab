@@ -13,7 +13,7 @@ namespace Road_Lap1
     {
         public Tunnel(Point[] way, int startTunnel, int finTunnel, SystemSettings _settings)
         {
-            this.MAX_SPEED = _settings.SpeedLimit.Max;
+            this.MAX_SPEED = _settings.Speed.Max;
             this.MIN_SPEED = 0;
             this.START_SIGN_POINT = 19;
             this.FIN_SIGN_POINT = 14;

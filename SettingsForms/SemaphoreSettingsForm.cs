@@ -1,14 +1,9 @@
 ﻿using Road_Lap1.Configuration;
-using Road_Lap1.Configuration.Roads;
+using Road_Lap1.Extensions;
+using Road_Lap1.Settings;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Road_Lap1.ConfigurationForms
@@ -30,15 +25,11 @@ namespace Road_Lap1.ConfigurationForms
         /// </summary>
         private SystemSettings _settings;
 
-        
-
-
         /// <summary>
-        /// Объект-болванка для изменений   светофора
+        /// Объект-болванка для изменений светофора
         /// </summary>
         private Semaphore _semaphoreToChange;
         
-
         public SemaphoreSettingsForm(Form prevForm, SystemSettings settings)
         {
             InitializeComponent();
@@ -48,33 +39,17 @@ namespace Road_Lap1.ConfigurationForms
             Container<Form>.Instance.Register(this);
         }
 
-        private void btn_close_Click(object sender, EventArgs e)
+        private void btn_next_Click(object sender, EventArgs e)
         {
-            if(!(_prevForm is RoadWindow))
+            if(!ValidateModel(_semaphoreToChange))
             {
-                _prevForm.Show();
+                return;
             }
 
-            Dispose();
-        }
+            _settings.Semaphore.TimeMilliseconds = _semaphoreToChange.TimeMilliseconds;
 
-        private void btn_save_Click(object sender, EventArgs e)
-        {
-            if(   ValidateModel(_semaphoreToChange))
-            {
-                
-                _settings.Semaphore.TimeMilliseconds = _semaphoreToChange.TimeMilliseconds;
-
-                if (_prevForm is RoadWindow)
-                {
-                    Dispose();
-                }
-                else
-                {
-                    new IntensitySettingsForm(this, _settings).Show();
-                    this.Hide();
-                }
-            }
+            new DistributionSettingsForm(this, _settings, DistributionFormType.Flow).Show();
+            this.Hide();
         }
 
         private bool ValidateModel(object obj)
@@ -94,30 +69,23 @@ namespace Road_Lap1.ConfigurationForms
 
             return true;
         }      
-
-        private void SemaphoreConfigurationForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_prevForm is RoadWindow)
-            {
-                Dispose();
-            }
-            else
-            {
-                this.CloseAll();
-            }
-        }
-
+      
         private void trackBar_rightSemaphore_Scroll(object sender, EventArgs e)
         {
             lbl_rightValue.Text = SetLabelValue(trackBar_rightSemaphore);
             _semaphoreToChange.TimeMilliseconds = trackBar_rightSemaphore.Value * _millisecondsFactor;
         }
 
-        
-
-        private string SetLabelValue(TrackBar trackBar)
+        private void btn_back_Click(object sender, EventArgs e)
         {
-            return trackBar.Value + " c";
+            _prevForm.Show();
+            Dispose();
         }
+
+        private string SetLabelValue(TrackBar trackBar) => trackBar.Value + " c";
+
+        private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
+
+        private void SemaphoreConfigurationForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Road_Lap1.Configuration;
 using Road_Lap1.Configuration.Roads;
+using Road_Lap1.Extensions;
 using Road_Lap1.Roads;
 using Road_Lap1.Roads.CarFold;
 using System;
@@ -28,6 +29,8 @@ namespace Road_Lap1
 
         private bool addLimitFlag = false;
 
+        private int _signCount = 0;
+
         private readonly double _overtakingBlockingRadius = 200;
         public int countPassingRoads { get; set; }  //количество попутных дорог
         public int countOppositeRoads { get; set; } //количество противоположных дорог 
@@ -47,17 +50,25 @@ namespace Road_Lap1
         /// <param name="systemConfig"></param>
         public RoadWindow(Form form, SystemSettings settings)
         {
+            InitializeComponent();
+
             noLimitImage = Properties.Resources.NoLimit;
             limitImage = Properties.Resources.Limit;
             greenSemaphoreImage = Properties.Resources.GreenSemaphore;
             redSemaphoreImage = Properties.Resources.RedSemaphore;
             carRoadImage = Properties.Resources.CarRoad;
-            highwayImage = Properties.Resources.Highway;
+            highwayImage = Properties.Resources.Highway1;
             tunnelImage = Properties.Resources.Tunnel;
             crossImage = Properties.Resources.Cross;
-           
-            InitializeComponent();
             _settings = settings;
+
+            if (_settings.RoadType == RoadType.Tunnel)
+            {
+                setLimitButton.Visible = false;
+                roadMarkPanel.Visible = false;
+                selectedCarPanel.Location = setLimitButton.Location;
+            }
+               
             countPassingRoads = _settings.Traffic.CountPasssingLine;
             countOppositeRoads = _settings.Traffic.CountOppositeLine ;
             _configurationForm = form;
@@ -137,26 +148,18 @@ namespace Road_Lap1
              
             int[] RM = MarkingGenerator();
 
-            speedLimitTB.Maximum = _settings.SpeedLimit.Max / 10;
-            speedLimitTB.Minimum = _settings.SpeedLimit.Min / 10;
-            dynamicSpeed.Maximum = _settings.SpeedLimit.Max;
+            var max = _settings.Speed.Max;
+
+            speedLimitTB.Maximum = max / 10;
+            speedLimitTB.Minimum = _settings.Speed.Min / 10;
+            dynamicSpeed.Maximum = max;
             dynamicSpeed.Minimum = 0;
-            pb_CarSpeed.Maximum = _settings.SpeedLimit.Max;
+            pb_CarSpeed.Maximum = max;
             pb_CarSpeed.Minimum = 0;
              
-
-            if ( _settings.RoadType == RoadType.Tunnel)
-            { 
-                road = new Tunnel(wey, 15, 25, _settings); // обозначены начало и конец тонеля, возможно потом можно вывести для динамической настройки карты
-            }
-            else if (_settings.RoadType == RoadType.Higway)
-            {
-                road = new Highway(wey, RM, 1, _settings);
-            }
-            else
-            { 
-                road = new Highway(wey, RM, 1, _settings);             
-            } 
+            road = _settings.RoadType == RoadType.Tunnel 
+                 ? new Tunnel(wey, 15, 25, _settings) 
+                 : (RoadBase)new Highway(wey, RM, 1, _settings);
         }
 
 
@@ -193,7 +196,6 @@ namespace Road_Lap1
         {
             Task.Run(() =>
             { 
-                 
                 while (!_eventFlag)
                 {
                     if (cars.Count < 150)
@@ -201,14 +203,11 @@ namespace Road_Lap1
                         int numRoad = rnd.Next(0, countPassingRoads + countOppositeRoads);
                         lock (carLocker)
                         {
-                            var raddSpeed = _settings.CarSpeedIntensity.NextValue();
-
+                            var raddSpeed = _settings.SpeedDistribution.NextValue();
                             cars.Add(new Car(0, 0, numRoad, (int)raddSpeed, (double)this.road.roads[numRoad].roadPoints[0].x, (double)this.road.roads[numRoad].roadPoints[0].y, raddSpeed / 10, 1, Color.FromArgb(rnd.Next(200), rnd.Next(150), rnd.Next(150))));
-
                         }
-                        Thread.Sleep((int)_settings.FlowIntensity.NextValue());
-                    }
-                     
+                        Thread.Sleep((int)_settings.FlowDistribution.NextValue());
+                    }  
                 }
             }); 
         }
@@ -225,7 +224,7 @@ namespace Road_Lap1
 
                 lock (carLocker)
                 {
-                    CarMovementCalculations.carMovement(cars, road,countOppositeRoads,_overtakingBlockingRadius, _settings.SpeedLimit.Max);
+                    CarMovementCalculations.carMovement(cars, road,countOppositeRoads,_overtakingBlockingRadius, _settings.Speed.Max);
                 } 
                 if (trackPictureBox.InvokeRequired)
                 {
@@ -255,7 +254,7 @@ namespace Road_Lap1
         Pen pen = new Pen(Color.Red);
         Pen pen2 = new Pen(Color.Red);
         Pen pen3 = new Pen(Color.Red);
-        Font font = new Font("Console", 12, FontStyle.Bold);  
+        Font speedLimiterFont = new Font("Console", 12, FontStyle.Bold);  
         SolidBrush sb = new SolidBrush(Color.Red); 
        /* private void RoadDrawing1() //полученный битмэп можно взять за основу, не просчитывая каждый раз заново дороги
         {
@@ -326,9 +325,9 @@ namespace Road_Lap1
 
                         grf.DrawLine(pen2, point1.x, point1.y, point2.x, point2.y);
 
-                        grf.DrawString(Math.Round(c.currentCarSpeed * 10, 0).ToString(), font, sb, new PointF((float)c.xCarCoordinate - 8, (float)c.yCarCoordinate - 5));
+                        grf.DrawString(Math.Round(c.currentCarSpeed * 10, 0).ToString(), speedLimiterFont, sb, new PointF((float)c.xCarCoordinate - 8, (float)c.yCarCoordinate - 5));
                         sb.Color = Color.White;
-                        grf.DrawString(Math.Round(c.currentCarSpeed * 10, 0).ToString(), font, sb, new PointF((float)c.xCarCoordinate - 10, (float)c.yCarCoordinate - 5));
+                        grf.DrawString(Math.Round(c.currentCarSpeed * 10, 0).ToString(), speedLimiterFont, sb, new PointF((float)c.xCarCoordinate - 10, (float)c.yCarCoordinate - 5));
                     }
                 }
             }
@@ -399,7 +398,7 @@ namespace Road_Lap1
                         switch (T)
                         {
                             case TrafficSignalType.Limit:
-                                { 
+                                {
                                     break;
                                 }
                             case TrafficSignalType.NoLimit:
@@ -419,6 +418,7 @@ namespace Road_Lap1
                                 }
                             case TrafficSignalType.Highway:
                                 {
+
                                     currentImage = highwayImage;
                                     break;
                                 }
@@ -435,11 +435,13 @@ namespace Road_Lap1
                         }
 
                         grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].Point.x - 10, signline.signPoints[j].Point.y - 12, 30, 30));
-
                         if (signline.signPoints[j + 1].Signal == TrafficSignalType.Limit)
                         {
+                            var speedLimit = signline.signPoints[j + 1].Point.maximumAllowedSpeed;
 
-                            grf.DrawString(signline.signPoints[j + 1].Point.maximumAllowedSpeed.ToString(),
+                            var font = GetFont(speedLimit);
+
+                            grf.DrawString(speedLimit.ToString(),
                                            font,
                                            new SolidBrush(Color.Black),
                                            new PointF(signline.signPoints[j].Point.x - 8, signline.signPoints[j].Point.y - 5));
@@ -449,6 +451,12 @@ namespace Road_Lap1
             }
         }
 
+        private Font GetFont(int speed)
+        {
+            return speed >= 100
+                 ? new Font("Console", 9, FontStyle.Bold)
+                 : speedLimiterFont;
+        }
 
         public static Image RotateImage(Image img, float rotationAngle)
         {
@@ -494,21 +502,36 @@ namespace Road_Lap1
                 int oldLim  = 0; 
                 if (setLimitRB.Checked)
                 {
+                    if (_signCount == 4)
+                    {
+                        return;
+                    }
+                    _signCount++;
                     currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.Limit; // указание типа знака   
                       lim = speedLimitTB.Value * 10; 
                       oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed; 
                 }
                 else if (delLimRB.Checked)
-                { 
+                {
+                    _signCount = _signCount == 0 ? 0 : _signCount - 1;
                     currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.Nothing;
                       oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed;
                       lim = currentLimLine.signPoints[currentLimNum-1].Point.maximumAllowedSpeed; 
                 }
                 else if (notLimRB.Checked)
-                { 
+                {
+                    if(currentLimLine.signPoints[currentLimNum].Signal != TrafficSignalType.Limit)
+                    {
+                        if (_signCount == 4)
+                        {
+                            return;
+                        }
+                        _signCount++;
+                    }
+
                     currentLimLine.signPoints[currentLimNum].Signal = TrafficSignalType.NoLimit;
-                      oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed;
-                      lim = road.MAX_SPEED; 
+                    oldLim = currentLimLine.signPoints[currentLimNum].Point.maximumAllowedSpeed;
+                    lim = road.MAX_SPEED;
                 }
                 LimLineEditor(oldLim, lim);
 
@@ -519,10 +542,10 @@ namespace Road_Lap1
             }
             else
             {
-                /*if (_settings.RoadType != RoadType.Tunnel)
+                if (_settings.RoadType != RoadType.Tunnel)
                 {
                     return;
-                }*/
+                }
 
                 int x = e.Location.X;
                 int y = e.Location.Y;
@@ -536,11 +559,11 @@ namespace Road_Lap1
                         currentCar = cars[i];
                         if (currentCar.carDesiredSpeed > road.MAX_SPEED) 
                         {
-                            currentCar.carDesiredSpeed = road.MAX_SPEED; 
+                            currentCar.carDesiredSpeed = road.MAX_SPEED;
+                            
                         }
                         selectedCarPanel.Visible = true;
                         dynamicSpeed.Value = currentCar.carDesiredSpeed;
-
                     }
                     else if(minRad == 50)
                     selectedCarPanel.Visible = false;
@@ -551,10 +574,10 @@ namespace Road_Lap1
         private bool IsCorrectPlaceToLimitSign(TrafficSignalType sign)
         {
             return sign != TrafficSignalType.CarRoad
-                   && sign != TrafficSignalType.Highway
-                   && sign != TrafficSignalType.Tunnel
-                   && sign != TrafficSignalType.GreenSemaphore
-                   && sign != TrafficSignalType.RedSemaphore;
+                && sign != TrafficSignalType.Highway
+                && sign != TrafficSignalType.Tunnel
+                && sign != TrafficSignalType.GreenSemaphore
+                && sign != TrafficSignalType.RedSemaphore;
         }
 
         private void LimLineEditor(int oldLim, int lim)
@@ -568,29 +591,8 @@ namespace Road_Lap1
             }
         }
 
-       // private bool invokeInProgress = false;
-        private /*async*/ void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-          //  if(!invokeInProgress)
-            {
-                this.CloseAll();
-             //   return;
-            }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
 
-            //e.Cancel = true;
-
-            //await Task.Run(() =>
-            //{
-            //    while (invokeInProgress)
-            //    { }
-            //});
-
-            //this.CloseAll();
-        }
-         
-
-
-        
         private SignLine currentLimLine;
         private int currentLimNum;
 
@@ -651,8 +653,11 @@ namespace Road_Lap1
             {
                 signImage = limitImage;
                 grf.DrawImage(signImage, new Rectangle(x - 10, y - 12, 30, 30));
-                grf.DrawString((speedLimitTB.Value * 10).ToString(),
-                               font,
+
+                var speed = speedLimitTB.Value * 10;
+
+                grf.DrawString(speed.ToString(),
+                               GetFont(speed),
                                new SolidBrush(Color.Black),
                                new PointF(x - 8, y - 5));
             }
@@ -696,9 +701,10 @@ namespace Road_Lap1
             road.setTrafficLight();
         }
 
-        private int WaitingOnOtherLight(int timeout)
+        private void WaitingOnOtherLight(int timeout)
         {
             var counter = 0;
+
             while (timeout >= counter)
             {
                 _semaphoreEventWait.WaitOneEx(_eventFlag);
@@ -706,8 +712,6 @@ namespace Road_Lap1
                 counter += 100;
                 Thread.Sleep(100);
             }
-
-            return counter;
         }
 
         private int CarsCountOnSegment(int SPoint, int LPoint, int NRoad)

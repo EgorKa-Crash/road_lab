@@ -17,7 +17,7 @@ namespace Road_Lap1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TypeSettingsForm());
+            Application.Run(new TypeRoadForm());
         }
     }
 }

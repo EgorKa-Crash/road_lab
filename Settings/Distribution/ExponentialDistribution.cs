@@ -1,32 +1,38 @@
-﻿using System;
+﻿using Road_Lap1.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Road_Lap1.Configuration.Intensity
+namespace Road_Lap1.Configuration.Distribution
 {
-    public class ExponentialIntensity : IIntensity
+    public class ExponentialDistribution : IDistribution
     {
-        [Intensity("Введите показатель:")] public double? FirstParam { get; set; }
+        [DistributionAttribute("Введите показатель:")] public double? FirstParam { get; set; }
         public double? SecondParam { get; set; }
+
+        public Limit<double> AxisX { get; set; }
+
         public Random Random { get; }
 
-        public ExponentialIntensity(double? firstParam)
+        public ExponentialDistribution(double? firstParam)
         {
             FirstParam = firstParam;
+            SecondParam = 10;
+            AxisX = new Limit<double>(0, 1);
             Random = new Random();
         }
 
+        public double NextValue() =>(-1 / FirstParam.Value * Math.Log(1 - Random.NextDouble()) / 10  * (AxisX.Max - AxisX.Min)) + AxisX.Min;
+
         public  bool CheckParam(double param)
         {
-            return (param > 0
-                 && !double.IsNaN(param)
-                 && !double.IsInfinity(param));
+            return (param > 0 && 
+                    !double.IsNaN(param) && 
+                    !double.IsInfinity(param));
         }
-
-        public double NextValue() => -1 / FirstParam.Value * Math.Log(Random.NextDouble());
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -38,6 +44,6 @@ namespace Road_Lap1.Configuration.Intensity
             }
 
             return errors;
-        }   
+        }
     }
 }

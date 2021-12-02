@@ -95,7 +95,7 @@
             this.selectedCarPanel.Controls.Add(this.pb_CarSpeed);
             this.selectedCarPanel.Controls.Add(this.selCarLable);
             this.selectedCarPanel.Controls.Add(this.dynamicSpeed);
-            this.selectedCarPanel.Location = new System.Drawing.Point(1111, 177);
+            this.selectedCarPanel.Location = new System.Drawing.Point(1108, 436);
             this.selectedCarPanel.Name = "selectedCarPanel";
             this.selectedCarPanel.Size = new System.Drawing.Size(150, 143);
             this.selectedCarPanel.TabIndex = 6;
@@ -149,7 +149,7 @@
             this.roadMarkPanel.Controls.Add(this.setLimitRB);
             this.roadMarkPanel.Controls.Add(this.delLimRB);
             this.roadMarkPanel.Controls.Add(this.speedLimitTB);
-            this.roadMarkPanel.Location = new System.Drawing.Point(1111, 449);
+            this.roadMarkPanel.Location = new System.Drawing.Point(1111, 203);
             this.roadMarkPanel.Name = "roadMarkPanel";
             this.roadMarkPanel.Size = new System.Drawing.Size(148, 227);
             this.roadMarkPanel.TabIndex = 8;
@@ -211,7 +211,7 @@
             // 
             // setLimitButton
             // 
-            this.setLimitButton.Location = new System.Drawing.Point(1111, 395);
+            this.setLimitButton.Location = new System.Drawing.Point(1111, 149);
             this.setLimitButton.Name = "setLimitButton";
             this.setLimitButton.Size = new System.Drawing.Size(148, 48);
             this.setLimitButton.TabIndex = 9;
@@ -231,6 +231,9 @@
             this.Controls.Add(this.pauseButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.trackPictureBox);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1308, 772);
+            this.MinimumSize = new System.Drawing.Size(1308, 726);
             this.Name = "RoadWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

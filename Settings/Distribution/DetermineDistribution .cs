@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Road_Lap1.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,20 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Road_Lap1.Configuration.Intensity
+namespace Road_Lap1.Configuration.Distribution
 {
-    public class DetermineIntensity : IIntensity
+    public class DetermineDistribution  : IDistribution
     {
-        [Intensity("Введите константу:")] public double? FirstParam { get; set; }
+        [DistributionAttribute("Введите константу:")] public double? FirstParam { get; set; }
 
         public double? SecondParam { get; set; }
 
         public Random Random { get; }
 
-        public DetermineIntensity(double? firstParam)
+        public DetermineDistribution (double? firstParam)
         {
             FirstParam = firstParam;
         }
+
+        public double NextValue() => FirstParam.Value;
 
         public bool CheckParam(double param)
         {
@@ -27,8 +30,6 @@ namespace Road_Lap1.Configuration.Intensity
                  && !double.IsNaN(param)
                  && !double.IsInfinity(param));
         }
-
-        public double NextValue() => FirstParam.Value;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

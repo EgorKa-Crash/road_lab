@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Road_Lap1.Configuration.Intensity
+namespace Road_Lap1.Configuration.Distribution
 {
-    public interface IIntensity : IValidatableObject
+    public interface IDistribution : IValidatableObject
     {
         Random Random { get; }
 

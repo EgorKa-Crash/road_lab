@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Road_Lap1.Configuration.Intensity
+namespace Road_Lap1.Configuration.Distribution
 {
-    public class IntensityAttribute : Attribute
+    public class DistributionAttribute : Attribute
     {
         /// <summary>
         /// Описание члена класса
         /// </summary>
         public string Description { get; set; }
 
-        public IntensityAttribute(string description)
+        public DistributionAttribute(string description)
         {
             Description = description;
         }

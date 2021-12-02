@@ -1,24 +1,28 @@
-﻿using System;
+﻿using Road_Lap1.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Road_Lap1.Configuration.Intensity
+namespace Road_Lap1.Configuration.Distribution
 {
-    public class NormalIntensity : IIntensity
+    public class NormalDistribution : IDistribution
     {
-        [Intensity("Введите MX:")] public double? FirstParam { get; set; }
-        [Intensity("Введите DX:")] public double? SecondParam { get; set; }
+        [DistributionAttribute("Введите MX:")] public double? FirstParam { get; set; }
+        [DistributionAttribute("Введите DX:")] public double? SecondParam { get; set; }
+
         public Random Random { get; }
 
-        public NormalIntensity(double? firstParam, double? secondParam)
+        public NormalDistribution(double? firstParam, double? secondParam)
         {
             FirstParam = firstParam;
             SecondParam = secondParam;
             Random = new NormalRandom();
         }
+
+        public double NextValue() => (Random.NextDouble() * Math.Sqrt(SecondParam.Value)) + FirstParam.Value;
 
         #region Check-methods
 
@@ -39,8 +43,6 @@ namespace Road_Lap1.Configuration.Intensity
         public bool CheckThreeSigmaRule() => FirstParam.Value - (3 * Math.Sqrt(SecondParam.Value)) > 0;
 
         #endregion
-
-        public double NextValue() => (Random.NextDouble() * Math.Sqrt(SecondParam.Value)) + FirstParam.Value;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

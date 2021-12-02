@@ -1,5 +1,7 @@
 ﻿using Road_Lap1.Configuration;
 using Road_Lap1.Configuration.Roads;
+using Road_Lap1.Extensions;
+using Road_Lap1.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -28,11 +30,6 @@ namespace Road_Lap1.ConfigurationForms
             Container<Form>.Instance.Register(this);
         }
 
-        private void radioButton_twoDirection_CheckedChanged(object sender, EventArgs e)
-        {
-            panel_countLine.Visible = radioButton_twoDirection.Checked;
-        }
-
         private void button_next_Click(object sender, EventArgs e)
         {
             if(!UpdateRoad())
@@ -42,17 +39,17 @@ namespace Road_Lap1.ConfigurationForms
 
             this.Hide();
 
-            new IntensitySettingsForm(this, _settings).Show();
+            new DistributionSettingsForm(this, _settings, DistributionFormType.Flow).Show();
         }
 
         private bool UpdateRoad()
         {
-            var countLine1 = trackBar_oneDirection.Value;
-            var countLine2 = trackBar_twoDirection.Value;
+            var countLineOn = trackBar_oneDirection.Value;
+            var countLineAgainst = trackBar_twoDirection.Value;
 
             _settings.Traffic = radioButton_oneDirection.Checked
-                              ? new Traffic(countLine1) 
-                              : (Traffic)new Traffic(countLine1, countLine2);
+                              ? new Traffic(countLineOn) 
+                              : (Traffic)new Traffic(countLineOn, countLineAgainst);
 
             return ValidateModel(_settings.Traffic);
         }
@@ -82,9 +79,12 @@ namespace Road_Lap1.ConfigurationForms
             Dispose();
         }
 
-        private void RoadConfigurationForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.CloseAll();
-        }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
+
+        private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
+
+        private void RoadConfigurationForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
+
+        private void radioButton_twoDirection_CheckedChanged(object sender, EventArgs e) => panel_countLine.Visible = radioButton_twoDirection.Checked;
     }
 }
