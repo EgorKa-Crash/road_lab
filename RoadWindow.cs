@@ -57,7 +57,7 @@ namespace Road_Lap1
             greenSemaphoreImage = Properties.Resources.GreenSemaphore;
             redSemaphoreImage = Properties.Resources.RedSemaphore;
             carRoadImage = Properties.Resources.CarRoad;
-            highwayImage = Properties.Resources.Highway1;
+            highwayImage = Properties.Resources.Highway;
             tunnelImage = Properties.Resources.Tunnel;
             crossImage = Properties.Resources.Cross;
             _settings = settings;
@@ -194,11 +194,12 @@ namespace Road_Lap1
         /// </summary>
         private void CarGenerator()
         {
+            int countOfCarsInModel = road.roads.Count * 20;
             Task.Run(() =>
             { 
                 while (!_eventFlag)
                 {
-                    if (cars.Count < 150)
+                    if (cars.Count < countOfCarsInModel) //количество машин в модели, хочу ограничить в зависимости от количества полос
                     {
                         int numRoad = rnd.Next(0, countPassingRoads + countOppositeRoads);
                         lock (carLocker)
