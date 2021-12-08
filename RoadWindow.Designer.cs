@@ -43,11 +43,15 @@
             this.delLimRB = new System.Windows.Forms.RadioButton();
             this.speedLimitTB = new System.Windows.Forms.TrackBar();
             this.setLimitButton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).BeginInit();
             this.selectedCarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dynamicSpeed)).BeginInit();
             this.roadMarkPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedLimitTB)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // trackPictureBox
@@ -222,12 +226,36 @@
             this.setLimitButton.UseVisualStyleBackColor = true;
             this.setLimitButton.Click += new System.EventHandler(this.setLimitButton_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoToolStripMenuItem,
+            this.aboutSystemToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1292, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.infoToolStripMenuItem.Text = "Справка";
+            // 
+            // aboutSystemToolStripMenuItem
+            // 
+            this.aboutSystemToolStripMenuItem.Name = "aboutSystemToolStripMenuItem";
+            this.aboutSystemToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.aboutSystemToolStripMenuItem.Text = "О системе";
+            // 
             // RoadWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1292, 761);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.setLimitButton);
             this.Controls.Add(this.roadMarkPanel);
             this.Controls.Add(this.selectedCarPanel);
@@ -247,7 +275,10 @@
             this.roadMarkPanel.ResumeLayout(false);
             this.roadMarkPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedLimitTB)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -268,6 +299,9 @@
         private System.Windows.Forms.TrackBar speedLimitTB;
         private System.Windows.Forms.RadioButton notLimRB;
         private System.Windows.Forms.RadioButton setLimitRB;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutSystemToolStripMenuItem;
     }
 }
 
