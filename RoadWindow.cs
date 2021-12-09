@@ -12,6 +12,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Diagnostics;
+using System.IO;
+
 
 namespace Road_Lap1
 {
@@ -58,7 +61,7 @@ namespace Road_Lap1
             greenSemaphoreImage = Properties.Resources.GreenSemaphore;
             redSemaphoreImage = Properties.Resources.RedSemaphore;
             carRoadImage = Properties.Resources.CarRoad;
-            highwayImage = Properties.Resources.Highway1;
+            highwayImage = Properties.Resources.Highway;
             tunnelImage = Properties.Resources.Tunnel;
             crossImage = Properties.Resources.Cross;
             _settings = settings;
@@ -196,11 +199,12 @@ namespace Road_Lap1
         /// </summary>
         private void CarGenerator()
         {
+            int countOfCarsInModel = road.roads.Count * 20;
             Task.Run(() =>
             { 
                 while (!_eventFlag)
                 {
-                    if (cars.Count < 150)
+                    if (cars.Count < countOfCarsInModel) //количество машин в модели, хочу ограничить в зависимости от количества полос
                     {
                         int numRoad = rnd.Next(0, countPassingRoads + countOppositeRoads);
                         lock (carLocker)
@@ -787,6 +791,31 @@ namespace Road_Lap1
             _eventFlag = true;
             addLimitFlag = true;
             roadMarkPanel.Visible = true;
+        }
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //System.Diagnostics.Process.Start(Properties.Resources.managingTheMainForm);
+            //System.Diagnostics.Process.Start(@"\ReferenceSubsystem\managingTheMainForm.html");
+
+
+      /*      var exePath = AppDomain.CurrentDomain.BaseDirectory;
+            string str = Path.Combine(exePath, "ReferenceSubsystem\\managingTheMainForm.html");
+            System.Diagnostics.Process.Start(str);*/
+
+            //string str = @"\\ReferenceSubsystem\\managingTheMainForm.html";
+            string str = Directory.GetCurrentDirectory();
+            str = str.Substring(0, str.Length - 10); 
+            str = str + "\\ReferenceSubsystem\\managingTheMainForm.html";
+            System.Diagnostics.Process.Start(str);
+
+            //System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory()+"\\ReferenceSubsystem\\managingTheMainForm.html");
+
+            /*string htmlString = global::Road_Lap1.Properties.Resources.managingTheMainForm;
+            string tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), "htm");
+            File.WriteAllText(tempFilePath, htmlString);
+           // Process.Start("iexplore.exe", tempFilePath);
+            Process.Start("msedge.exe", tempFilePath);*/
         }
     }
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки светофора</title>
+</head>
+
+<style>
+    body {
+        margin: 0; /* Убираем отступы */
+    }
+    .parent {
+        /*margin: 20%;  Отступы вокруг элемента */
+        /*background: #fd0;  Цвет фона */
+        padding: 10px; /* Поля вокруг текста */
+        /*width: 30%
+        width: 150px;
+        height: 300px;*/
+        width: 910px;
+    }
+    .child {
+         /*border: 2px solid #666; Параметры рамки */
+        padding: 10px; /* Поля вокруг текста */
+        margin: 3px 10px 3px 10px; /* Отступы вокруг */
+        /*width: 300px;*/
+        width: 85%;
+    }
+    .button {
+       /*border: 8px solid #000fff;    Параметры рамки */
+        padding: 10px; /* Поля вокруг текста */
+        margin: 3px 10px 3px 10px; /* Отступы вокруг */
+        border: none;
+        width: 90%;
+		background:#f0f0f0; 
+        <!--float:left;-->
+    }
+	.button:hover {
+    	background:#e0e0e0;  
+    }
+    #line_block {
+        width:600px;
+        background:#ffffff;
+        float:left;
+        margin: 0 15px 15px 0;
+        text-align:center;
+        padding: 30px;
+        font-size: 14pt;
+        text-indent: 40px;
+        }
+    #line_block2 {
+        width:200px; 
+        float:left;
+        margin: 0 15px 15px 0;
+        text-align:center;
+        padding: 10px;
+        }
+	.Image {
+        width: 100%;
+		border: none;
+		height: auto;
+		display: block;
+        }
+</style>
+
+ 
+
+
+<body bgcolor="#F0F0F0">
+<div align="center"  >
+    <div align="center" class="parent">
+        <div>
+           <h1>Справочная информация к «Система моделирования
+
+движения транспорта на автодороге» </h1>
+        </div>
+        <div id="line_block2">
+ 
+            
+            <button class="button" onclick="window.location.href = 'roadTypeInfo.html';">О выборе типа дороги</button>
+            <button class="button" onclick="window.location.href = 'countOfRoadsInfo.html';">О выборе количества полос</button>
+            <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
+            <button class="button" onclick="window.location.href = 'trafficLightsSettings.html';">О настройке светофора</button>
+            <button class="button" onclick="window.location.href = 'speedSettings.html';">О выборе распределения скоростного режима</button>
+            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button> 
+			<button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
+              </div>
+        <div id="line_block" >
+		<h2>Настройка светофоров в тоннеле</h2>
+            <p align="justify">Ниже представлена форма настройка периода зеленой фазы светофоров реверсивного движения.</p> 
+			<img class="Image" src="Images/форма настройки светофорной фазы.jpg">
+			<p align="justify">На форме присутствует ползунок, который позволяет здать длительность светофорной фазы.</p>
+			<p align="justify">При нажатии кнопки 'Назад' текущее окно закроется и откроется 
+			форма выбора типа дороги. При нажатии кнопки 'Далее' будет открыта форма выбора распределения интенсивности потока.</p>  
+        </div>
+        </div>
+</div>
+
+</body>
+</html>

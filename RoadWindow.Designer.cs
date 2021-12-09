@@ -43,16 +43,23 @@
             this.delLimRB = new System.Windows.Forms.RadioButton();
             this.speedLimitTB = new System.Windows.Forms.TrackBar();
             this.setLimitButton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).BeginInit();
             this.selectedCarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dynamicSpeed)).BeginInit();
             this.roadMarkPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedLimitTB)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // trackPictureBox
             // 
-            this.trackPictureBox.Location = new System.Drawing.Point(12, 12);
+            this.trackPictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.trackPictureBox.Location = new System.Drawing.Point(12, 34);
+            this.trackPictureBox.MaximumSize = new System.Drawing.Size(1067, 715);
+            this.trackPictureBox.MinimumSize = new System.Drawing.Size(1067, 715);
             this.trackPictureBox.Name = "trackPictureBox";
             this.trackPictureBox.Size = new System.Drawing.Size(1067, 715);
             this.trackPictureBox.TabIndex = 0;
@@ -62,7 +69,7 @@
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(1111, 13);
+            this.startButton.Location = new System.Drawing.Point(1109, 39);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(150, 40);
             this.startButton.TabIndex = 1;
@@ -72,7 +79,7 @@
             // 
             // pauseButton
             // 
-            this.pauseButton.Location = new System.Drawing.Point(1111, 58);
+            this.pauseButton.Location = new System.Drawing.Point(1109, 84);
             this.pauseButton.Name = "pauseButton";
             this.pauseButton.Size = new System.Drawing.Size(150, 40);
             this.pauseButton.TabIndex = 2;
@@ -82,7 +89,7 @@
             // 
             // resumeButton
             // 
-            this.resumeButton.Location = new System.Drawing.Point(1111, 104);
+            this.resumeButton.Location = new System.Drawing.Point(1109, 130);
             this.resumeButton.Name = "resumeButton";
             this.resumeButton.Size = new System.Drawing.Size(150, 40);
             this.resumeButton.TabIndex = 3;
@@ -95,7 +102,7 @@
             this.selectedCarPanel.Controls.Add(this.pb_CarSpeed);
             this.selectedCarPanel.Controls.Add(this.selCarLable);
             this.selectedCarPanel.Controls.Add(this.dynamicSpeed);
-            this.selectedCarPanel.Location = new System.Drawing.Point(1108, 436);
+            this.selectedCarPanel.Location = new System.Drawing.Point(1106, 462);
             this.selectedCarPanel.Name = "selectedCarPanel";
             this.selectedCarPanel.Size = new System.Drawing.Size(150, 143);
             this.selectedCarPanel.TabIndex = 6;
@@ -149,7 +156,7 @@
             this.roadMarkPanel.Controls.Add(this.setLimitRB);
             this.roadMarkPanel.Controls.Add(this.delLimRB);
             this.roadMarkPanel.Controls.Add(this.speedLimitTB);
-            this.roadMarkPanel.Location = new System.Drawing.Point(1111, 203);
+            this.roadMarkPanel.Location = new System.Drawing.Point(1109, 229);
             this.roadMarkPanel.Name = "roadMarkPanel";
             this.roadMarkPanel.Size = new System.Drawing.Size(148, 227);
             this.roadMarkPanel.TabIndex = 8;
@@ -211,7 +218,7 @@
             // 
             // setLimitButton
             // 
-            this.setLimitButton.Location = new System.Drawing.Point(1111, 149);
+            this.setLimitButton.Location = new System.Drawing.Point(1109, 175);
             this.setLimitButton.Name = "setLimitButton";
             this.setLimitButton.Size = new System.Drawing.Size(148, 48);
             this.setLimitButton.TabIndex = 9;
@@ -219,11 +226,37 @@
             this.setLimitButton.UseVisualStyleBackColor = true;
             this.setLimitButton.Click += new System.EventHandler(this.setLimitButton_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoToolStripMenuItem,
+            this.aboutSystemToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1292, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.infoToolStripMenuItem.Text = "Справка";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
+            // aboutSystemToolStripMenuItem
+            // 
+            this.aboutSystemToolStripMenuItem.Name = "aboutSystemToolStripMenuItem";
+            this.aboutSystemToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.aboutSystemToolStripMenuItem.Text = "О системе";
+            // 
             // RoadWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1292, 733);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1292, 761);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.setLimitButton);
             this.Controls.Add(this.roadMarkPanel);
             this.Controls.Add(this.selectedCarPanel);
@@ -232,11 +265,8 @@
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.trackPictureBox);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1308, 772);
-            this.MinimumSize = new System.Drawing.Size(1308, 726);
             this.Name = "RoadWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).EndInit();
             this.selectedCarPanel.ResumeLayout(false);
@@ -245,7 +275,10 @@
             this.roadMarkPanel.ResumeLayout(false);
             this.roadMarkPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedLimitTB)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -266,6 +299,9 @@
         private System.Windows.Forms.TrackBar speedLimitTB;
         private System.Windows.Forms.RadioButton notLimRB;
         private System.Windows.Forms.RadioButton setLimitRB;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutSystemToolStripMenuItem;
     }
 }
 

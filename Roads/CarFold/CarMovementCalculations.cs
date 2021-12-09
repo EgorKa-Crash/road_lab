@@ -28,14 +28,16 @@ namespace Road_Lap1.Roads.CarFold
                 int carSpeed = cars[i].CurrentCarSpeed();
 
                 //разные виды торможения, иначе разгон
-                if (minRadToFrontCar < BRAKING_RADIUS + carSpeed * 2)
-                {
-                    cars[i].BrakingCar((int)minRadToFrontCar, frontCar.currentCarSpeed);
-                }
-                else if (stoplightMinRad < BRAKING_RADIUS + carSpeed * 2 || cars[i].maximumAllowedSpeed < carSpeed || cars[i].carDesiredSpeed < carSpeed) // 
+                
+                if (stoplightMinRad < BRAKING_RADIUS + carSpeed * 2 || cars[i].maximumAllowedSpeed < carSpeed || cars[i].carDesiredSpeed < carSpeed) // 
                 {
                     cars[i].BrakingCar();
                 }
+                else if (minRadToFrontCar < BRAKING_RADIUS + carSpeed * 2)
+                {
+                    cars[i].BrakingCar((int)minRadToFrontCar, frontCar.currentCarSpeed);
+                }
+
                 else if (cars[i].maximumAllowedSpeed * 0.95 > carSpeed  )
                     cars[i].BoostCar();
 

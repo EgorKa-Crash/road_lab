@@ -196,5 +196,28 @@
   <ItemGroup>
     <Folder Include="Resourses\UserGuides\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReferenceSubsystem\countOfRoadsInfo.html" />
+    <Content Include="ReferenceSubsystem\flowIntensitySettings.html" />
+    <Content Include="ReferenceSubsystem\Images\Highway.jpg" />
+    <Content Include="ReferenceSubsystem\Images\Road.jpg" />
+    <Content Include="ReferenceSubsystem\Images\Tonnel.jpg" />
+    <Content Include="ReferenceSubsystem\Images\большой поток авто.jpg" />
+    <Content Include="ReferenceSubsystem\Images\главная форма.jpg" />
+    <Content Include="ReferenceSubsystem\Images\малый поток авто.jpg" />
+    <Content Include="ReferenceSubsystem\Images\работа знаков ограничения скорости.jpg" />
+    <Content Include="ReferenceSubsystem\Images\расстановка знаков.jpg" />
+    <Content Include="ReferenceSubsystem\Images\управление головным авто.jpg" />
+    <Content Include="ReferenceSubsystem\Images\форма настройки интенсивности потока.jpg" />
+    <Content Include="ReferenceSubsystem\Images\форма настройки количества полос.jpg" />
+    <Content Include="ReferenceSubsystem\Images\форма настройки светофорной фазы.jpg" />
+    <Content Include="ReferenceSubsystem\Images\форма настройки скоростного режима.jpg" />
+    <Content Include="ReferenceSubsystem\managingTheMainForm.html" />
+    <Content Include="ReferenceSubsystem\roadTypeInfo.html" />
+    <Content Include="ReferenceSubsystem\speedSettings.html" />
+    <Content Include="ReferenceSubsystem\systemInfo.html" />
+    <Content Include="ReferenceSubsystem\trafficLightsSettings.html" />
+    <None Include="Resources\RefSubsystem.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
