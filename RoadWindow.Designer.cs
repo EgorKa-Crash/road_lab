@@ -242,6 +242,7 @@
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.infoToolStripMenuItem.Text = "Справка";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
             // aboutSystemToolStripMenuItem
             // 
@@ -266,7 +267,6 @@
             this.MaximizeBox = false;
             this.Name = "RoadWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).EndInit();
             this.selectedCarPanel.ResumeLayout(false);

@@ -19,7 +19,7 @@ namespace Road_Lap1.Properties {
     // с помощью такого средства, как ResGen или Visual Studio.
     // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
     // с параметром /str или перестройте свой проект VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -71,12 +71,72 @@ namespace Road_Lap1.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;title&gt;Настройка количества полос&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;style&gt;
+        ///    body {
+        ///        margin: 0; /* Убираем отступы */
+        ///    }
+        ///    .parent {
+        ///        /*margin: 20%;  Отступы вокруг элемента */
+        ///        /*background: #fd0;  Цвет фона */
+        ///        padding: 10px; /* Поля вокруг текста */
+        ///        /*width: 30%
+        ///        width: 150px;
+        ///        height: 300px;*/
+        ///        width: 910px;
+        ///    }
+        ///    .child {
+        ///        [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string countOfRoadsInfo {
+            get {
+                return ResourceManager.GetString("countOfRoadsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Cross {
             get {
                 object obj = ResourceManager.GetObject("Cross", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;title&gt;Настройка интенсивности потока&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;style&gt;
+        ///    body {
+        ///        margin: 0; /* Убираем отступы */
+        ///    }
+        ///    .parent {
+        ///        /*margin: 20%;  Отступы вокруг элемента */
+        ///        /*background: #fd0;  Цвет фона */
+        ///        padding: 10px; /* Поля вокруг текста */
+        ///        /*width: 30%
+        ///        width: 150px;
+        ///        height: 300px;*/
+        ///        width: 910px;
+        ///    }
+        ///    .child {
+        ///    [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string flowIntensitySettings {
+            get {
+                return ResourceManager.GetString("flowIntensitySettings", resourceCulture);
             }
         }
         
@@ -121,6 +181,36 @@ namespace Road_Lap1.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;title&gt;Меню&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;style&gt;
+        ///    body {
+        ///        margin: 0; /* Убираем отступы */
+        ///    }
+        ///    .parent {
+        ///        /*margin: 20%;  Отступы вокруг элемента */
+        ///        /*background: #fd0;  Цвет фона */
+        ///        padding: 10px; /* Поля вокруг текста */
+        ///        /*width: 30%
+        ///        width: 150px;
+        ///        height: 300px;*/
+        ///        width: 910px;
+        ///    }
+        ///    .child {
+        ///         /*border: 2px solid  [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string managingTheMainForm {
+            get {
+                return ResourceManager.GetString("managingTheMainForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap NoLimit {
@@ -137,6 +227,126 @@ namespace Road_Lap1.Properties {
             get {
                 object obj = ResourceManager.GetObject("RedSemaphore", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;title&gt;Настройки типа дороги&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;style&gt;
+        ///    body {
+        ///        margin: 0; /* Убираем отступы */
+        ///    }
+        ///    .parent {
+        ///        /*margin: 20%;  Отступы вокруг элемента */
+        ///        /*background: #fd0;  Цвет фона */
+        ///        padding: 10px; /* Поля вокруг текста */
+        ///        /*width: 30%
+        ///        width: 150px;
+        ///        height: 300px;*/
+        ///        width: 910px;
+        ///    }
+        ///    .child {
+        ///         /*b [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string roadTypeInfo {
+            get {
+                return ResourceManager.GetString("roadTypeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;title&gt;Настройки скорости&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;style&gt;
+        ///    body {
+        ///        margin: 0; /* Убираем отступы */
+        ///    }
+        ///    .parent {
+        ///        /*margin: 20%;  Отступы вокруг элемента */
+        ///        /*background: #fd0;  Цвет фона */
+        ///        padding: 10px; /* Поля вокруг текста */
+        ///        /*width: 30%
+        ///        width: 150px;
+        ///        height: 300px;*/
+        ///        width: 910px;
+        ///    }
+        ///    .child {
+        ///         /*bord [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string speedSettings {
+            get {
+                return ResourceManager.GetString("speedSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;title&gt;Справочная информация&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;style&gt;
+        ///    body {
+        ///        margin: 0; /* Убираем отступы */
+        ///    }
+        ///    .parent {
+        ///        /*margin: 20%;  Отступы вокруг элемента */
+        ///        /*background: #fd0;  Цвет фона */
+        ///        padding: 10px; /* Поля вокруг текста */
+        ///        /*width: 30%
+        ///        width: 150px;
+        ///        height: 300px;*/
+        ///        width: 910px;
+        ///    }
+        ///    .child {
+        ///         /*b [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string systemInfo {
+            get {
+                return ResourceManager.GetString("systemInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;title&gt;Настройки светофора&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;style&gt;
+        ///    body {
+        ///        margin: 0; /* Убираем отступы */
+        ///    }
+        ///    .parent {
+        ///        /*margin: 20%;  Отступы вокруг элемента */
+        ///        /*background: #fd0;  Цвет фона */
+        ///        padding: 10px; /* Поля вокруг текста */
+        ///        /*width: 30%
+        ///        width: 150px;
+        ///        height: 300px;*/
+        ///        width: 910px;
+        ///    }
+        ///    .child {
+        ///         /*bor [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string trafficLightsSettings {
+            get {
+                return ResourceManager.GetString("trafficLightsSettings", resourceCulture);
             }
         }
         
