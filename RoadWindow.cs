@@ -23,6 +23,7 @@ namespace Road_Lap1
         private EventWaitHandle _flowEventWait = new AutoResetEvent(false);
         private EventWaitHandle _semaphoreEventWait = new AutoResetEvent(false);
         private bool _eventFlag = false;
+        private CancellationTokenSource _cancellationToken;
 
         private Task _flowTask;
         private Task _semaphoreTask;
@@ -61,14 +62,14 @@ namespace Road_Lap1
             tunnelImage = Properties.Resources.Tunnel;
             crossImage = Properties.Resources.Cross;
             _settings = settings;
-
+            _cancellationToken = new CancellationTokenSource();
+            Container<CancellationTokenSource>.Instance.Register(_cancellationToken);
             if (_settings.RoadType == RoadType.Tunnel)
             {
                 setLimitButton.Visible = false;
                 roadMarkPanel.Visible = false;
                 selectedCarPanel.Location = setLimitButton.Location;
             }
-               
             countPassingRoads = _settings.Traffic.CountPasssingLine;
             countOppositeRoads = _settings.Traffic.CountOppositeLine ;
             _configurationForm = form;
@@ -105,8 +106,8 @@ namespace Road_Lap1
         {
             if (_flowTask == null)
             {
-                _flowTask = new Task(Tick2);
-                _flowTask.Start();
+                _flowTask = Task.Run(() => Tick2(_cancellationToken.Token));//new Task(Tick2);
+               // _flowTask.Start();
             }
             else
             {
@@ -120,8 +121,8 @@ namespace Road_Lap1
             _eventFlag = false;
             if (_semaphoreTask == null)
             {
-                _semaphoreTask = new Task(SemaphoreWorcs);
-                _semaphoreTask.Start();
+                _semaphoreTask = Task.Run(() => SemaphoreWorcs(_cancellationToken.Token));//new Task(SemaphoreWorcs);
+              //  _semaphoreTask.Start();
             }
             else
             {
@@ -138,6 +139,7 @@ namespace Road_Lap1
         {
             _eventFlag = true;
             _configurationForm.Show();
+            _cancellationToken.Cancel();
             Dispose();
         }
 
@@ -216,9 +218,9 @@ namespace Road_Lap1
         /// <summary>
         /// циклы для расчета, что делать каждой из машин за 1 тик программы
         /// </summary>
-        private void Tick2()
+        private void Tick2(CancellationToken cancellationToken)
         {
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 _flowEventWait.WaitOneEx(_eventFlag);
 
@@ -591,7 +593,11 @@ namespace Road_Lap1
             }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _cancellationToken.Cancel();
+            this.CloseAll();
+        }
 
         private SignLine currentLimLine;
         private int currentLimNum;
@@ -671,9 +677,9 @@ namespace Road_Lap1
         }
 
        
-        private void SemaphoreWorcs()
+        private void SemaphoreWorcs(CancellationToken cancellationToken)
         {
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 TurnOtherLight();
 

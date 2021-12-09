@@ -86,5 +86,7 @@ namespace Road_Lap1.ConfigurationForms
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
         private void SemaphoreConfigurationForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
     }
 }

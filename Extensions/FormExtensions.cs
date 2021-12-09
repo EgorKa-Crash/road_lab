@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Road_Lap1.Extensions
 {
@@ -6,6 +9,7 @@ namespace Road_Lap1.Extensions
     {
         public static void CloseAll(this Form form)
         {
+            Container<CancellationTokenSource>.Instance.First()?.Cancel();
             foreach (var item in Container<Form>.Instance)
             {
                 item.Dispose();

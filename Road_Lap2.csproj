@@ -83,7 +83,7 @@
     <Compile Include="Settings\Distribution\DistributionFactory.cs" />
     <Compile Include="Settings\Distribution\DistributionAttribute.cs" />
     <Compile Include="Settings\Limit.cs" />
-    <Compile Include="Settings\Roads\TypeRoad.cs" />
+    <Compile Include="Settings\Roads\RoadType.cs" />
     <Compile Include="Settings\Semaphore.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Extensions\FormExtensions.cs" />

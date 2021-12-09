@@ -49,6 +49,7 @@
             this.lbl_secondParamValue = new System.Windows.Forms.Label();
             this.panel_secondParam = new System.Windows.Forms.Panel();
             this.lbl_secondParamMin = new System.Windows.Forms.Label();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_firstParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_secondParam)).BeginInit();
@@ -152,7 +153,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.infoToolStripMenuItem,
-            this.aboutSystemToolStripMenuItem});
+            this.aboutSystemToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(336, 24);
@@ -260,6 +262,13 @@
             this.lbl_secondParamMin.TabIndex = 20;
             this.lbl_secondParamMin.Text = "0.2";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.exitToolStripMenuItem.Text = "Выход";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // DistributionSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,5 +328,6 @@
         private System.Windows.Forms.Label lbl_secondParamValue;
         private System.Windows.Forms.Panel panel_secondParam;
         private System.Windows.Forms.Label lbl_secondParamMin;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }

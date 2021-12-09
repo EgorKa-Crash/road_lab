@@ -408,8 +408,10 @@ namespace Road_Lap1.ConfigurationForms
             return trackBarValue;
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
+
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
-        private void DistributionSettingsForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();      
+        private void DistributionSettingsForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
     }
 }
