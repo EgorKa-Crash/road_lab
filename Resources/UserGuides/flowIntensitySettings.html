@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -83,29 +83,50 @@
 
 движения транспорта на автодороге» </h1>
         </div>
-        <div id="line_block2">          
+        <div id="line_block2">
             <button class="button" onclick="window.location.href = 'roadTypeInfo.html';">О выборе типа дороги</button>
             <button class="button" onclick="window.location.href = 'countOfRoadsInfo.html';">О выборе количества полос</button>
-            <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'trafficLightsSettings.html';">О настройке светофора</button>
+            <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'speedSettings.html';">О выборе распределения скоростного режима</button>
-            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button> 
-			<button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
-              </div>
-        <div id="line_block" >
-		<h2>Настройка интенсивности потока</h2>
-            <p align="justify">Ниже поедставлено изображение формы, по настройке интенсивности автомобильного потока.</p> 
-			<img class="Image" src="Images/форма настройки интенсивности потока.jpg">
-			<p align="justify">На форме следует выбрать желаемый тип распределения
-			для потока машин.</p>
-			<p align="justify">После выбора типа распределения станут доступны ползунки
-			задания параметров случайной/постоянной величины.</p>
-			<p align="justify">При нажатии кнопки 'Назад' текущее окно закроется и откроется форма выбора количества полос 
-                или настройка светофорной фазы. При нажатии кнопки 'Далее' будет открыто окно настройки скоростного режима.</p>  
-			<p align="justify">Для примера посмотрим на разную интенсивностьь потока автомобилей. Ниже показаны два изображения,
-                 на первом изображении выставлена постоянная величина появления автомобилей 0.2 с, на втором 1 с. </p>
-			<img class="Image" src="Images/большой поток авто.jpg">
-			<img class="Image" src="Images/малый поток авто.jpg">
+            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button>
+            <button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
+        </div>
+        <div id="line_block">
+            <h2>Настройка интенсивности потока</h2>
+            <p align="justify">Ниже поедставлены изображения формы, по настройке интенсивности автомобильного потока.</p>
+            <img class="Image" src="Images/форма настройки интенсивности потока.jpg">
+            <p align="center">Рисунок 1 — Форма настройки интенсивности потока с детерминированной величиной</p><br>
+
+            <img class="Image" src="Images/равномерная интенсивность.jpg">
+            <p align="center">Рисунок 2 — Форма настройки интенсивности потока с равномерным законом распределения</p><br>
+
+            <img class="Image" src="Images/нормальная интенсивность.jpg">
+            <p align="center">Рисунок 3 — Форма настройки интенсивности потока с нормальным законом распределения</p><br>
+
+            <img class="Image" src="Images/показательная интенсивность.jpg">
+            <p align="center">Рисунок 4 — Форма настройки интенсивности потока с показательным законом распределения</p><br>
+
+            <p align="justify">
+                На форме следует выбрать желаемый тип распределения
+                для потока машин.
+            </p>
+            <p align="justify">
+                После выбора типа распределения станут доступны ползунки
+                задания параметров случайной/постоянной величины.
+            </p>
+            <p align="justify">
+                При нажатии кнопки 'Назад' текущее окно закроется и откроется форма выбора количества полос
+                или настройка светофорной фазы. При нажатии кнопки 'Далее' будет открыто окно настройки скоростного режима.
+            </p>
+            <p align="justify">
+                Для примера посмотрим на разную интенсивностьь потока автомобилей. Ниже показаны два изображения,
+                на рисунке 5 показан поток автомобилей генерируемых с периодом 0.2 с, на 6 рисунке, период генерации 1 с.
+            </p>
+            <img class="Image" src="Images/большой поток авто.jpg">
+            <p align="center">Рисунок 5 — Большая интенсивность потока</p><br>
+            <img class="Image" src="Images/малый поток авто.jpg">
+            <p align="center">Рисунок 6 — Малая интенсивность потока</p><br>
         </div>
         </div>
 </div>

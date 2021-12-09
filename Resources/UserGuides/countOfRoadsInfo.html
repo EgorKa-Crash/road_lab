@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -70,36 +70,40 @@
 <div align="center"  >
     <div align="center" class="parent">
         <div>
-           <h1>Справочная информация к «Система моделирования
+            <h1>
+                Справочная информация к «Система моделирования
 
-движения транспорта на автодороге» </h1>
+                движения транспорта на автодороге»
+            </h1>
         </div>
         <div id="line_block2">
-			
-            
             <button class="button" onclick="window.location.href = 'roadTypeInfo.html';">О выборе типа дороги</button>
             <button class="button" onclick="window.location.href = 'countOfRoadsInfo.html';">О выборе количества полос</button>
-            <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'trafficLightsSettings.html';">О настройке светофора</button>
+            <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'speedSettings.html';">О выборе распределения скоростного режима</button>
-            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button> 
-			<button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
-              </div>
-        <div id="line_block" >
-		<h2>Настройка количества полос движения</h2>
-			<p align="justify">Ниже представлена форма выбора количества полос движения</p>
-			<img class="Image" src="Images/форма настройки количества полос.jpg"> 
-            <p align="justify">На форме следует выбрать количество направлений движения 
-			и с помощью ползунков задать количество полос в каждом направлении.</p>
-            <p align="justify">Возможность выбора количества полос для встречного движения 
-			появится только в случае, если количество норавлений движения равно двум.</p>  
-			<p align="justify">При нажатии кнопки 'Назад' текущее окно закроется и откроется 
-			форма настройки типа дороги. При нажатии кнопки 'Далее' будет открыто окно выбора распределения интенсивности потока автомобилей.</p> 
-			
-			 
- 
+            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button>
+            <button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
         </div>
+        <div id="line_block">
+            <h2>Настройка количества полос движения</h2>
+            <p align="justify">Ниже представлена форма выбора количества полос движения</p>
+            <img class="Image" src="Images/форма настройки количества полос.jpg">
+            <p align="center">Рисунок 1 — Форма выбора количества полос на дороге</p><br>
+            <p align="justify">
+                На форме следует выбрать количество направлений движения
+                и с помощью ползунков задать количество полос в каждом направлении.
+            </p>
+            <p align="justify">
+                Возможность выбора количества полос для встречного движения
+                появится только в случае, если количество норавлений движения равно двум.
+            </p>
+            <p align="justify">
+                При нажатии кнопки 'Назад' текущее окно закроется и откроется
+                форма настройки типа дороги. При нажатии кнопки 'Далее' будет открыто окно выбора распределения интенсивности потока автомобилей.
+            </p> 
         </div>
+    </div>
 </div>
 
 </body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -83,32 +83,49 @@
 
 движения транспорта на автодороге» </h1>
         </div>
-        <div id="line_block2">
- 
-            
+        <div id="line_block2"> 
             <button class="button" onclick="window.location.href = 'roadTypeInfo.html';">О выборе типа дороги</button>
             <button class="button" onclick="window.location.href = 'countOfRoadsInfo.html';">О выборе количества полос</button>
-            <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'trafficLightsSettings.html';">О настройке светофора</button>
+            <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'speedSettings.html';">О выборе распределения скоростного режима</button>
-            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button> 
-			<button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
-              </div>
-        <div id="line_block" >
-			<h2>Настройка скоростного режима</h2>
-            <p align="justify">Ниже роедставлено изображение формы, по настройке скоростного режима потока автомобилей.</p> 
-			<img class="Image" src="Images/форма настройки скоростного режима.jpg">
-			<p align="justify">На форме следует выбрать желаемый тип распределения
-			для скорости машин.</p>
-			<p align="justify">После выбора типа распределения станут доступны ползунки
-			задания параметров случайной/постоянной величины.</p>
-			<p align="justify">При нажатии кнопки 'Назад' текущее окно закроется и откроется 
-			форма настройки интенсивности потока. При нажатии кнопки 'Далее' будет открыта главная форма программы.</p>   
- 
+            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button>
+            <button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
+        </div>
+        <div id="line_block">
+            <h2>Настройка скоростного режима</h2>
+            <p align="justify">Ниже роедставлены изображения формы, по настройке скоростного режима потока автомобилей.</p>
+            <img class="Image" src="Images/детерминированная скорость.jpg">
+            <p align="center">Рисунок 1 — Форма настройки скорости потока с детерминированной величиной</p><br>
+
+            <img class="Image" src="Images/равномерная скорость.jpg">
+            <p align="center">Рисунок 2 — Форма настройки скорости потока с равномерным законом распределения</p><br>
+
+            <img class="Image" src="Images/нормальная скорость.jpg">
+            <p align="center">Рисунок 3 — Форма настройки скорости потока с нормальным законом распределения</p><br>
+
+            <img class="Image" src="Images/показательная скорость.jpg">
+            <p align="center">Рисунок 4 — Форма настройки скорости потока с показательным законом распределения</p><br>
+
+            <p align="justify">
+                На форме следует выбрать желаемый тип распределения
+                для скорости машин.
+            </p>
+            <p align="justify">
+                После выбора типа распределения станут доступны ползунки
+                задания параметров случайной/постоянной величины.
+            </p>
+            <p align="justify">
+                При нажатии кнопки 'Назад' текущее окно закроется и откроется
+                форма настройки интенсивности потока. При нажатии кнопки 'Далее' будет открыта главная форма программы.
+            </p>
+
         </div>
         </div>
 </div>
- 
+<div id="upButton">
+    <button class="upButton" onclick="window.location.href = '#';">Вверх</button>
+</div>
 
 </body>
 </html>
