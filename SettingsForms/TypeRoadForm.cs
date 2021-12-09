@@ -71,12 +71,23 @@ namespace Road_Lap1.ConfigurationForms
             }
         }
 
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var path = @"..\..\Resources\UserGuides\roadTypeInfo.html";
+            if (File.Exists(path))
+            {
+                Process.Start(path);
+            }
+            else
+            {
+                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
 
         private void TypeRoadForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
 
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
-
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(@"..\..\Resources\UserGuides\roadTypeInfo.html");
     }
 }

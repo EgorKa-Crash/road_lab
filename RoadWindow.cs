@@ -56,14 +56,8 @@ namespace Road_Lap1
         {
             InitializeComponent();
 
-            noLimitImage = Properties.Resources.NoLimit;
-            limitImage = Properties.Resources.Limit;
-            greenSemaphoreImage = Properties.Resources.GreenSemaphore;
-            redSemaphoreImage = Properties.Resources.RedSemaphore;
-            carRoadImage = Properties.Resources.CarRoad;
-            highwayImage = Properties.Resources.Highway;
-            tunnelImage = Properties.Resources.Tunnel;
-            crossImage = Properties.Resources.Cross;
+            LoadImages();
+
             _settings = settings;
             _cancellationToken = new CancellationTokenSource();
             if (_settings.RoadType == RoadType.Tunnel)
@@ -73,13 +67,32 @@ namespace Road_Lap1
                 selectedCarPanel.Location = setLimitButton.Location;
             }
             countPassingRoads = _settings.Traffic.CountPasssingLine;
-            countOppositeRoads = _settings.Traffic.CountOppositeLine ;
+            countOppositeRoads = _settings.Traffic.CountOppositeLine;
             _configurationForm = form;
             RoadGenerator();
             addLimitFlag = true;
             speedLimitLabel.Text = "" + speedLimitTB.Value * 10;
         }
-    
+
+        private void LoadImages()
+        {
+            try
+            {
+                noLimitImage = Properties.Resources.NoLimit;
+                limitImage = Properties.Resources.Limit;
+                greenSemaphoreImage = Properties.Resources.GreenSemaphore;
+                redSemaphoreImage = Properties.Resources.RedSemaphore;
+                carRoadImage = Properties.Resources.CarRoad;
+                highwayImage = Properties.Resources.Highway;
+                tunnelImage = Properties.Resources.Tunnel;
+                crossImage = Properties.Resources.Cross;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         /// <summary>
         /// обработка нажатия кнопки старт, проверка не продолжить ли
         /// </summary>
@@ -232,7 +245,7 @@ namespace Road_Lap1
                 if (trackPictureBox.InvokeRequired)
                 {
                     trackPictureBox?.Invoke(new Action(() => RoadDrawing()));
-
+                    RoadDrawing();
                     if (currentCar != null)
                     {
                         Invoke((MethodInvoker)delegate
@@ -293,7 +306,7 @@ namespace Road_Lap1
                 {
                     if (c.xCarCoordinate > -10 && c.xCarCoordinate < 1450 && c.yCarCoordinate > -10 && c.yCarCoordinate < 900)
                     {
-                        if (c == currentCar)
+                        if (c == currentCar && selectedCarPanel.Visible)
                         {
                             pen2.Color = Color.Red; // = new Pen(Color.Red);
                            // pen3.Color = Color.Red; // = new Pen(Color.Red);
@@ -563,7 +576,6 @@ namespace Road_Lap1
                         if (currentCar.carDesiredSpeed > road.MAX_SPEED) 
                         {
                             currentCar.carDesiredSpeed = road.MAX_SPEED;
-                            
                         }
                         selectedCarPanel.Visible = true;
                         dynamicSpeed.Value = currentCar.carDesiredSpeed;
@@ -572,6 +584,7 @@ namespace Road_Lap1
                     selectedCarPanel.Visible = false;
                 }
             } 
+          
         }
 
         private bool IsCorrectPlaceToLimitSign(TrafficSignalType sign)
@@ -794,6 +807,17 @@ namespace Road_Lap1
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Form1_FormClosing(null, null);
 
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(@"..\..\Resources\UserGuides\managingTheMainForm.html");
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var path = @"..\..\Resources\UserGuides\managingTheMainForm.html";
+            if (File.Exists(path))
+            {
+                Process.Start(path);
+            }
+            else
+            {
+                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Road_Lap1.ConfigurationForms
@@ -79,13 +80,24 @@ namespace Road_Lap1.ConfigurationForms
             Dispose();
         }
 
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var path = @"..\..\Resources\UserGuides\countOfRoadsInfo.html";
+            if (File.Exists(path))
+            {
+                Process.Start(path);
+            }
+            else
+            {
+                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
 
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
         private void RoadConfigurationForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
-
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(@"..\..\Resources\UserGuides\countOfRoadsInfo.html");
 
         private void radioButton_twoDirection_CheckedChanged(object sender, EventArgs e) => panel_countLine.Visible = radioButton_twoDirection.Checked;
     }

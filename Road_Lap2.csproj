@@ -167,94 +167,35 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CarRoad.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Cross.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\GreenSemaphore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Highway.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Limit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NoLimit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RedSemaphore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Screenshot_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Tunnel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RefSubsystem.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\countOfRoadsInfo.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\flowIntensitySettings.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\managingTheMainForm.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\roadTypeInfo.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\speedSettings.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\systemInfo.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\trafficLightsSettings.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Highway.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Road.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Tonnel.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\большой поток авто.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\главная форма.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\малый поток авто.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\работа знаков ограничения скорости.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\расстановка знаков.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\управление головным авто.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\форма настройки интенсивности потока.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\форма настройки количества полос.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\форма настройки светофорной фазы.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\форма настройки скоростного режима.jpg" />
+    <Content Include="Resources\Images\CarRoad.png" />
+    <Content Include="Resources\Images\Cross.png" />
+    <Content Include="Resources\Images\GreenSemaphore.png" />
+    <Content Include="Resources\Images\Highway.png" />
+    <Content Include="Resources\Images\Limit.png" />
+    <Content Include="Resources\Images\NoLimit.png" />
+    <Content Include="Resources\Images\RedSemaphore.png" />
+    <Content Include="Resources\Images\Tunnel.png" />
+    <Content Include="Resources\UserGuides\countOfRoadsInfo.html" />
+    <Content Include="Resources\UserGuides\flowIntensitySettings.html" />
+    <Content Include="Resources\UserGuides\Images\Highway.jpg" />
+    <Content Include="Resources\UserGuides\Images\RefSubsystem.bmp" />
+    <Content Include="Resources\UserGuides\Images\Road.jpg" />
+    <Content Include="Resources\UserGuides\Images\Tonnel.jpg" />
+    <Content Include="Resources\UserGuides\Images\большой поток авто.jpg" />
+    <Content Include="Resources\UserGuides\Images\главная форма.jpg" />
+    <Content Include="Resources\UserGuides\Images\малый поток авто.jpg" />
+    <Content Include="Resources\UserGuides\Images\работа знаков ограничения скорости.jpg" />
+    <Content Include="Resources\UserGuides\Images\расстановка знаков.jpg" />
+    <Content Include="Resources\UserGuides\Images\управление головным авто.jpg" />
+    <Content Include="Resources\UserGuides\Images\форма настройки интенсивности потока.jpg" />
+    <Content Include="Resources\UserGuides\Images\форма настройки количества полос.jpg" />
+    <Content Include="Resources\UserGuides\Images\форма настройки светофорной фазы.jpg" />
+    <Content Include="Resources\UserGuides\Images\форма настройки скоростного режима.jpg" />
+    <Content Include="Resources\UserGuides\managingTheMainForm.html" />
+    <Content Include="Resources\UserGuides\roadTypeInfo.html" />
+    <Content Include="Resources\UserGuides\speedSettings.html" />
+    <Content Include="Resources\UserGuides\systemInfo.html" />
+    <Content Include="Resources\UserGuides\trafficLightsSettings.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

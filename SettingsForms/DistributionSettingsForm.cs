@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace Road_Lap1.ConfigurationForms
 {
@@ -152,7 +153,7 @@ namespace Road_Lap1.ConfigurationForms
                 _countForms++;
                 var form = new DistributionSettingsForm(this, _settings, DistributionFormType.Speed)
                 {
-                    Name = "Настройка закона распределения"
+                    Text = "Настройка скоростного режима"
                 };
                 form.label_intensityType.Text = "Выберите тип распределения скорости машин: ";
 
@@ -409,11 +410,21 @@ namespace Road_Lap1.ConfigurationForms
             return trackBarValue;
         }
 
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(_view.GuidePath))
+            {
+                Process.Start(_view.GuidePath);
+            }
+            else
+            {
+                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
 
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
-
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(_view.GuidePath);
 
         private void DistributionSettingsForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
     }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Road_Lap1.ConfigurationForms
@@ -82,6 +83,19 @@ namespace Road_Lap1.ConfigurationForms
             Dispose();
         }
 
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var path = @"..\..\Resources\UserGuides\trafficLightsSettings.html";
+            if (File.Exists(path))
+            {
+                Process.Start(path);
+            }
+            else
+            {
+                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private string SetLabelValue(TrackBar trackBar) => trackBar.Value + " c";
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
@@ -89,7 +103,5 @@ namespace Road_Lap1.ConfigurationForms
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
         private void SemaphoreConfigurationForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
-
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(@"..\..\Resources\UserGuides\trafficLightsSettings.html");
     }
 }

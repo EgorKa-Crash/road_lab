@@ -293,7 +293,7 @@
             this.MinimizeBox = false;
             this.Name = "DistributionSettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Выбор распределения интесиновности потока";
+            this.Text = "Настройка транспортного потока";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DistributionSettingsForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
