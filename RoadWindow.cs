@@ -244,8 +244,7 @@ namespace Road_Lap1
                 } 
                 if (trackPictureBox.InvokeRequired)
                 {
-                    trackPictureBox?.Invoke(new Action(() => RoadDrawing()));
-                    RoadDrawing();
+                    trackPictureBox?.Invoke(new Action(() => RoadDrawing(_cancellationToken.Token)));
                     if (currentCar != null)
                     {
                         Invoke((MethodInvoker)delegate
@@ -284,10 +283,12 @@ namespace Road_Lap1
         }*/
 
 
-        private void RoadDrawing() //полученный битмэп можно взять за основу, не просчитывая каждый раз заново дороги
-        { 
-            //System.Drawing.Imaging.PixelFormat format =  btm.PixelFormat;
-            //btm = btm1.Clone(cloneRect, format);
+        private void RoadDrawing(CancellationToken cancellationToken) //полученный битмэп можно взять за основу, не просчитывая каждый раз заново дороги
+        {
+            if(cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
             Graphics grf = Graphics.FromImage(btm);
             grf.Clear(Color.Transparent);
 
@@ -551,7 +552,7 @@ namespace Road_Lap1
                 }
                 LimLineEditor(oldLim, lim);
 
-                RoadDrawing();
+                RoadDrawing(_cancellationToken.Token);
 
                 trackPictureBox.Image = btm;
 
