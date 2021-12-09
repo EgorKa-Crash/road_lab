@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Road_Lap1.ConfigurationForms
 {
@@ -412,8 +413,8 @@ namespace Road_Lap1.ConfigurationForms
 
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
-        private void DistributionSettingsForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(_view.GuidePath);
 
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => System.Diagnostics.Process.Start(_view.GuidePath);
+        private void DistributionSettingsForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
     }
 }

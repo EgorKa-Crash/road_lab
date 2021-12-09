@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RoadWindow));
             this.trackPictureBox = new System.Windows.Forms.PictureBox();
             this.startButton = new System.Windows.Forms.Button();
             this.pauseButton = new System.Windows.Forms.Button();
@@ -61,7 +62,7 @@
             this.trackPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.trackPictureBox.Location = new System.Drawing.Point(12, 34);
             this.trackPictureBox.Name = "trackPictureBox";
-            this.trackPictureBox.Size = new System.Drawing.Size(1067, 653);
+            this.trackPictureBox.Size = new System.Drawing.Size(1067, 642);
             this.trackPictureBox.TabIndex = 0;
             this.trackPictureBox.TabStop = false;
             this.trackPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrackPictureBox_MouseClick);
@@ -165,7 +166,7 @@
             // 
             this.notLimRB.Appearance = System.Windows.Forms.Appearance.Button;
             this.notLimRB.BackColor = System.Drawing.SystemColors.Menu;
-            this.notLimRB.BackgroundImage = global::Road_Lap1.Properties.Resources.NoLimit;
+            this.notLimRB.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("notLimRB.BackgroundImage")));
             this.notLimRB.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.notLimRB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.notLimRB.Location = new System.Drawing.Point(6, 83);
@@ -179,7 +180,7 @@
             // 
             this.setLimitRB.Appearance = System.Windows.Forms.Appearance.Button;
             this.setLimitRB.BackColor = System.Drawing.SystemColors.Menu;
-            this.setLimitRB.BackgroundImage = global::Road_Lap1.Properties.Resources.Limit;
+            this.setLimitRB.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("setLimitRB.BackgroundImage")));
             this.setLimitRB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.setLimitRB.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.setLimitRB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -196,7 +197,7 @@
             // 
             this.delLimRB.Appearance = System.Windows.Forms.Appearance.Button;
             this.delLimRB.BackColor = System.Drawing.SystemColors.Menu;
-            this.delLimRB.BackgroundImage = global::Road_Lap1.Properties.Resources.Cross;
+            this.delLimRB.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("delLimRB.BackgroundImage")));
             this.delLimRB.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.delLimRB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.delLimRB.Location = new System.Drawing.Point(6, 152);

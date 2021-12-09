@@ -3,6 +3,7 @@ using Road_Lap1.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Road_Lap1.ConfigurationForms
@@ -83,16 +84,12 @@ namespace Road_Lap1.ConfigurationForms
 
         private string SetLabelValue(TrackBar trackBar) => trackBar.Value + " c";
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
+
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
         private void SemaphoreConfigurationForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
-
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var path = @"..\..\Resources\UserGuides\trafficLightsSettings.html";
-            System.Diagnostics.Process.Start(path);
-        }
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(@"..\..\Resources\UserGuides\trafficLightsSettings.html");
     }
 }

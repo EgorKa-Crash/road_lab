@@ -790,14 +790,10 @@ namespace Road_Lap1
             roadMarkPanel.Visible = true;
         }
 
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var path = @"..\..\Resources\UserGuides\managingTheMainForm.html";
-            System.Diagnostics.Process.Start(path);
-        }
-
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Form1_FormClosing(null, null);
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(@"..\..\Resources\UserGuides\managingTheMainForm.html");
     }
 }

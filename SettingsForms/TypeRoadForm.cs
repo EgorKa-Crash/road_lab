@@ -2,6 +2,7 @@
 using Road_Lap1.Settings;
 using Road_Lap1.Settings.Roads;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -76,10 +77,6 @@ namespace Road_Lap1.ConfigurationForms
 
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var path = @"..\..\Resources\UserGuides\roadTypeInfo.html";       
-            System.Diagnostics.Process.Start(path);
-        }
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start(@"..\..\Resources\UserGuides\roadTypeInfo.html");
     }
 }
