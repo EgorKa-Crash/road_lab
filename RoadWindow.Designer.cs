@@ -275,6 +275,8 @@
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.trackPictureBox);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1308, 727);
+            this.MinimumSize = new System.Drawing.Size(1308, 726);
             this.Name = "RoadWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

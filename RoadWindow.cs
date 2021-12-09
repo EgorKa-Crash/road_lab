@@ -5,15 +5,14 @@ using Road_Lap1.Settings;
 using Road_Lap1.Settings.Roads;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Diagnostics;
-using System.IO;
 
 
 namespace Road_Lap1
@@ -121,7 +120,7 @@ namespace Road_Lap1
         {
             if (_flowTask == null)
             {
-                _flowTask = Task.Run(() => Tick2(_cancellationToken.Token));
+                _flowTask = Task.Run(() => Tick2(_cancellationToken.Token), _cancellationToken.Token);
             }
             else
             {
@@ -135,7 +134,7 @@ namespace Road_Lap1
             _eventFlag = false;
             if (_semaphoreTask == null)
             {
-                _semaphoreTask = Task.Run(() => SemaphoreWorcs(_cancellationToken.Token));
+                _semaphoreTask = Task.Run(() => SemaphoreWorcs(_cancellationToken.Token), _cancellationToken.Token);
             }
             else
             {
@@ -150,9 +149,9 @@ namespace Road_Lap1
 
         private void ResumeButton_Click(object sender, EventArgs e)
         {
+            _cancellationToken.Cancel();
             _eventFlag = true;
             _configurationForm.Show();
-            _cancellationToken.Cancel();
             Dispose();
         }
 
@@ -234,20 +233,20 @@ namespace Road_Lap1
         /// </summary>
         private void Tick2(CancellationToken cancellationToken)
         {
+            var action = new Action(() => RoadDrawing(_cancellationToken.Token));
             while (!cancellationToken.IsCancellationRequested)
             {
                 _flowEventWait.WaitOneEx(_eventFlag);
-
                 lock (carLocker)
                 {
-                    CarMovementCalculations.carMovement(cars, road,countOppositeRoads,_overtakingBlockingRadius, _settings.Speed.Max);
-                } 
+                    CarMovementCalculations.carMovement(cars, road,countOppositeRoads, _overtakingBlockingRadius, _settings.Speed.Max);
+                }
                 if (trackPictureBox.InvokeRequired)
                 {
-                    trackPictureBox?.Invoke(new Action(() => RoadDrawing(_cancellationToken.Token)));
+                    trackPictureBox.BeginInvoke(action);
                     if (currentCar != null)
                     {
-                        Invoke((MethodInvoker)delegate
+                        BeginInvoke((MethodInvoker)delegate
                         {
                             selCarLable.Text = dynamicSpeed.Value.ToString();
                             currentCar.carDesiredSpeed = dynamicSpeed.Value;
@@ -259,43 +258,27 @@ namespace Road_Lap1
             }
         }
          
-
-        //Bitmap btm = new Bitmap(trackPictureBox.Width, trackPictureBox.Height);
         Bitmap btm = new Bitmap(1423, 880 );//1423; 880
-        //Bitmap btm1 = new Bitmap(1423, 880 );//1423; 880
-
-        //RectangleF cloneRect = new RectangleF(0, 0, 1423, 880); 
 
         Pen pen = new Pen(Color.Red);
         Pen pen2 = new Pen(Color.Red);
         Pen pen3 = new Pen(Color.Red);
         Font speedLimiterFont = new Font("Console", 12, FontStyle.Bold);  
         SolidBrush sb = new SolidBrush(Color.Red); 
-       /* private void RoadDrawing1() //полученный битмэп можно взять за основу, не просчитывая каждый раз заново дороги
-        {
 
-            Graphics grf = Graphics.FromImage(btm1);
-            grf.Clear(Color.Transparent);
-            DrawMarkup(grf);
-            DrawSigns(grf); 
-
-             
-        }*/
-
-
-        private void RoadDrawing(CancellationToken cancellationToken) //полученный битмэп можно взять за основу, не просчитывая каждый раз заново дороги
+        private void RoadDrawing(CancellationToken cancellationToken)
         {
             if(cancellationToken.IsCancellationRequested)
             {
                 return;
             }
+
             Graphics grf = Graphics.FromImage(btm);
             grf.Clear(Color.Transparent);
 
-            DrawMarkup(grf); 
+            DrawMarkup(grf);
             DrawSigns(grf);
             DrawCars(grf);
-
             trackPictureBox.Image = btm;
         }
 
@@ -309,33 +292,17 @@ namespace Road_Lap1
                     {
                         if (c == currentCar && selectedCarPanel.Visible)
                         {
-                            pen2.Color = Color.Red; // = new Pen(Color.Red);
-                           // pen3.Color = Color.Red; // = new Pen(Color.Red);
-                                                    //pen3 = new Pen(Color.Red);
+                            pen2.Color = Color.Red;
                         }
                         else
                         {
-                            pen2.Color = c.carColor;  // = new Pen(Color.Red);
-                            //pen3.Color = Color.Red;
+                            pen2.Color = c.carColor; 
                         }
                         sb.Color = Color.Black;
                         pen2.Width = 18;
 
                         double cos = c.yCarSpeed / Math.Sqrt(c.xCarSpeed * c.xCarSpeed + c.yCarSpeed * c.yCarSpeed);
                         double sin = c.xCarSpeed / Math.Sqrt(c.xCarSpeed * c.xCarSpeed + c.yCarSpeed * c.yCarSpeed);
-
-                        // grf.DrawImage(RotateImage(carImage, (float)Math.Asin(sin) * 50), new Rectangle((int)c.xCarCoordinate, (int)c.yCarCoordinate, 30, 30));
-
-                        /*Point point1 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate - 9, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
-                        Point point2 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate + 9, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
-                        Point point4 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate - 9, (int)c.yCarCoordinate + 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
-                        Point point3 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate + 9, (int)c.yCarCoordinate + 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
-
-                        grf.DrawLine(pen2, point1.x, point1.y, point2.x, point2.y);
-                        grf.DrawLine(pen2, point2.x, point2.y, point3.x, point3.y);
-                        grf.DrawLine(pen3, point3.x, point3.y, point4.x, point4.y);
-                        grf.DrawLine(pen2, point1.x, point1.y, point4.x, point4.y);*/
-
 
                         Point point1 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate, (int)c.yCarCoordinate + 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
                         Point point2 = new Point(CarMovementCalculations.LineCoord((int)c.xCarCoordinate, (int)c.yCarCoordinate - 18, (int)c.xCarCoordinate, (int)c.yCarCoordinate, cos, sin));
@@ -686,15 +653,13 @@ namespace Road_Lap1
             {
                 signImage = crossImage;
                 grf.DrawImage(signImage, new Rectangle(x - 10, y - 12, 30, 30));
-               /* SolidBrush brush = new SolidBrush(Color.Red);
-                grf.FillEllipse(brush, x - 5, y - 7, 20, 20);*/
             }
         }
 
        
         private void SemaphoreWorcs(CancellationToken cancellationToken)
         {
-            while (!cancellationToken.IsCancellationRequested)
+            while(true)//while (!cancellationToken.IsCancellationRequested)
             {
                 TurnOtherLight();
 
@@ -752,15 +717,6 @@ namespace Road_Lap1
         {
             currentCar.carDesiredSpeed = dynamicSpeed.Value * 10; 
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("C:/Users/Егор/Desktop/Road_Lap2.2/road_lab/calc.html");
-            /*string path = Application.StartupPath + @"\info\html\page.html";
-            webBrowser1.Navigate(path);*/
-        }
-
-       
 
         private void radioButton1_MouseClick(object sender, MouseEventArgs e)
         {

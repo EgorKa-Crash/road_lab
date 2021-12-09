@@ -86,7 +86,7 @@ namespace Road_Lap1
         public void BrakingCar(int minRad, double carSpeed)
         {
 
-            if (currentCarSpeed > carSpeed - 0.2)//&& currentCarSpeed > carSpeed - 0.1 //minRad < 150 &&
+            if (currentCarSpeed > carSpeed - 1)//&& currentCarSpeed > carSpeed - 0.1 //minRad < 150 &&
                 currentCarSpeed -= currentCarSpeed / 10;
             /*
 

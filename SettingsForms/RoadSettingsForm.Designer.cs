@@ -212,7 +212,9 @@
             this.Controls.Add(this.radioButton_twoDirection);
             this.Controls.Add(this.radioButton_oneDirection);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(352, 362);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(352, 362);
             this.Name = "RoadSettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройка параметров дороги";
