@@ -19,7 +19,7 @@ namespace Road_Lap1.Properties {
     // с помощью такого средства, как ResGen или Visual Studio.
     // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
     // с параметром /str или перестройте свой проект VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -231,6 +231,26 @@ namespace Road_Lap1.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RefSubsystem {
+            get {
+                object obj = ResourceManager.GetObject("RefSubsystem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Road {
+            get {
+                object obj = ResourceManager.GetObject("Road", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
         ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
         ///&lt;head&gt;
@@ -257,6 +277,16 @@ namespace Road_Lap1.Properties {
         internal static string roadTypeInfo {
             get {
                 return ResourceManager.GetString("roadTypeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_1 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -321,6 +351,16 @@ namespace Road_Lap1.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tonnel {
+            get {
+                object obj = ResourceManager.GetObject("Tonnel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;!DOCTYPE html&gt;
         ///&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://thymeleaf.org&quot;&gt;
         ///&lt;head&gt;
@@ -356,6 +396,106 @@ namespace Road_Lap1.Properties {
         internal static System.Drawing.Bitmap Tunnel {
             get {
                 object obj = ResourceManager.GetObject("Tunnel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap большой_поток_авто {
+            get {
+                object obj = ResourceManager.GetObject("большой_поток_авто", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap главная_форма {
+            get {
+                object obj = ResourceManager.GetObject("главная_форма", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap малый_поток_авто {
+            get {
+                object obj = ResourceManager.GetObject("малый_поток_авто", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap работа_знаков_ограничения_скорости {
+            get {
+                object obj = ResourceManager.GetObject("работа_знаков_ограничения_скорости", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap расстановка_знаков {
+            get {
+                object obj = ResourceManager.GetObject("расстановка_знаков", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap управление_головным_авто {
+            get {
+                object obj = ResourceManager.GetObject("управление_головным_авто", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap форма_настройки_интенсивности_потока {
+            get {
+                object obj = ResourceManager.GetObject("форма_настройки_интенсивности_потока", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap форма_настройки_количества_полос {
+            get {
+                object obj = ResourceManager.GetObject("форма_настройки_количества_полос", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap форма_настройки_светофорной_фазы {
+            get {
+                object obj = ResourceManager.GetObject("форма_настройки_светофорной_фазы", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap форма_настройки_скоростного_режима {
+            get {
+                object obj = ResourceManager.GetObject("форма_настройки_скоростного_режима", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

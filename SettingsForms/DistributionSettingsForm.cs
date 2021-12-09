@@ -413,5 +413,7 @@ namespace Road_Lap1.ConfigurationForms
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
 
         private void DistributionSettingsForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e) => System.Diagnostics.Process.Start(_view.GuidePath);
     }
 }

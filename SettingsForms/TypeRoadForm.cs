@@ -3,6 +3,7 @@ using Road_Lap1.Settings;
 using Road_Lap1.Settings.Roads;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -74,5 +75,11 @@ namespace Road_Lap1.ConfigurationForms
         private void TypeRoadForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
 
         private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var path = @"..\..\Resources\UserGuides\roadTypeInfo.html";       
+            System.Diagnostics.Process.Start(path);
+        }
     }
 }

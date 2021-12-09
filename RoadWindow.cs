@@ -66,7 +66,6 @@ namespace Road_Lap1
             crossImage = Properties.Resources.Cross;
             _settings = settings;
             _cancellationToken = new CancellationTokenSource();
-            Container<CancellationTokenSource>.Instance.Register(_cancellationToken);
             if (_settings.RoadType == RoadType.Tunnel)
             {
                 setLimitButton.Visible = false;
@@ -109,8 +108,7 @@ namespace Road_Lap1
         {
             if (_flowTask == null)
             {
-                _flowTask = Task.Run(() => Tick2(_cancellationToken.Token));//new Task(Tick2);
-               // _flowTask.Start();
+                _flowTask = Task.Run(() => Tick2(_cancellationToken.Token));
             }
             else
             {
@@ -124,8 +122,7 @@ namespace Road_Lap1
             _eventFlag = false;
             if (_semaphoreTask == null)
             {
-                _semaphoreTask = Task.Run(() => SemaphoreWorcs(_cancellationToken.Token));//new Task(SemaphoreWorcs);
-              //  _semaphoreTask.Start();
+                _semaphoreTask = Task.Run(() => SemaphoreWorcs(_cancellationToken.Token));
             }
             else
             {
@@ -795,27 +792,12 @@ namespace Road_Lap1
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //System.Diagnostics.Process.Start(Properties.Resources.managingTheMainForm);
-            //System.Diagnostics.Process.Start(@"\ReferenceSubsystem\managingTheMainForm.html");
-
-
-      /*      var exePath = AppDomain.CurrentDomain.BaseDirectory;
-            string str = Path.Combine(exePath, "ReferenceSubsystem\\managingTheMainForm.html");
-            System.Diagnostics.Process.Start(str);*/
-
-            //string str = @"\\ReferenceSubsystem\\managingTheMainForm.html";
-            string str = Directory.GetCurrentDirectory();
-            str = str.Substring(0, str.Length - 10); 
-            str = str + "\\ReferenceSubsystem\\managingTheMainForm.html";
-            System.Diagnostics.Process.Start(str);
-
-            //System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory()+"\\ReferenceSubsystem\\managingTheMainForm.html");
-
-            /*string htmlString = global::Road_Lap1.Properties.Resources.managingTheMainForm;
-            string tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), "htm");
-            File.WriteAllText(tempFilePath, htmlString);
-           // Process.Start("iexplore.exe", tempFilePath);
-            Process.Start("msedge.exe", tempFilePath);*/
+            var path = @"..\..\Resources\UserGuides\managingTheMainForm.html";
+            System.Diagnostics.Process.Start(path);
         }
+
+        private void aboutSystemToolStripMenuItem_Click(object sender, EventArgs e) => this.ShowSystemInfo();
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Form1_FormClosing(null, null);
     }
 }

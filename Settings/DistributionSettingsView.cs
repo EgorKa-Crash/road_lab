@@ -22,8 +22,10 @@ namespace Road_Lap1.Settings
         public string MeasurementUnitFirstParam { get; private set; }
         public string MeasurementUnitSecondParam { get; private set; }
 
-        public int FirstParamScale { get; private set; } 
+        public int FirstParamScale { get; private set; }
         public int SecondParamScale { get; private set; }
+
+        public string GuidePath {get; private set;}
 
         public Limit<double> ExponentialDistributionAxisX { get; set; }
 
@@ -50,6 +52,7 @@ namespace Road_Lap1.Settings
             FirstParamScale = 1;
             SecondParamScale = 1;
             MeasurementUnitFirstParam = "км/ч";
+            GuidePath = @"..\..\Resources\UserGuides\speedSettings.html";
             if (distributionType == typeof(NormalDistribution))
             {
                 SecondParamLimit = systemSettings.RoadType == RoadType.Higway
@@ -77,6 +80,7 @@ namespace Road_Lap1.Settings
             FirstParamScale = 10;
             SecondParamScale = 10;
             MeasurementUnitFirstParam = "с";
+            GuidePath = @"..\..\Resources\UserGuides\flowIntensitySettings.html";
             if (distributionType == typeof(NormalDistribution))
             {
                 FirstParamLimit = new Limit<double>(0.2, 1);

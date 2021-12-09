@@ -40,6 +40,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar_firstParam = new System.Windows.Forms.TrackBar();
             this.trackBar_secondParam = new System.Windows.Forms.TrackBar();
             this.lbl_firstParamMin = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.lbl_secondParamValue = new System.Windows.Forms.Label();
             this.panel_secondParam = new System.Windows.Forms.Panel();
             this.lbl_secondParamMin = new System.Windows.Forms.Label();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_firstParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_secondParam)).BeginInit();
@@ -166,6 +166,7 @@
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.infoToolStripMenuItem.Text = "Справка";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
             // aboutSystemToolStripMenuItem
             // 
@@ -173,6 +174,13 @@
             this.aboutSystemToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.aboutSystemToolStripMenuItem.Text = "О системе";
             this.aboutSystemToolStripMenuItem.Click += new System.EventHandler(this.aboutSystemToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.exitToolStripMenuItem.Text = "Выход";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // trackBar_firstParam
             // 
@@ -261,13 +269,6 @@
             this.lbl_secondParamMin.Size = new System.Drawing.Size(22, 13);
             this.lbl_secondParamMin.TabIndex = 20;
             this.lbl_secondParamMin.Text = "0.2";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.exitToolStripMenuItem.Text = "Выход";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // DistributionSettingsForm
             // 

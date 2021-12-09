@@ -9,7 +9,6 @@ namespace Road_Lap1.Extensions
     {
         public static void CloseAll(this Form form)
         {
-            Container<CancellationTokenSource>.Instance.First()?.Cancel();
             foreach (var item in Container<Form>.Instance)
             {
                 item.Dispose();

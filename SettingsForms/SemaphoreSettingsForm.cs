@@ -88,5 +88,11 @@ namespace Road_Lap1.ConfigurationForms
         private void SemaphoreConfigurationForm_FormClosing(object sender, FormClosingEventArgs e) => this.CloseAll();
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => this.CloseAll();
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var path = @"..\..\Resources\UserGuides\trafficLightsSettings.html";
+            System.Diagnostics.Process.Start(path);
+        }
     }
 }

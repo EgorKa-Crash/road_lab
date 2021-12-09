@@ -46,6 +46,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).BeginInit();
             this.selectedCarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dynamicSpeed)).BeginInit();
@@ -56,12 +57,11 @@
             // 
             // trackPictureBox
             // 
-            this.trackPictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.trackPictureBox.BackColor = System.Drawing.SystemColors.Control;
+            this.trackPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.trackPictureBox.Location = new System.Drawing.Point(12, 34);
-            this.trackPictureBox.MaximumSize = new System.Drawing.Size(1067, 715);
-            this.trackPictureBox.MinimumSize = new System.Drawing.Size(1067, 715);
             this.trackPictureBox.Name = "trackPictureBox";
-            this.trackPictureBox.Size = new System.Drawing.Size(1067, 715);
+            this.trackPictureBox.Size = new System.Drawing.Size(1067, 653);
             this.trackPictureBox.TabIndex = 0;
             this.trackPictureBox.TabStop = false;
             this.trackPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrackPictureBox_MouseClick);
@@ -230,7 +230,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.infoToolStripMenuItem,
-            this.aboutSystemToolStripMenuItem});
+            this.aboutSystemToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1292, 24);
@@ -249,13 +250,21 @@
             this.aboutSystemToolStripMenuItem.Name = "aboutSystemToolStripMenuItem";
             this.aboutSystemToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.aboutSystemToolStripMenuItem.Text = "О системе";
+            this.aboutSystemToolStripMenuItem.Click += new System.EventHandler(this.aboutSystemToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.exitToolStripMenuItem.Text = "Выход";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // RoadWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1292, 761);
+            this.ClientSize = new System.Drawing.Size(1292, 688);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.setLimitButton);
             this.Controls.Add(this.roadMarkPanel);
@@ -302,6 +311,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutSystemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

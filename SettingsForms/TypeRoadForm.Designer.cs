@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TypeRoadForm));
             this.lbl_roadType = new System.Windows.Forms.Label();
             this.button_next = new System.Windows.Forms.Button();
             this.radioButton_road = new System.Windows.Forms.RadioButton();
@@ -66,7 +67,7 @@
             // 
             this.radioButton_road.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioButton_road.BackColor = System.Drawing.SystemColors.Menu;
-            this.radioButton_road.BackgroundImage = global::Road_Lap1.Properties.Resources.CarRoad;
+            this.radioButton_road.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("radioButton_road.BackgroundImage")));
             this.radioButton_road.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.radioButton_road.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButton_road.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -81,7 +82,7 @@
             // 
             this.radioButton_tunnel.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioButton_tunnel.BackColor = System.Drawing.SystemColors.Menu;
-            this.radioButton_tunnel.BackgroundImage = global::Road_Lap1.Properties.Resources.Tunnel;
+            this.radioButton_tunnel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("radioButton_tunnel.BackgroundImage")));
             this.radioButton_tunnel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.radioButton_tunnel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButton_tunnel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -126,7 +127,7 @@
             // 
             this.radioButton_highway.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioButton_highway.BackColor = System.Drawing.SystemColors.Menu;
-            this.radioButton_highway.BackgroundImage = global::Road_Lap1.Properties.Resources.Highway;
+            this.radioButton_highway.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("radioButton_highway.BackgroundImage")));
             this.radioButton_highway.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.radioButton_highway.Checked = true;
             this.radioButton_highway.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -156,6 +157,7 @@
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.infoToolStripMenuItem.Text = "Справка";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
             // aboutSystemToolStripMenuItem
             // 
