@@ -71,6 +71,8 @@ namespace Road_Lap1
             RoadGenerator();
             addLimitFlag = true;
             speedLimitLabel.Text = "" + speedLimitTB.Value * 10;
+
+            
         }
 
         private void LoadImages()
@@ -159,7 +161,9 @@ namespace Road_Lap1
         private void RoadGenerator()
         {
             Point[] wey = new Point[] { new Point(-300, 600), new Point(0, 400), new Point(300, 400), new Point(600, 0), new Point(900, 500), new Point(1200, 600), new Point(1400, 900), new Point(1500, 1200) }; // хорошая карта, рекомендую , выпуклая вверх
-             
+
+
+            //Point[] wey = new Point[] { new Point(-300, 900), new Point(0, 300), new Point(300, 100), new Point(600, 150), new Point(900, 400), new Point(1200, 500), new Point(1400, 100), new Point(1500, 100) }; // хорошая карта, рекомендую , выпуклая вверх
             int[] RM = MarkingGenerator();
 
             var max = _settings.Speed.Max;
@@ -383,7 +387,8 @@ namespace Road_Lap1
                         {
                             case TrafficSignalType.Limit:
                                 {
-                                    break;
+                                    DrawSpeedLimit( signline,  grf,  j);
+                                    break;  
                                 }
                             case TrafficSignalType.NoLimit:
                                 {
@@ -393,16 +398,17 @@ namespace Road_Lap1
                             case TrafficSignalType.GreenSemaphore:
                                 {
                                     currentImage = greenSemaphoreImage;
+                                    DrawTrafficLightTimer(signline, grf, j);
                                     break;
                                 }
                             case TrafficSignalType.RedSemaphore:
                                 {
                                     currentImage = redSemaphoreImage;
+                                    DrawTrafficLightTimer(signline, grf, j);
                                     break;
                                 }
                             case TrafficSignalType.Highway:
-                                {
-
+                                { 
                                     currentImage = highwayImage;
                                     break;
                                 }
@@ -416,23 +422,33 @@ namespace Road_Lap1
                                     currentImage = tunnelImage;
                                     break;
                                 }
-                        }
-
-                        grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].Point.x - 10, signline.signPoints[j].Point.y - 12, 30, 30));
-                        if (signline.signPoints[j + 1].Signal == TrafficSignalType.Limit)
-                        {
-                            var speedLimit = signline.signPoints[j + 1].Point.maximumAllowedSpeed;
-
-                            var font = GetFont(speedLimit);
-
-                            grf.DrawString(speedLimit.ToString(),
-                                           font,
-                                           new SolidBrush(Color.Black),
-                                           new PointF(signline.signPoints[j].Point.x - 8, signline.signPoints[j].Point.y - 5));
-                        }
+                        } 
+                        grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].Point.x - 10, signline.signPoints[j].Point.y - 12, 30, 30)); 
                     } 
                 }
             }
+        }
+
+        private void DrawSpeedLimit(SignLine signline, Graphics grf, int signPoint)
+        {
+            var speedLimit = signline.signPoints[signPoint + 1].Point.maximumAllowedSpeed;
+
+            var font = GetFont(speedLimit);
+
+            grf.DrawString(speedLimit.ToString(),
+                           font,
+                           new SolidBrush(Color.Black),
+                           new PointF(signline.signPoints[signPoint].Point.x - 8, signline.signPoints[signPoint].Point.y - 5));
+        }
+
+        private void DrawTrafficLightTimer(SignLine signline, Graphics grf, int signPoint)
+        {
+            var LightTimer = counter / 1000;
+            Font font = new Font("consolas", 14);//GetFont(LightTimer);
+            grf.DrawString(LightTimer.ToString(),
+                           font,
+                           new SolidBrush(Color.Black),
+                           new PointF(signline.signPoints[signPoint].Point.x + 15, signline.signPoints[signPoint].Point.y - 7));
         }
 
         private Font GetFont(int speed)
@@ -686,18 +702,17 @@ namespace Road_Lap1
             _semaphoreEventWait.WaitOneEx(_eventFlag);
             road.setTrafficLight();
         }
-
+        int counter = 0;
         private void WaitingOnOtherLight(int timeout)
         {
-            var counter = 0;
-
-            while (timeout >= counter)
+            counter = timeout;
+            while ( counter > 0)
             {
                 _semaphoreEventWait.WaitOneEx(_eventFlag);
-
-                counter += 100;
+                counter -= 100;
                 Thread.Sleep(100);
             }
+            counter = 0;
         }
 
         private int CarsCountOnSegment(int SPoint, int LPoint, int NRoad)
