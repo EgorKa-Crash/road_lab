@@ -70,11 +70,11 @@ namespace Road_Lap1.Settings
 
             if (distribution is NormalDistribution)
             {
-                result = "Мат.ожидание: ";
+                result = "MX: ";
             }
             else if (distribution is UniformDistribution)
             {
-                result = "Левый конец отрезка: ";
+                result = "a: ";
             }
             else if (distribution is ExponentialDistribution)
             {
@@ -90,11 +90,11 @@ namespace Road_Lap1.Settings
 
             if (distribution is NormalDistribution)
             {
-                result = "Дисперсия: ";
+                result = "DX: ";
             }
             else if (distribution is UniformDistribution)
             {
-                result = "Правый конец отрезка: ";
+                result = " b: ";
             }
 
             return result;
@@ -134,15 +134,15 @@ namespace Road_Lap1.Settings
         {
             var result = string.Empty;
 
-            if (_settings.FlowDistribution is NormalDistribution)
+            if (distribution is NormalDistribution)
             {
                 result = "Нормальный";
             }
-            else if (_settings.FlowDistribution is UniformDistribution)
+            else if (distribution is UniformDistribution)
             {
                 result = "Равномерный";
             }
-            else if (_settings.FlowDistribution is ExponentialDistribution)
+            else if (distribution is ExponentialDistribution)
             {
                 result = "Экспоненциальный";
             }

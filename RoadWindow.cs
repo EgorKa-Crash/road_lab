@@ -82,9 +82,6 @@ namespace Road_Lap1
         private string GetInfo()
         {
             var typeRoad = $"Вид дороги: {_view.RoadType.ToLower()}";
-            var direction = $"Вид движения: {_view.DirectionDescription.ToLower()}";
-            var countRoadsOn = $"{_view.CountRoadsOnDescription}";
-            var countRoadsAgains = $"{_view.CountRoadsAgainstDescription}";
             var flow = $"Тип распределения транспортного потока: {_view.FlowDescription.ToLower()}";
             var flowFirstParam = $"{_view.GetDistributionFirstParamDescription(_settings.FlowDistribution, DistributionType.Flow)}";
             var flowSecondParam = $"{_view.GetDistributionSecondParamDescription(_settings.FlowDistribution, DistributionType.Flow)}";
@@ -92,9 +89,21 @@ namespace Road_Lap1
             var speedFirstParam = $"{_view.GetDistributionFirstParamDescription(_settings.SpeedDistribution, DistributionType.Speed)}";
             var speedSecondParam = $"{_view.GetDistributionSecondParamDescription(_settings.SpeedDistribution, DistributionType.Speed)}";
 
-            return $"{typeRoad}\n{direction}\n{countRoadsOn}\n{countRoadsAgains}\n" +
-                   $"{flow}\n{flowFirstParam}\n{(string.IsNullOrEmpty(flowSecondParam) ? string.Empty : flowSecondParam + "\n")}" +
-                   $"{speed}\n{speedFirstParam}\n{(string.IsNullOrEmpty(speedSecondParam) ? string.Empty : speedSecondParam + "\n")}";
+            if(_settings.FlowDistribution is UniformDistribution)
+            {
+                flowFirstParam = "[a, b] :";
+                flowSecondParam = $"[{_settings.FlowDistribution.FirstParam / 1000},  {_settings.FlowDistribution.SecondParam / 1000}]";
+            }
+
+            if (_settings.SpeedDistribution is UniformDistribution)
+            {
+                speedFirstParam = "[a, b] :";
+                speedSecondParam = $"[{_settings.SpeedDistribution.FirstParam},  {_settings.SpeedDistribution.SecondParam}]";
+            }
+
+            return $"{typeRoad}\n" +
+                   $"{flow}\n{flowFirstParam} {(string.IsNullOrEmpty(flowSecondParam) ? string.Empty : flowSecondParam + "\n")}" +
+                   $"{speed}\n{speedFirstParam} {(string.IsNullOrEmpty(speedSecondParam) ? string.Empty : speedSecondParam + "\n")}";
         }
 
         private void LoadImages()
@@ -407,11 +416,6 @@ namespace Road_Lap1
                         TrafficSignalType T = signline.signPoints[j + 1].Signal;
                         switch (T)
                         {
-                            case TrafficSignalType.Limit:
-                                {
-                                    DrawSpeedLimit( signline,  grf,  j);
-                                    break;  
-                                }
                             case TrafficSignalType.NoLimit:
                                 {
                                     currentImage = noLimitImage;
@@ -446,6 +450,10 @@ namespace Road_Lap1
                                 }
                         } 
                         grf.DrawImage(currentImage, new Rectangle(signline.signPoints[j].Point.x - 10, signline.signPoints[j].Point.y - 12, 30, 30)); 
+                        if(T == TrafficSignalType.Limit)
+                        {
+                            DrawSpeedLimit(signline, grf, j);
+                        }
                     } 
                 }
             }
