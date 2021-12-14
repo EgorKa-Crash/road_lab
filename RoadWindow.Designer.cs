@@ -123,7 +123,7 @@
             // 
             this.selCarLable.AutoSize = true;
             this.selCarLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selCarLable.Location = new System.Drawing.Point(13, 57);
+            this.selCarLable.Location = new System.Drawing.Point(120, 96);
             this.selCarLable.Name = "selCarLable";
             this.selCarLable.Size = new System.Drawing.Size(24, 25);
             this.selCarLable.TabIndex = 2;
@@ -131,7 +131,7 @@
             // 
             // dynamicSpeed
             // 
-            this.dynamicSpeed.Location = new System.Drawing.Point(4, 95);
+            this.dynamicSpeed.Location = new System.Drawing.Point(0, 64);
             this.dynamicSpeed.Maximum = 110;
             this.dynamicSpeed.Name = "dynamicSpeed";
             this.dynamicSpeed.Size = new System.Drawing.Size(144, 45);
@@ -266,7 +266,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.exitToolStripMenuItem.Text = "Выход";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

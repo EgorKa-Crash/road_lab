@@ -1,21 +1,20 @@
-﻿using Road_Lap1.Extensions;
-using Road_Lap1.Roads;
-using Road_Lap1.Roads.CarFold;
-using Road_Lap1.Settings;
-using Road_Lap1.Settings.Distribution;
-using Road_Lap1.Settings.Roads;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using Road_Lap1.Extensions;
+using Road_Lap1.Roads;
+using Road_Lap1.Roads.CarFold;
+using Road_Lap1.Settings;
+using Road_Lap1.Settings.Distribution;
+using Road_Lap1.Settings.Roads;
 
 
 namespace Road_Lap1
@@ -92,7 +91,7 @@ namespace Road_Lap1
             if(_settings.FlowDistribution is UniformDistribution)
             {
                 flowFirstParam = "[a, b] :";
-                flowSecondParam = $"[{_settings.FlowDistribution.FirstParam / 1000},  {_settings.FlowDistribution.SecondParam / 1000}]";
+                flowSecondParam = $"[{_settings.FlowDistribution.FirstParam / 1000},  {_settings.FlowDistribution.SecondParam / 1000}] c";
             }
 
             if (_settings.SpeedDistribution is UniformDistribution)
@@ -100,10 +99,10 @@ namespace Road_Lap1
                 speedFirstParam = "[a, b] :";
                 speedSecondParam = $"[{_settings.SpeedDistribution.FirstParam},  {_settings.SpeedDistribution.SecondParam}]";
             }
-
+         
             return $"{typeRoad}\n" +
-                   $"{flow}\n{flowFirstParam} {(string.IsNullOrEmpty(flowSecondParam) ? string.Empty : flowSecondParam + "\n")}" +
-                   $"{speed}\n{speedFirstParam} {(string.IsNullOrEmpty(speedSecondParam) ? string.Empty : speedSecondParam + "\n")}";
+                   $"{flow}\n{flowFirstParam} {(string.IsNullOrEmpty(flowSecondParam) ? string.Empty : flowSecondParam)}\n" +
+                   $"{speed}\n{speedFirstParam} {(string.IsNullOrEmpty(speedSecondParam) ? string.Empty : speedSecondParam)}\n";
         }
 
         private void LoadImages()
@@ -828,8 +827,6 @@ namespace Road_Lap1
             showParamToolStripMenuItem.Text = lbl_info.Visible
                                             ? "Скрыть параметры"
                                             : "Показать параметры";
-            
-           
         }
     }
 }

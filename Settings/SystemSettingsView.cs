@@ -60,7 +60,6 @@ namespace Road_Lap1.Settings
                      $" {GetFlowMeasureUnitSecondParam(distribution)}"
                    : $"{_settings.SpeedDistribution.SecondParam} {GetSpeedMeasureUnitSecondParam(distribution)}";
 
-
             return result;
         }
 
