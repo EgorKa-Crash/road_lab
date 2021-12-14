@@ -10,6 +10,8 @@ namespace Road_Lap1.Settings.Distribution
         [DistributionAttribute("Введите DX:")] public double? SecondParam { get; set; }
 
         public Random Random { get; }
+        public string FirstParamDescription { get; set; }
+        public string SecondParamDescription { get; set; }
 
         public NormalDistribution(double? firstParam, double? secondParam)
         {

@@ -1,15 +1,14 @@
-﻿using Road_Lap1.Settings;
-using Road_Lap1.Extensions;
+﻿using Road_Lap1.Extensions;
 using Road_Lap1.Settings;
 using Road_Lap1.Settings.Distribution;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.IO;
 
 namespace Road_Lap1.ConfigurationForms
 {
@@ -60,7 +59,9 @@ namespace Road_Lap1.ConfigurationForms
         /// <summary>
         /// Транспортный поток / скоростной режим
         /// </summary>
-        private DistributionFormType _formType;
+        private DistributionType _formType;
+
+        private int _countStringDescription;
 
         #endregion
 
@@ -69,20 +70,19 @@ namespace Road_Lap1.ConfigurationForms
         /// </summary>
         private bool IsFlowForm => _countForms == 0;
 
-        public DistributionSettingsForm(Form form, SystemSettings settings, DistributionFormType distributionType)
+        public DistributionSettingsForm(Form form, SystemSettings settings, DistributionType distributionType)
         {
             InitializeComponent();
 
             _form = form;
             _formType = distributionType;
             _settings = settings;
-           
             CreateViews();
             UpdateControls<DetermineDistribution>();
             Container<Form>.Instance.Register(this);
 
             radioButton_determineDistribution_CheckedChanged(null, null);
-        }      
+        }
 
         #region RadioButton Handlers
 
@@ -151,7 +151,7 @@ namespace Road_Lap1.ConfigurationForms
             if (IsFlowForm)
             {
                 _countForms++;
-                var form = new DistributionSettingsForm(this, _settings, DistributionFormType.Speed)
+                var form = new DistributionSettingsForm(this, _settings, DistributionType.Speed)
                 {
                     Text = "Настройка скоростного режима"
                 };

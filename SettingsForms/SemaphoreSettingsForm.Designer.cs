@@ -31,7 +31,7 @@
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_back = new System.Windows.Forms.Button();
             this.lbl_rightSemaphoreDescription = new System.Windows.Forms.Label();
-            this.trackBar_rightSemaphore = new System.Windows.Forms.TrackBar();
+            this.trackBar_semaphore = new System.Windows.Forms.TrackBar();
             this.lbl_rightValue = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,7 +39,7 @@
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_rightSemaphore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_semaphore)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,14 +74,14 @@
             // 
             // trackBar_rightSemaphore
             // 
-            this.trackBar_rightSemaphore.LargeChange = 1;
-            this.trackBar_rightSemaphore.Location = new System.Drawing.Point(8, 160);
-            this.trackBar_rightSemaphore.Minimum = 2;
-            this.trackBar_rightSemaphore.Name = "trackBar_rightSemaphore";
-            this.trackBar_rightSemaphore.Size = new System.Drawing.Size(316, 45);
-            this.trackBar_rightSemaphore.TabIndex = 6;
-            this.trackBar_rightSemaphore.Value = 2;
-            this.trackBar_rightSemaphore.Scroll += new System.EventHandler(this.trackBar_rightSemaphore_Scroll);
+            this.trackBar_semaphore.LargeChange = 1;
+            this.trackBar_semaphore.Location = new System.Drawing.Point(8, 160);
+            this.trackBar_semaphore.Minimum = 2;
+            this.trackBar_semaphore.Name = "trackBar_rightSemaphore";
+            this.trackBar_semaphore.Size = new System.Drawing.Size(316, 45);
+            this.trackBar_semaphore.TabIndex = 6;
+            this.trackBar_semaphore.Value = 2;
+            this.trackBar_semaphore.Scroll += new System.EventHandler(this.trackBar_rightSemaphore_Scroll);
             // 
             // lbl_rightValue
             // 
@@ -152,7 +152,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbl_rightValue);
-            this.Controls.Add(this.trackBar_rightSemaphore);
+            this.Controls.Add(this.trackBar_semaphore);
             this.Controls.Add(this.lbl_rightSemaphoreDescription);
             this.Controls.Add(this.btn_back);
             this.Controls.Add(this.btn_next);
@@ -164,7 +164,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройка фазы светофора";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SemaphoreConfigurationForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_rightSemaphore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_semaphore)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -177,7 +177,7 @@
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.Label lbl_rightSemaphoreDescription;
-        private System.Windows.Forms.TrackBar trackBar_rightSemaphore;
+        private System.Windows.Forms.TrackBar trackBar_semaphore;
         private System.Windows.Forms.Label lbl_rightValue;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

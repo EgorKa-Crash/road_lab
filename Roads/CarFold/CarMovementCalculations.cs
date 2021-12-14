@@ -119,7 +119,7 @@ namespace Road_Lap1.Roads.CarFold
                 //if (road.roads[cars[i].roadNumber].roadPoints[j].driveStatus == false)
                 if (road.roadSign[cars[i].roadNumber < countOppositeRoads ? 1 : 0].signPoints[j].Signal == TrafficSignalType.RedSemaphore)
                 {
-                    minRad1 = cars[i].Radius(road.roads[cars[i].roadNumber].roadPoints[j].x, road.roads[cars[i].roadNumber].roadPoints[j].y);
+                    minRad1 = cars[i].Radius(road.roads[cars[i].roadNumber].roadPoints[j-1].x, road.roads[cars[i].roadNumber].roadPoints[j-1].y);
                     if (stoplightMinRad > minRad1)
                     {
                         stoplightMinRad = minRad1;

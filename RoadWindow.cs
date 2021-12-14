@@ -2,14 +2,17 @@
 using Road_Lap1.Roads;
 using Road_Lap1.Roads.CarFold;
 using Road_Lap1.Settings;
+using Road_Lap1.Settings.Distribution;
 using Road_Lap1.Settings.Roads;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +24,7 @@ namespace Road_Lap1
     {
         private Form _configurationForm;
         private SystemSettings _settings;
+        private SystemSettingsView _view;
 
         private EventWaitHandle _flowEventWait = new AutoResetEvent(false);
         private EventWaitHandle _semaphoreEventWait = new AutoResetEvent(false);
@@ -38,8 +42,8 @@ namespace Road_Lap1
         public int countPassingRoads { get; set; }  //количество попутных дорог
         public int countOppositeRoads { get; set; } //количество противоположных дорог 
 
-        List<Car> cars = new List<Car>(); 
-
+        List<Car> cars = new List<Car>();
+      
         RoadBase road;
           
         object carLocker = new object();
@@ -54,10 +58,10 @@ namespace Road_Lap1
         public RoadWindow(Form form, SystemSettings settings)
         {
             InitializeComponent();
-
             LoadImages();
-
-            _settings = settings;
+           _settings = settings;
+            _view = new SystemSettingsView(settings);
+            lbl_info.Text = GetInfo();
             _cancellationToken = new CancellationTokenSource();
             if (_settings.RoadType == RoadType.Tunnel)
             {
@@ -71,6 +75,24 @@ namespace Road_Lap1
             RoadGenerator();
             addLimitFlag = true;
             speedLimitLabel.Text = "" + speedLimitTB.Value * 10;
+        }
+
+        private string GetInfo()
+        {
+            var typeRoad = $"Вид дороги: {_view.RoadType.ToLower()}";
+            var direction = $"Вид движения: {_view.DirectionDescription.ToLower()}";
+            var countRoadsOn = $"{_view.CountRoadsOnDescription}";
+            var countRoadsAgains = $"{_view.CountRoadsAgainstDescription}";
+            var flow = $"Тип распределения транспортного потока: {_view.FlowDescription.ToLower()}";
+            var flowFirstParam = $"{_view.GetDistributionFirstParamDescription(_settings.FlowDistribution, DistributionType.Flow)}";
+            var flowSecondParam = $"{_view.GetDistributionSecondParamDescription(_settings.FlowDistribution, DistributionType.Flow)}";
+            var speed = $"Тип распределения скоростного потока: {_view.SpeedDescription.ToLower()}";
+            var speedFirstParam = $"{_view.GetDistributionFirstParamDescription(_settings.SpeedDistribution, DistributionType.Speed)}";
+            var speedSecondParam = $"{_view.GetDistributionSecondParamDescription(_settings.SpeedDistribution, DistributionType.Speed)}";
+
+            return $"{typeRoad}\n{direction}\n{countRoadsOn}\n{countRoadsAgains}\n" +
+                   $"{flow}\n{flowFirstParam}\n{(string.IsNullOrEmpty(flowSecondParam) ? string.Empty : flowSecondParam + "\n")}" +
+                   $"{speed}\n{speedFirstParam}\n{(string.IsNullOrEmpty(speedSecondParam) ? string.Empty : speedSecondParam + "\n")}";
         }
 
         private void LoadImages()
@@ -775,6 +797,16 @@ namespace Road_Lap1
             {
                 MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+       
+        private void showParamsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lbl_info.Visible = !lbl_info.Visible;
+            showParamToolStripMenuItem.Text = lbl_info.Visible
+                                            ? "Скрыть параметры"
+                                            : "Показать параметры";
+            
+           
         }
     }
 }

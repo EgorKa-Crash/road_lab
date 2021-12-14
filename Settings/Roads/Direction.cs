@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,10 @@ namespace Road_Lap1.Settings.Roads
         /// <summary>
         /// Одностороннее движение
         /// </summary>
-        OneWay,
+        [Description("Однонаправленное")]OneWay,
         /// <summary>
         /// Двустороннее движение
         /// </summary>
-        TwoWay
+        [Description("Двунаправленное")] TwoWay
     }
 }

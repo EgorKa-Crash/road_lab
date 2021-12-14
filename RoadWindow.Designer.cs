@@ -47,7 +47,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showParamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbl_info = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackPictureBox)).BeginInit();
             this.selectedCarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dynamicSpeed)).BeginInit();
@@ -232,6 +234,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.infoToolStripMenuItem,
             this.aboutSystemToolStripMenuItem,
+            this.showParamToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -253,6 +256,13 @@
             this.aboutSystemToolStripMenuItem.Text = "О системе";
             this.aboutSystemToolStripMenuItem.Click += new System.EventHandler(this.aboutSystemToolStripMenuItem_Click);
             // 
+            // showParamToolStripMenuItem
+            // 
+            this.showParamToolStripMenuItem.Name = "showParamToolStripMenuItem";
+            this.showParamToolStripMenuItem.Size = new System.Drawing.Size(125, 20);
+            this.showParamToolStripMenuItem.Text = "Скрыть параметры";
+            this.showParamToolStripMenuItem.Click += new System.EventHandler(this.showParamsToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -260,12 +270,22 @@
             this.exitToolStripMenuItem.Text = "Выход";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // lbl_info
+            // 
+            this.lbl_info.AutoSize = true;
+            this.lbl_info.Location = new System.Drawing.Point(733, 39);
+            this.lbl_info.Name = "lbl_info";
+            this.lbl_info.Size = new System.Drawing.Size(337, 104);
+            this.lbl_info.TabIndex = 12;
+            this.lbl_info.Text = resources.GetString("lbl_info.Text");
+            // 
             // RoadWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1292, 688);
+            this.Controls.Add(this.lbl_info);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.setLimitButton);
             this.Controls.Add(this.roadMarkPanel);
@@ -315,6 +335,8 @@
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutSystemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showParamToolStripMenuItem;
+        private System.Windows.Forms.Label lbl_info;
     }
 }
 

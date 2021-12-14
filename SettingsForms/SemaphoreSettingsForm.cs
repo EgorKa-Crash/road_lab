@@ -1,5 +1,6 @@
 ﻿using Road_Lap1.Extensions;
 using Road_Lap1.Settings;
+using Road_Lap1.Settings.Distribution;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -30,7 +31,7 @@ namespace Road_Lap1.ConfigurationForms
         /// Объект-болванка для изменений светофора
         /// </summary>
         private Semaphore _semaphoreToChange;
-        
+
         public SemaphoreSettingsForm(Form prevForm, SystemSettings settings)
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace Road_Lap1.ConfigurationForms
 
             _settings.Semaphore.TimeMilliseconds = _semaphoreToChange.TimeMilliseconds;
 
-            new DistributionSettingsForm(this, _settings, DistributionFormType.Flow).Show();
+            new DistributionSettingsForm(this, _settings, DistributionType.Flow).Show();
             this.Hide();
         }
 
@@ -73,8 +74,8 @@ namespace Road_Lap1.ConfigurationForms
       
         private void trackBar_rightSemaphore_Scroll(object sender, EventArgs e)
         {
-            lbl_rightValue.Text = SetLabelValue(trackBar_rightSemaphore);
-            _semaphoreToChange.TimeMilliseconds = trackBar_rightSemaphore.Value * _millisecondsFactor;
+            lbl_rightValue.Text = SetLabelValue(trackBar_semaphore);
+            _semaphoreToChange.TimeMilliseconds = trackBar_semaphore.Value * _millisecondsFactor;
         }
 
         private void btn_back_Click(object sender, EventArgs e)

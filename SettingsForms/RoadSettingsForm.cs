@@ -1,5 +1,6 @@
 ﻿using Road_Lap1.Extensions;
 using Road_Lap1.Settings;
+using Road_Lap1.Settings.Distribution;
 using Road_Lap1.Settings.Roads;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Road_Lap1.ConfigurationForms
 
             this.Hide();
 
-            new DistributionSettingsForm(this, _settings, DistributionFormType.Flow).Show();
+            new DistributionSettingsForm(this, _settings, DistributionType.Flow).Show();
         }
 
         private bool UpdateRoad()
@@ -49,7 +50,7 @@ namespace Road_Lap1.ConfigurationForms
             var countLineAgainst = trackBar_twoDirection.Value;
 
             _settings.Traffic = radioButton_oneDirection.Checked
-                              ? new Traffic(countLineOn) 
+                              ? new Traffic(countLineOn)
                               : (Traffic)new Traffic(countLineOn, countLineAgainst);
 
             return ValidateModel(_settings.Traffic);

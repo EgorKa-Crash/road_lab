@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\EventWaitHandlerExtension.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -80,6 +81,7 @@
       <DependentUpon>SemaphoreSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\DistributionSettingsView.cs" />
+    <Compile Include="Settings\Distribution\DistributionType.cs" />
     <Compile Include="Settings\Distribution\DistributionFactory.cs" />
     <Compile Include="Settings\Distribution\DistributionAttribute.cs" />
     <Compile Include="Settings\Limit.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roads\RoadComponents\SignLine.cs" />
     <Compile Include="Roads\Tunnel.cs" />
+    <Compile Include="Settings\SystemSettingsView.cs" />
     <EmbeddedResource Include="SettingsForms\DistributionSettingsForm.resx">
       <DependentUpon>DistributionSettingsForm.cs</DependentUpon>
     </EmbeddedResource>

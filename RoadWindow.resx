@@ -327,6 +327,16 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="lbl_info.Text" xml:space="preserve">
+    <value>Вид дороги: автомагистраль
+Вид движения: двучаправленное:
+Количество полос в одном направлении: 3
+Количество полос в обратном направлении: 3
+Тип распределения транспортного потока: детерминированный!
+Константа: 200 с
+Тип распределения скоростного потока: детерминированный
+Константа: 40 км/ч</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>39</value>
   </metadata>

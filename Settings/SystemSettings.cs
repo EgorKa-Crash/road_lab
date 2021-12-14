@@ -1,6 +1,7 @@
 ﻿using Road_Lap1.Settings.Distribution;
 using Road_Lap1.Settings.Roads;
 using System;
+using System.Collections.Generic;
 
 namespace Road_Lap1.Settings
 {
@@ -45,16 +46,12 @@ namespace Road_Lap1.Settings
         {
             RoadType = roadType;
             Speed = speedLimits;
-
-            _semaphoreLazy = new Lazy<Semaphore>(() => (new Semaphore()));
+            _semaphoreLazy = new Lazy<Semaphore>(() => new Semaphore());
         }
 
         private SystemSettings(RoadType roadType,
                                Limit<int> speedLimits,
-                               Traffic traffic) : this(roadType, speedLimits)
-        {
-            Traffic = traffic;
-        }
+                               Traffic traffic) : this(roadType, speedLimits) => Traffic = traffic;
 
 
         public static class Factory
