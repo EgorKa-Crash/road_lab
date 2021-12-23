@@ -121,14 +121,8 @@
   <data name="CarRoad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\CarRoad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="countOfRoadsInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\countOfRoadsInfo.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="flowIntensitySettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\flowIntensitySettings.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="GreenSemaphore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\GreenSemaphore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,14 +130,8 @@
   <data name="Highway" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Highway.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Highway1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\Highway.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Limit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Limit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="managingTheMainForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\managingTheMainForm.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="NoLimit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\NoLimit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,59 +139,7 @@
   <data name="RedSemaphore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\RedSemaphore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RefSubsystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\RefSubsystem.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Road" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\Road.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="roadTypeInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\roadTypeInfo.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-
-  <data name="speedSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\speedSettings.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="systemInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\systemInfo.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="Tonnel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\Tonnel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="trafficLightsSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\trafficLightsSettings.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="Tunnel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Tunnel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="большой_поток_авто" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\большой поток авто.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="главная_форма" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\главная форма.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="малый_поток_авто" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\малый поток авто.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="работа_знаков_ограничения_скорости" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\работа знаков ограничения скорости.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="расстановка_знаков" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\расстановка знаков.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="управление_головным_авто" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\управление головным авто.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="форма_настройки_интенсивности_потока" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\форма настройки интенсивности потока.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="форма_настройки_количества_полос" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\форма настройки количества полос.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="форма_настройки_светофорной_фазы" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\форма настройки светофорной фазы.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="форма_настройки_скоростного_режима" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserGuides\Images\форма настройки скоростного режима.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -178,27 +178,6 @@
     <Content Include="Resources\Images\NoLimit.png" />
     <Content Include="Resources\Images\RedSemaphore.png" />
     <Content Include="Resources\Images\Tunnel.png" />
-    <Content Include="Resources\UserGuides\countOfRoadsInfo.html" />
-    <Content Include="Resources\UserGuides\flowIntensitySettings.html" />
-    <Content Include="Resources\UserGuides\Images\Highway.jpg" />
-    <Content Include="Resources\UserGuides\Images\RefSubsystem.bmp" />
-    <Content Include="Resources\UserGuides\Images\Road.jpg" />
-    <Content Include="Resources\UserGuides\Images\Tonnel.jpg" />
-    <Content Include="Resources\UserGuides\Images\большой поток авто.jpg" />
-    <Content Include="Resources\UserGuides\Images\главная форма.jpg" />
-    <Content Include="Resources\UserGuides\Images\малый поток авто.jpg" />
-    <Content Include="Resources\UserGuides\Images\работа знаков ограничения скорости.jpg" />
-    <Content Include="Resources\UserGuides\Images\расстановка знаков.jpg" />
-    <Content Include="Resources\UserGuides\Images\управление головным авто.jpg" />
-    <Content Include="Resources\UserGuides\Images\форма настройки интенсивности потока.jpg" />
-    <Content Include="Resources\UserGuides\Images\форма настройки количества полос.jpg" />
-    <Content Include="Resources\UserGuides\Images\форма настройки светофорной фазы.jpg" />
-    <Content Include="Resources\UserGuides\Images\форма настройки скоростного режима.jpg" />
-    <Content Include="Resources\UserGuides\managingTheMainForm.html" />
-    <Content Include="Resources\UserGuides\roadTypeInfo.html" />
-    <Content Include="Resources\UserGuides\speedSettings.html" />
-    <Content Include="Resources\UserGuides\systemInfo.html" />
-    <Content Include="Resources\UserGuides\trafficLightsSettings.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

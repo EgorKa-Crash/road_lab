@@ -3,67 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Настройки светофора</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
-
-<style>
-    body {
-        margin: 0; /* Убираем отступы */
-    }
-    .parent {
-        /*margin: 20%;  Отступы вокруг элемента */
-        /*background: #fd0;  Цвет фона */
-        padding: 10px; /* Поля вокруг текста */
-        /*width: 30%
-        width: 150px;
-        height: 300px;*/
-        width: 910px;
-    }
-    .child {
-         /*border: 2px solid #666; Параметры рамки */
-        padding: 10px; /* Поля вокруг текста */
-        margin: 3px 10px 3px 10px; /* Отступы вокруг */
-        /*width: 300px;*/
-        width: 85%;
-    }
-    .button {
-       /*border: 8px solid #000fff;    Параметры рамки */
-        padding: 10px; /* Поля вокруг текста */
-        margin: 3px 10px 3px 10px; /* Отступы вокруг */
-        border: none;
-        width: 90%;
-		background:#f0f0f0; 
-        <!--float:left;-->
-    }
-	.button:hover {
-    	background:#e0e0e0;  
-    }
-    #line_block {
-        width:600px;
-        background:#ffffff;
-        float:left;
-        margin: 0 15px 15px 0;
-        text-align:center;
-        padding: 30px;
-        font-size: 14pt;
-        text-indent: 40px;
-        }
-    #line_block2 {
-        width:200px; 
-        float:left;
-        margin: 0 15px 15px 0;
-        text-align:center;
-        padding: 10px;
-        }
-	.Image {
-        width: 100%;
-		border: none;
-		height: auto;
-		display: block;
-        }
-</style>
-
- 
-
 
 <body bgcolor="#F0F0F0">
 <div align="center"  >
@@ -79,18 +20,18 @@
             <button class="button" onclick="window.location.href = 'trafficLightsSettings.html';">О настройке светофора</button>
             <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'speedSettings.html';">О выборе распределения скоростного режима</button>
-            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button>
+            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">Об управлении главной формой</button>
             <button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
         </div>
         <div id="line_block">
             <h2>Настройка светофоров в тоннеле</h2>
-            <p align="justify">Ниже представлена форма настройка периода зеленой фазы светофоров реверсивного движения.</p>
+            <p align="justify">Ниже представлена форма для настройки длительности светофорной фазы. С помощью светофоров в тоннеле обеспечивается реверсивное движение.</p>
             <img class="Image" src="Images/форма настройки светофорной фазы.jpg">
-            <p align="center">Рисунок 1 — Форма настройки светофорной фазы</p><br>
-            <p align="justify">На форме присутствует ползунок, который позволяет здать длительность светофорной фазы.</p>
+            <p align="center">Рисунок 1 — Форма для настройки светофорной фазы</p><br>
+            <p align="justify">На форме присутствует ползунок, который позволяет задать длительность светофорной фазы от 2 до 10 секунд.</p>
             <p align="justify">
-                При нажатии кнопки 'Назад' текущее окно закроется и откроется
-                форма выбора типа дороги. При нажатии кнопки 'Далее' будет открыта форма выбора распределения интенсивности потока.
+                При нажатии на кнопку 'Назад' текущее окно закроется и откроется
+                форма для выбора типа дороги. При нажатии на кнопку 'Далее' будет открыта форма для выбора распределения интенсивности потока.
             </p>
         </div>
         </div>

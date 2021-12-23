@@ -48,19 +48,11 @@ namespace Road_Lap1.Roads.CarFold
                 // проверка, может ли данная машина пойти на обгон
                 OvertakingCheck(cars, road, overtakingBlockingRadius, ADVANCE_RADIUS, i, ref frontCar, ref minRadToFrontCar, carSpeed);
 
-                //try
-               // {
-                    if (cars[i].Radius(road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].x, road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].y) < 30)
-                    {
-                        cars[i].roadPointNumber++;
-                        cars[i].carOvertaking = false;
-                    }
-               // }
-               /*
-                catch
+                if (cars[i].Radius(road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].x, road.roads[cars[i].roadNumber].roadPoints[cars[i].roadPointNumber].y) < 30)
                 {
-                    cars.Remove(cars[i]);
-                }*/
+                    cars[i].roadPointNumber++;
+                    cars[i].carOvertaking = false;
+                }
 
                 if (cars[i].roadPointNumber >= road.roads[cars[i].roadNumber].roadPoints.Count - 2)
                 {

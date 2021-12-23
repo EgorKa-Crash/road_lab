@@ -9,9 +9,6 @@ namespace Road_Lap1.Settings.Distribution
         /// </summary>
         public string Description { get; set; }
 
-        public DistributionAttribute(string description)
-        {
-            Description = description;
-        }
+        public DistributionAttribute(string description) => Description = description;
     }
 }

@@ -61,8 +61,6 @@ namespace Road_Lap1.ConfigurationForms
         /// </summary>
         private DistributionType _formType;
 
-        private int _countStringDescription;
-
         #endregion
 
         /// <summary>
@@ -91,7 +89,6 @@ namespace Road_Lap1.ConfigurationForms
             if(radioButton_uniformDistribution.Checked)
             {
                 _distributionConstructor = (a, b) => DistributionFactory.Create<UniformDistribution>(a, b);
-                _view = _views[typeof(UniformDistribution)];
                 UpdateControls<UniformDistribution>();
                 trackBar_firstParam_Scroll(null, null);
             }
@@ -102,7 +99,6 @@ namespace Road_Lap1.ConfigurationForms
             if (radioButton_normalDistribution.Checked)
             {
                 _distributionConstructor = (mx, dx) => DistributionFactory.Create<NormalDistribution>(mx, dx);
-                _view = _views[typeof(NormalDistribution)];
                 UpdateControls<NormalDistribution>(); 
             }
         }
@@ -112,7 +108,6 @@ namespace Road_Lap1.ConfigurationForms
             if (radioButton_exponentialDistribution.Checked)
             {
                 _distributionConstructor = (x, _) => DistributionFactory.Create<ExponentialDistribution>(x);
-                _view = _views[typeof(ExponentialDistribution)];
                 UpdateControls<ExponentialDistribution>();
             }
         }
@@ -122,7 +117,6 @@ namespace Road_Lap1.ConfigurationForms
             if (radioButton_determineDistribution.Checked)
             {
                 _distributionConstructor = (x, _) => DistributionFactory.Create<DetermineDistribution>(x);
-                _view = _views[typeof(DetermineDistribution)];
                 UpdateControls<DetermineDistribution>(); 
             }
         }
@@ -162,7 +156,7 @@ namespace Road_Lap1.ConfigurationForms
             }
             else
             {
-                new RoadWindow(this, _settings).Show();
+                new RoadWindow(this, _settings)?.Show();
 
                 this.Hide();
             }
@@ -185,11 +179,15 @@ namespace Road_Lap1.ConfigurationForms
 
         private void UpdateControls<T>() where T : IDistribution
         {
-            var descriptions = typeof(T).GetProperties()
-                                        .Select(prop => (DistributionAttribute)prop.GetCustomAttribute<DistributionAttribute>())
-                                        .Where(attribute => attribute != null)
-                                        .Select(x => x.Description)
-                                        .ToArray();
+
+            var distributionType = typeof(T);
+            _view = _views[distributionType];
+
+            var descriptions = distributionType.GetProperties()
+                                               .Select(prop => (DistributionAttribute)prop.GetCustomAttribute<DistributionAttribute>())
+                                               .Where(attribute => attribute != null)
+                                               .Select(x => x.Description)
+                                               .ToArray();
             UpdateTrackBars(_view);
             UpdateLimitLabels(_view);
 
@@ -412,13 +410,25 @@ namespace Road_Lap1.ConfigurationForms
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(_view.GuidePath))
+#if DEBUG
+            var path = _view.GuidePath;
+#else
+            var path = new string(_view.GuidePath.SkipWhile(ch => !char.IsLetter(ch)).ToArray());
+#endif
+            if (File.Exists(path))
             {
-                Process.Start(_view.GuidePath);
+                try
+                {
+                    Process.Start(path);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Файл справки поврежден!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Отсутствует файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

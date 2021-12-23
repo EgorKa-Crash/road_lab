@@ -24,6 +24,7 @@ namespace Road_Lap1
         private Form _configurationForm;
         private SystemSettings _settings;
         private SystemSettingsView _view;
+        private Exception _exceptionLoadImage;
 
         private EventWaitHandle _flowEventWait = new AutoResetEvent(false);
         private EventWaitHandle _semaphoreEventWait = new AutoResetEvent(false);
@@ -57,9 +58,9 @@ namespace Road_Lap1
         public RoadWindow(Form form, SystemSettings settings)
         {
             InitializeComponent();
-            LoadImages();
            _settings = settings;
             _view = new SystemSettingsView(settings);
+            LoadImages();
             lbl_info.Text = GetInfo();
             _cancellationToken = new CancellationTokenSource();
             if (_settings.RoadType == RoadType.Tunnel)
@@ -73,9 +74,7 @@ namespace Road_Lap1
             _configurationForm = form;
             RoadGenerator();
             addLimitFlag = true;
-            speedLimitLabel.Text = "" + speedLimitTB.Value * 10;
-
-            
+            speedLimitLabel.Text = "" + speedLimitTB.Value * 10;           
         }
 
         private string GetInfo()
@@ -102,25 +101,50 @@ namespace Road_Lap1
          
             return $"{typeRoad}\n" +
                    $"{flow}\n{flowFirstParam} {(string.IsNullOrEmpty(flowSecondParam) ? string.Empty : flowSecondParam)}\n" +
-                   $"{speed}\n{speedFirstParam} {(string.IsNullOrEmpty(speedSecondParam) ? string.Empty : speedSecondParam)}\n";
+                   $"{speed}\n{speedFirstParam} {(string.IsNullOrEmpty(speedSecondParam) ? string.Empty : speedSecondParam)}\n" +
+                   _view.SemaphoreDescription;
         }
 
         private void LoadImages()
         {
+#if DEBUG
+            var prefix = @"..\..\";
+#else
+            var prefix = string.Empty;
+#endif
+            prefix += @"Resources\Images\";
             try
             {
-                noLimitImage = Properties.Resources.NoLimit;
-                limitImage = Properties.Resources.Limit;
-                greenSemaphoreImage = Properties.Resources.GreenSemaphore;
-                redSemaphoreImage = Properties.Resources.RedSemaphore;
-                carRoadImage = Properties.Resources.CarRoad;
-                highwayImage = Properties.Resources.Highway;
-                tunnelImage = Properties.Resources.Tunnel;
-                crossImage = Properties.Resources.Cross;
+                if (_settings.RoadType == RoadType.Highway)
+                {
+                    highwayImage = Image.FromFile(prefix + "Highway.png");
+                }
+                else if(_settings.RoadType == RoadType.Road)
+                {
+                    carRoadImage = Image.FromFile(prefix + "CarRoad.png");
+                }
+                else if (_settings.RoadType == RoadType.Tunnel)
+                {
+                    greenSemaphoreImage = Image.FromFile(prefix + "GreenSemaphore.png");
+                    redSemaphoreImage = Image.FromFile(prefix + "RedSemaphore.png");
+                    tunnelImage = Image.FromFile(prefix + "Tunnel.png");
+                }
+
+                noLimitImage = Image.FromFile(prefix + "NoLimit.png");
+                limitImage = Image.FromFile(prefix + "Limit.png");
+                crossImage = Image.FromFile(prefix + "Cross.png");
             }
-            catch (Exception ex)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exceptionLoadImage = ex;
+            }
+            catch(ArgumentException ex)
+            {
+                _exceptionLoadImage = ex;
+            }
+            catch(Exception ex)
+            {
+                _exceptionLoadImage = ex;
             }
         }
 
@@ -131,6 +155,12 @@ namespace Road_Lap1
         /// <param name="e"></param>
         private void startButton_Click(object sender, EventArgs e)
         {
+            if(_exceptionLoadImage != null)
+            {
+                MessageBox.Show("Не удалось открыть файл: " + _exceptionLoadImage.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             roadMarkPanel.Visible = false;
             if (_eventFlag)
             {
@@ -192,8 +222,6 @@ namespace Road_Lap1
         {
             Point[] wey = new Point[] { new Point(-300, 600), new Point(0, 400), new Point(300, 400), new Point(600, 0), new Point(900, 500), new Point(1200, 600), new Point(1400, 900), new Point(1500, 1200) }; // хорошая карта, рекомендую , выпуклая вверх
 
-
-            //Point[] wey = new Point[] { new Point(-300, 900), new Point(0, 300), new Point(300, 100), new Point(600, 150), new Point(900, 400), new Point(1200, 500), new Point(1400, 100), new Point(1500, 100) }; // хорошая карта, рекомендую , выпуклая вверх
             int[] RM = MarkingGenerator();
 
             var max = _settings.Speed.Max;
@@ -236,7 +264,6 @@ namespace Road_Lap1
          
 
         Random rnd = new Random();
-        //List<double> _list = new List<double>();
         /// <summary>
         /// великолепне место, асинхронная генерация машин, позволяет задавать частоту и вид распределения появления машин
         /// </summary>
@@ -288,7 +315,7 @@ namespace Road_Lap1
                         });
                     }
                 }
-                Thread.Sleep(20); 
+                Thread.Sleep(17); 
             }
         }
          
@@ -350,6 +377,7 @@ namespace Road_Lap1
                 }
             }
         }
+
 
         private void DrawMarkup(Graphics grf)
         {
@@ -489,37 +517,33 @@ namespace Road_Lap1
 
         public static Image RotateImage(Image img, float rotationAngle)
         {
-           // create an empty Bitmap image
             Bitmap bmp = new Bitmap(img.Width, img.Height);
 
-          //  turn the Bitmap into a Graphics object
             Graphics gfx = Graphics.FromImage(bmp);
 
-           // now we set the rotation point to the center of our image
             gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
 
-           // now rotate the image
             gfx.RotateTransform(rotationAngle);
 
             gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
 
-           // set the InterpolationMode to HighQualityBicubic so to ensure a high
-           // quality image once it is transformed to the specified size
             gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-          //  now draw our new image onto the graphics object
             gfx.DrawImage(img, new System.Drawing.Point(0, 0));
 
-          //  dispose of our Graphics object
             gfx.Dispose();
 
-           // return the image
             return bmp;
         }
 
        
         private void TrackPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
+            if(_exceptionLoadImage != null)
+            {
+                return;
+            }
+
             if (addLimitFlag) 
             {
                 if(!IsCorrectPlaceToLimitSign(currentLimLine.signPoints[currentLimNum].Signal))
@@ -631,7 +655,7 @@ namespace Road_Lap1
 
         private void TrackPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!addLimitFlag)
+            if (!addLimitFlag || _exceptionLoadImage != null)
             {
                 return;
             }
@@ -810,14 +834,35 @@ namespace Road_Lap1
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var path = @"..\..\Resources\UserGuides\managingTheMainForm.html";
+
+#if DEBUG
+            var prefix = @"..\..\";
+#else
+            var prefix = string.Empty;
+#endif
+            LoadFile(prefix + @"Resources\UserGuides\managingTheMainForm.html",
+            path =>
+            {
+                try
+                {
+                    Process.Start(path);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Файл справки поврежден!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
+        }
+
+        private void LoadFile(string path, Action<string> action)
+        {
             if (File.Exists(path))
             {
-                Process.Start(path);
+                action(path);
             }
             else
             {
-                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Отсутствует файл по пути: {path}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
        

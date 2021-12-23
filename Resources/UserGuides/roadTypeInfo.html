@@ -3,83 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Настройки типа дороги</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
-
-<style>
-    body {
-        margin: 0; /* Убираем отступы */
-    }
-    .parent {
-        /*margin: 20%;  Отступы вокруг элемента */
-        /*background: #fd0;  Цвет фона */
-        padding: 10px; /* Поля вокруг текста */
-        /*width: 30%
-        width: 150px;
-        height: 300px;*/
-        width: 910px;
-    }
-    .child {
-         /*border: 2px solid #666; Параметры рамки */
-        padding: 10px; /* Поля вокруг текста */
-        margin: 3px 10px 3px 10px; /* Отступы вокруг */
-        /*width: 300px;*/
-        width: 85%;
-    }
-    .button {
-       /*border: 8px solid #000fff;    Параметры рамки */
-        padding: 10px; /* Поля вокруг текста */
-        margin: 3px 10px 3px 10px; /* Отступы вокруг */
-        border: none;
-        width: 90%;
-		background:#f0f0f0; 
-        <!--float:left;-->
-    }
-	.button:hover {
-    	background:#e0e0e0;  
-    }
-	.upButton{     
-		padding: 10px; /* Поля вокруг текста */
-        margin: 3px 10px 3px 10px; /* Отступы вокруг */
-        width: 10%;
-		background:#ffffff; 
-		position: fixed;
-		text-align:center;
-		left: 27%;
-		bottom: 15px;
-	}
-    #line_block {
-        width:600px;
-        background:#ffffff;
-        float:left;
-        margin: 0 15px 15px 0;
-        text-align:center;
-        padding: 30px;
-        font-size: 14pt;
-        text-indent: 40px;
-        }
-    #line_block2 {
-        width:200px; 
-        float:left;
-        margin: 0 15px 15px 0;
-        text-align:center;
-        padding: 10px;
-        }
-	.Image {
-        width: 100%;
-		border: none;
-		height: auto;
-		display: block;
-        }
-</style>
-
- 
-
 
 <body bgcolor="#F0F0F0">
 <div align="center"  >
     <div align="center" class="parent">
         <div>
-           <h1>Справочная информация к «Система моделирования
+           <h1>Справочная информация к 
+		   «Система моделирования
 
 движения транспорта на автодороге» </h1>
         </div>
@@ -89,7 +21,7 @@
             <button class="button" onclick="window.location.href = 'trafficLightsSettings.html';">О настройке светофора</button>
             <button class="button" onclick="window.location.href = 'flowIntensitySettings.html';">О выборе интенсивности потока</button>
             <button class="button" onclick="window.location.href = 'speedSettings.html';">О выборе распределения скоростного режима</button>
-            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">О управлении главной формой</button>
+            <button class="button" onclick="window.location.href = 'managingTheMainForm.html';">Об управлении главной формой</button>
             <button class="button" onclick="window.location.href = 'systemInfo.html';">О системе и авторах</button>
         </div> 
         <div id="line_block">
@@ -97,17 +29,17 @@
             <p align="justify">На рисунке 1 представлена форма, на которой следует выбрать один из трех типов дороги и нажать кнопку 'Далее', чтобы открыть следующее окно настроек.</p>
             <img class="Image" src="Images/форма выбора типа дороги.jpg">
             <p align="center">Рисунок 1 — Форма выбора типа дороги</p><br>
-            <p align="justify">Выбор состоит из трех типов дороги:</p>
+            <p align="justify">Выбрать можно один из трех типов дороги:</p>
             <h3>Дорога</h3>
-            <p align="justify">Дорога представляет собой совокупность полос с односторонним или двусторонним двиением с ограничением скорости 60 Км/ч.</p>
+            <p align="justify">Дорога представляет собой совокупность полос с односторонним или двусторонним движением и ограничением скорости 20-60 км/ч.</p>
             <img class="Image" src="Images/Road.jpg">
             <p align="center">Рисунок 2 — Модель односторонней дороги</p><br>
                                                                          <h3>Тоннель</h3>
-            <p align="justify">Тоннель представляет собой узкий участок дороги, где в реверсивном движении движутся две полосы, резулируемые настраиваемым светофором. Ограничением скорости 60 Км/ч.</p>
+            <p align="justify">Тоннель представляет собой узкий участок дороги, где организовано реверсивное движение, обеспечиваемое настраиваемым светофором. Ограничение скорости 20-60 км/ч.</p>
             <img class="Image" src="Images/Tonnel.jpg">
             <p align="center">Рисунок 3 — Модель тоннеля</p><br>
                                                             <h3>Автомагистраль</h3>
-            <p align="justify">Автомагистраль представляет собой совокупность полос с односторонним или двусторонним двиением с ограничением скорости 110 Км/ч.</p>
+            <p align="justify">Автомагистраль представляет собой совокупность полос с односторонним или двусторонним движением и ограничением скорости 40-110 км/ч.</p>
             <img class="Image" src="Images/Highway.jpg">
             <p align="center">Рисунок 4 — Модель автомагистрали</p><br>
 
@@ -116,7 +48,7 @@
 </div>
 
 <div id="upButton">
- <button class="upButton" onclick="window.location.href = '#';">Вверх</button>
+    <img  src="Images/up-arrow.png" class="upButtonI" onclick="window.location.href = '#';">
 </div>
 
 </body>

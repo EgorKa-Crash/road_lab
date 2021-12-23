@@ -10,9 +10,6 @@ namespace Road_Lap1.Settings.Distribution
         double? FirstParam { get; set; }
         double? SecondParam { get; set; }
 
-        string FirstParamDescription { get; set; }
-        string SecondParamDescription { get; set; }
-
         double NextValue();
 
         bool CheckParam(double param);

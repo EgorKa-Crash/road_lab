@@ -13,21 +13,15 @@ namespace Road_Lap1.Settings.Distribution
 
         public Random Random { get; }
 
-        public string FirstParamDescription { get; set; }
-        public string SecondParamDescription { get; set; }
-
-        public DetermineDistribution (double? firstParam)
-        {
-            FirstParam = firstParam;
-        }
+        public DetermineDistribution(double? firstParam) => FirstParam = firstParam;
 
         public double NextValue() => FirstParam.Value;
 
         public bool CheckParam(double param)
         {
-            return (param > 0
-                 && !double.IsNaN(param)
-                 && !double.IsInfinity(param));
+            return param > 0
+                && !double.IsNaN(param)
+                && !double.IsInfinity(param);
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

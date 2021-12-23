@@ -48,7 +48,7 @@ namespace Road_Lap1.ConfigurationForms
                 return;
             }
 
-            _settings.Semaphore.TimeMilliseconds = _semaphoreToChange.TimeMilliseconds;
+            _settings.Semaphore = _semaphoreToChange;
 
             new DistributionSettingsForm(this, _settings, DistributionType.Flow).Show();
             this.Hide();
@@ -86,14 +86,26 @@ namespace Road_Lap1.ConfigurationForms
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+#if DEBUG
             var path = @"..\..\Resources\UserGuides\trafficLightsSettings.html";
+#else
+            var path = @"Resources\UserGuides\trafficLightsSettings.html";
+#endif
+
             if (File.Exists(path))
             {
-                Process.Start(path);
+                try
+                {
+                    Process.Start(path);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Файл справки поврежден!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Не удалось открыть файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Отсутствует файл справки!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

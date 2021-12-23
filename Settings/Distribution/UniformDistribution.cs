@@ -11,9 +11,6 @@ namespace Road_Lap1.Settings.Distribution
 
         public Random Random { get; }
 
-        public string FirstParamDescription { get; set; }
-        public string SecondParamDescription { get; set; }
-
         public UniformDistribution(double? firstParam, double? secondParam)
         {
             FirstParam = firstParam;

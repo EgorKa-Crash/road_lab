@@ -54,7 +54,7 @@ namespace Road_Lap1.Settings
             GuidePath = @"..\..\Resources\UserGuides\speedSettings.html";
             if (distributionType == typeof(NormalDistribution))
             {
-                SecondParamLimit = systemSettings.RoadType == RoadType.Higway
+                SecondParamLimit = systemSettings.RoadType == RoadType.Highway
                                  ? new Limit<double>(0, 136)
                                  : new Limit<double>(0, 44);
                 DistributionDescription += "нормальное";

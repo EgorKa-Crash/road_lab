@@ -35,18 +35,15 @@ namespace Road_Lap1.Settings
         /// </summary>
         public IDistribution SpeedDistribution { get; set; }
 
-        private Lazy<Semaphore> _semaphoreLazy;
-
         /// <summary>
         /// Настройки светофора
         /// </summary>
-        public Semaphore Semaphore => _semaphoreLazy.Value;
-        
+        public Semaphore Semaphore { get; set; }
+
         private SystemSettings(RoadType roadType, Limit<int> speedLimits)
         {
             RoadType = roadType;
             Speed = speedLimits;
-            _semaphoreLazy = new Lazy<Semaphore>(() => new Semaphore());
         }
 
         private SystemSettings(RoadType roadType,
@@ -56,14 +53,14 @@ namespace Road_Lap1.Settings
 
         public static class Factory
         {
-            public static SystemSettings CreateHighway() => new SystemSettings(RoadType.Higway, new Limit<int>(min: 40, max: 110));
+            public static SystemSettings CreateHighway() => new SystemSettings(RoadType.Highway, new Limit<int>(min: 40, max: 110));
 
             public static SystemSettings CreateRoad() => new SystemSettings(RoadType.Road, new Limit<int>(min: 20, max: 60));
 
             public static SystemSettings CreateTunnel() => new SystemSettings(RoadType.Tunnel, 
                                                                               new Limit<int>(min: 20, max: 60), 
                                                                               new Traffic(countLineOn: 1, countLineAgainst: 1)
-                                                                              );
+                                                                             );
         }
     }
 }

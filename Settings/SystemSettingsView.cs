@@ -25,7 +25,7 @@ namespace Road_Lap1.Settings
         public string SemaphoreDescription
         {
             get => _settings.RoadType == Roads.RoadType.Tunnel
-                 ? $"Длительность светофорной фазы: {_settings.Semaphore?.TimeMilliseconds * 1000} c"
+                 ? $"Длительность светофорной фазы: {_settings.Semaphore?.TimeMilliseconds / 1000} c"
                  : string.Empty;
         }
 
