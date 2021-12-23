@@ -222,6 +222,9 @@ namespace Road_Lap1
         {
             Point[] wey = new Point[] { new Point(-300, 600), new Point(0, 400), new Point(300, 400), new Point(600, 0), new Point(900, 500), new Point(1200, 600), new Point(1400, 900), new Point(1500, 1200) }; // хорошая карта, рекомендую , выпуклая вверх
 
+            //не трогать, мое, мне надо
+            //Point[] wey = new Point[] { new Point(-300, 900), new Point(0, 300), new Point(300, 100), new Point(600, 150), new Point(900, 400), new Point(1200, 500), new Point(1400, 100), new Point(1500, 100) };
+
             int[] RM = MarkingGenerator();
 
             var max = _settings.Speed.Max;
@@ -315,7 +318,7 @@ namespace Road_Lap1
                         });
                     }
                 }
-                Thread.Sleep(17); 
+                Thread.Sleep(20); 
             }
         }
          
