@@ -597,12 +597,7 @@ namespace Road_Lap1
 
             }
             else
-            {
-                if (_settings.RoadType != RoadType.Tunnel)
-                {
-                    return;
-                }
-
+            { 
                 int x = e.Location.X;
                 int y = e.Location.Y;
                 double minRad = 50;
